@@ -832,60 +832,177 @@
     margin-bottom: 16px;
   }
 
-  /* ===== Members Section (仲間たち) ===== */
-  .members-section {
-    background: var(--navy);
+  /* ===== Voice of Challengers Section ===== */
+  .voice-section {
+    background: var(--dpfp-blue);
     color: var(--white);
-    padding: 100px 0;
+    padding: 120px 0;
     position: relative;
     overflow: hidden;
   }
-  .members-section .section-title .jp { color: var(--white); }
-  .members-section .section-title .en { color: rgba(255,255,255,0.5); }
-  .members-lead {
-    text-align: center;
-    font-size: 17px;
-    line-height: 2;
-    margin-bottom: 60px;
-    color: rgba(255,255,255,0.9);
+  /* 背景の透かし「VOICE」 */
+  .voice-section::before {
+    content: "VOICE";
+    position: absolute;
+    top: -4%;
+    right: -2%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(180px, 22vw, 360px);
+    color: var(--dpfp-orange);
+    opacity: 0.05;
+    letter-spacing: -0.06em;
+    line-height: 0.85;
+    pointer-events: none;
+    z-index: 0;
+    writing-mode: vertical-rl;
   }
-  .members-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+  .voice-section .section-title { position: relative; z-index: 2; }
+  .voice-section .section-title .jp { color: var(--white); }
+  .voice-section .section-title .en { color: var(--dpfp-orange); }
+  .voice-lead {
+    text-align: center;
+    font-size: clamp(15px, 1.4vw, 19px);
+    line-height: 2;
+    margin-bottom: 72px;
+    color: rgba(255,255,255,0.88);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* インタビューカード */
+  .voice-card {
     max-width: 1080px;
     margin: 0 auto;
+    background: var(--white);
+    color: var(--gray-900);
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 0;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.22);
   }
-  .member-card { text-align: center; }
-  .member-photo {
+  .voice-card-photo {
+    position: relative;
+    overflow: hidden;
+    background: var(--dpfp-blue-deep);
+  }
+  .voice-card-photo img {
     width: 100%;
-    aspect-ratio: 1/1;
-    background: rgba(255,255,255,0.1);
-    border: 1px dashed rgba(255,255,255,0.3);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.5);
-    font-size: 11px;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
-  .member-name {
-    font-size: 15px;
+  .voice-vol {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    display: inline-block;
+    background: var(--dpfp-blue);
+    color: var(--white);
+    padding: 8px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    z-index: 2;
+  }
+  .voice-vol::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--dpfp-orange);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: 1px;
+  }
+
+  /* テキスト領域 */
+  .voice-card-body {
+    padding: 44px 48px 42px;
+    display: flex;
+    flex-direction: column;
+  }
+  .voice-title {
+    font-size: clamp(26px, 2.6vw, 38px);
     font-weight: 900;
-    margin-bottom: 4px;
+    line-height: 1.3;
+    color: var(--dpfp-blue);
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+  .voice-name {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-bottom: 22px;
+    margin-bottom: 26px;
+    border-bottom: 2px solid var(--dpfp-blue);
+  }
+  .voice-name-jp {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--dpfp-blue);
     letter-spacing: 0.02em;
   }
-  .member-role {
-    font-size: 11px;
-    color: var(--yellow);
-    letter-spacing: 0.1em;
+  .voice-name-role {
+    font-size: 12px;
+    color: var(--gray-500);
     font-weight: 700;
+    letter-spacing: 0.06em;
   }
-  .members-note {
-    text-align: center;
-    margin-top: 48px;
+  .voice-qa {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+  }
+  .voice-qa dt {
+    font-weight: 900;
     font-size: 13px;
-    color: rgba(255,255,255,0.6);
+    color: var(--dpfp-orange);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .voice-qa dd {
+    font-size: 14px;
+    line-height: 1.95;
+    color: var(--gray-900);
+  }
+  .voice-qa dd strong {
+    color: var(--dpfp-blue);
+    font-weight: 900;
+  }
+
+  /* 続きを読むリンク */
+  .voice-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 26px;
+    padding: 12px 22px;
+    background: var(--dpfp-blue);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .voice-more:hover { background: var(--dpfp-blue-deep); }
+  .voice-more svg { flex-shrink: 0; }
+
+  .voice-note {
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.12em;
+    margin-top: 32px;
+    position: relative;
+    z-index: 2;
   }
 
   /* ===== 重点公募地域 Section ===== */
@@ -1491,7 +1608,8 @@
 
     /* 5カラムを3カラムに（残り2個は2段目） */
     .ladder-wrapper { grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .members-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .voice-card { grid-template-columns: 320px 1fr; }
+    .voice-card-body { padding: 36px 36px 34px; }
 
     /* 応募方法 2カラム → 少しコンパクト */
     .apply-method { padding: 24px 20px; }
@@ -1702,7 +1820,21 @@
     .message-headline { font-size: 24px; }
 
     /* members */
-    .members-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .voice-section { padding: 72px 0; }
+    .voice-section::before { font-size: clamp(130px, 34vw, 220px); }
+    .voice-lead { font-size: 14px; margin-bottom: 48px; }
+    .voice-card { grid-template-columns: 1fr; max-width: 540px; }
+    .voice-card-photo { aspect-ratio: 4 / 3; }
+    .voice-vol { top: 14px; left: 14px; font-size: 10px; padding: 6px 12px; }
+    .voice-card-body { padding: 28px 22px 28px; }
+    .voice-title { font-size: 22px; margin-bottom: 14px; }
+    .voice-name { padding-bottom: 16px; margin-bottom: 20px; gap: 10px; flex-wrap: wrap; }
+    .voice-name-jp { font-size: 16px; }
+    .voice-name-role { font-size: 11px; }
+    .voice-qa { gap: 18px; }
+    .voice-qa dt { font-size: 12px; }
+    .voice-qa dd { font-size: 13px; line-height: 1.9; }
+    .voice-more { font-size: 12px; padding: 12px 18px; margin-top: 20px; }
 
     /* area */
     .area-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -1754,7 +1886,8 @@
     .header-sns { gap: 0; }
     .header-sns a { width: 28px; height: 28px; }
     .mv-headline { font-size: clamp(48px, 15vw, 72px); }
-    .members-grid { grid-template-columns: 1fr; }
+    .voice-card-body { padding: 24px 20px; }
+    .voice-title { font-size: 20px; }
     .side-cta { font-size: 12px; padding: 12px 6px; }
   }
 </style>
@@ -2036,45 +2169,49 @@
   </div>
 </section>
 
-<!-- ====== 新:奈良県連の仲間たち ====== -->
-<section class="members-section">
+<!-- ====== 挑戦者の声 Voice of Challengers ====== -->
+<section class="voice-section">
   <div class="container-wide">
     <div class="section-title">
-      <span class="jp">奈良県連の仲間たち</span>
-      <span class="en">OUR MEMBERS</span>
+      <span class="jp">挑戦者の声</span>
+      <span class="en">VOICE OF CHALLENGERS</span>
     </div>
-    <p class="members-lead">
-      地域の課題に向き合い、解決のために動き続ける仲間たちがいます。<br>
-      あなたも、この輪に加わりませんか。
+    <p class="voice-lead">
+      政治に関わってこなかった私たちの"先輩"たちは、<br>
+      どうやって一歩を踏み出したのか。
     </p>
-    <div class="members-grid">
-      <div class="member-card">
-        <div class="member-photo">[ PHOTO ]</div>
-        <div class="member-name">議員名 A</div>
-        <div class="member-role">県議会議員</div>
+
+    <article class="voice-card">
+      <div class="voice-card-photo">
+        <img src="assets/images/interview/chikamoto.png" alt="近本 杏菜 さん">
+        <span class="voice-vol">Vol.1 地方議員インタビュー</span>
       </div>
-      <div class="member-card">
-        <div class="member-photo">[ PHOTO ]</div>
-        <div class="member-name">議員名 B</div>
-        <div class="member-role">市議会議員</div>
+      <div class="voice-card-body">
+        <h3 class="voice-title">大丈夫、<br>一緒に旅に出よう。</h3>
+        <div class="voice-name">
+          <span class="voice-name-jp">近本 杏菜</span>
+          <span class="voice-name-role">埼玉県・桶川市議会議員 ／ 1期</span>
+        </div>
+
+        <dl class="voice-qa">
+          <dt>Q. 候補者公募に応募したきっかけは？</dt>
+          <dd>わが子が暮らす桶川市を良くしたい。だから議員になりたい…でも選挙ってどうすればいいの？やる気はあるけど、不安もある。そんな時に出会ったのが、国民民主党の公募でした。<br>子ども手当の所得制限の撤廃を訴える姿を見て、<strong>「やっと味方が現れた」</strong>という気持ちでした。</dd>
+
+          <dt>Q. 活動の中で大変だったことは？</dt>
+          <dd>とにかく孤独を感じていました。党から選挙の「いろは」を教えてもらった。でも「頼り方」が分からなかった。頼ることは申し訳ない事だと、本気で思っていました。<br><strong>「教えてください。助けてください」</strong>、所属議員が、必ず、助けます。</dd>
+
+          <dt>Q. 立候補を考えている方へ</dt>
+          <dd>あなたがやろうと思っているのは、<strong>魔王討伐の旅</strong>です。信頼できる仲間をつくり、中ボスという地域課題を解決し続けていく。<br>国民民主党は、盾となり、マントとなり、あなたと一緒に歩みます。<strong>大丈夫、一緒に旅に出よう。</strong></dd>
+        </dl>
+
+        <a href="https://local-elections.new-kokumin.jp/interview/8609/" target="_blank" rel="noopener" class="voice-more">
+          インタビュー全文を読む
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM5 5v14h14v-7h-2v5H7V7h5V5H5z"/></svg>
+        </a>
       </div>
-      <div class="member-card">
-        <div class="member-photo">[ PHOTO ]</div>
-        <div class="member-name">議員名 C</div>
-        <div class="member-role">市議会議員</div>
-      </div>
-      <div class="member-card">
-        <div class="member-photo">[ PHOTO ]</div>
-        <div class="member-name">議員名 D</div>
-        <div class="member-role">町議会議員</div>
-      </div>
-      <div class="member-card">
-        <div class="member-photo">[ PHOTO ]</div>
-        <div class="member-name">議員名 E</div>
-        <div class="member-role">支部長</div>
-      </div>
-    </div>
-    <p class="members-note">※実際の県連所属議員の顔写真を並べます</p>
+    </article>
+
+    <p class="voice-note">国民民主党 党本部「地方議員インタビュー」より転載</p>
   </div>
 </section>
 
