@@ -1467,39 +1467,241 @@
   }
 
   /* ===== Responsive ===== */
+
+  /* タブレット以下 */
+  @media (max-width: 1024px) {
+    .mv-figure { height: 82%; }
+    .mv-countdown { max-width: 440px; left: 38%; }
+    .mv-countdown-num { font-size: clamp(80px, 10vw, 140px); }
+    .mv-countdown-usagi { width: 150px; top: -90px; right: -64px; }
+    .mv-copy { max-width: 54%; }
+    .mv-headline { font-size: clamp(78px, 11vw, 150px); }
+    section { padding: 96px 0; }
+  }
+
+  /* スマートフォン */
   @media (max-width: 768px) {
-    section { padding: 80px 0; }
-    .section-title { margin-bottom: 56px; }
-    .mv { grid-template-columns: 1fr; min-height: auto; }
-    .mv-left { padding: 56px 28px 40px; }
-    .mv-right { min-height: 440px; padding-bottom: 60px; }
-    .mv-photo-frame { width: 72%; }
-    .mv-deer { width: 80%; max-width: 360px; bottom: 30px; left: -10%; }
-    .mv-footbar { font-size: 10px; padding: 10px 16px; letter-spacing: 0.3em; }
-    .mv-headline { font-size: clamp(52px, 14vw, 88px); line-height: 1.0; }
-    .mv-brand { margin-top: 32px; }
-    .ladder-wrapper { grid-template-columns: 1fr; gap: 12px; }
-    .event-details { grid-template-columns: 1fr; padding: 28px 24px; gap: 0; }
-    .event-row { grid-template-columns: 100px 1fr; padding: 14px 0; }
+    /* ===== Header ===== */
+    .site-header {
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 16px;
+    }
+    .site-header h1 { font-size: 12px; order: 2; flex: 1 1 100%; }
+    .logo-badge { order: 1; }
+    .header-sns {
+      order: 1;
+      margin-left: auto;
+      gap: 2px;
+    }
+    .header-sns a { width: 30px; height: 30px; }
+    .header-sns svg { width: 15px; height: 15px; }
+
+    /* ===== MV ===== */
+    section.mv {
+      min-height: auto;
+      padding-bottom: 0;
+    }
+    /* 中央縦ライン非表示（モバイルで邪魔） */
+    .mv-vline { display: none; }
+    .mv-accent { display: none; }
+
+    /* コピー・タイポ */
+    .mv-copy {
+      position: static;
+      transform: none;
+      padding: 40px 22px 24px;
+      max-width: 100%;
+    }
+    .mv-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      padding: 6px 12px;
+      margin-bottom: 18px;
+    }
+    .mv-eyebrow::after { width: 14px; }
+    .mv-headline {
+      font-size: clamp(56px, 16vw, 88px);
+      line-height: 0.94;
+      margin-bottom: 18px;
+    }
+    .mv-headline .line-2 { margin-left: 0; }
+    .mv-badge {
+      font-size: 15px;
+      padding: 10px 16px;
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+    .mv-sub {
+      font-size: 13px;
+      max-width: 100%;
+    }
+    .mv-brand-tag { margin-top: 14px; }
+    .mv-brand-tag .jp { font-size: 11px; }
+
+    /* カウントダウンをタイポの下に配置 */
+    .mv-countdown {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      margin: 4px 22px 0;
+      max-width: none;
+    }
+    .mv-countdown-tag {
+      font-size: 10px;
+      padding: 6px 12px;
+      letter-spacing: 0.2em;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .mv-countdown-tag .dot { width: 8px; height: 8px; }
+    .mv-countdown-main {
+      padding: 18px 22px 20px;
+      width: 100%;
+    }
+    .mv-countdown-label {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+    }
+    .mv-countdown-num {
+      font-size: clamp(72px, 20vw, 120px);
+    }
+    .mv-countdown-sub {
+      font-size: 11px;
+      margin-top: 6px;
+    }
+    .mv-countdown-usagi {
+      width: 88px;
+      top: -52px;
+      right: -8px;
+    }
+
+    /* 玉木代表 - 下部にフルブリード */
+    .mv-figure {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      height: auto;
+      width: 100%;
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+    .mv-figure img {
+      height: auto;
+      max-width: 82%;
+      max-height: 440px;
+      object-position: center bottom;
+    }
+    /* モバイルでは玉木の足元スポット光を無効化 */
+    section.mv::after { display: none; }
+
+    /* 右下マイクロコピー非表示（モバイルで邪魔） */
+    .mv-datestamp { display: none; }
+    .mv-divider { height: 4px; }
+
+    /* ===== 汎用 ===== */
+    section { padding: 64px 0; }
+    .section-title { margin-bottom: 40px; }
+
+    /* 右端固定CTA：モバイルでは下部固定バーに再設計 */
+    .side-cta-group {
+      display: flex !important;
+      flex-direction: row;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: auto;
+      z-index: 50;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+    }
+    .side-cta {
+      flex: 1;
+      writing-mode: horizontal-tb;
+      text-orientation: mixed;
+      padding: 14px 8px;
+      border-radius: 0;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      justify-content: center;
+      gap: 6px;
+    }
+    .side-cta-icon { width: 18px; height: 18px; font-size: 11px; }
+
+    /* ladder */
+    .ladder-wrapper { grid-template-columns: 1fr; gap: 10px; }
+    .ladder-usagi { width: 104px; height: 120px; }
+
+    /* event */
+    .event-section { padding: 72px 0; }
+    .event-headline { font-size: clamp(32px, 8vw, 48px); }
+    .event-headline .big { font-size: 1.4em; }
+    .event-details { grid-template-columns: 1fr; padding: 24px 20px; gap: 0; }
+    .event-row { grid-template-columns: 80px 1fr; padding: 12px 0; font-size: 13px; }
+    .event-usagi { width: 80px; top: 24px; right: 6%; }
+
+    /* message */
     .message-block { grid-template-columns: 1fr; gap: 24px; }
-    .message-photo, .message-photo-img { width: 100%; height: 280px; }
-    .members-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .area-grid { grid-template-columns: 1fr; gap: 24px; }
-    .area-block { padding: 28px 24px; }
+    .message-photo, .message-photo-img { width: 100%; max-width: 320px; height: 280px; margin: 0 auto; }
+    .message-headline { font-size: 24px; }
+
+    /* members */
+    .members-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+    /* area */
+    .area-grid { grid-template-columns: 1fr; gap: 20px; }
+    .area-block { padding: 24px 20px; }
+
+    /* flow */
     .flow-wrapper { flex-direction: column; gap: 0; }
     .flow-arrow { width: 100%; height: 24px; transform: rotate(90deg); }
-    .apply-box { padding: 32px 24px; }
+
+    /* apply */
+    .apply-box { padding: 28px 20px; }
+    .apply-box-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .apply-usagi { width: 72px; }
+    .apply-doc { padding: 22px 20px; }
+    .apply-doc-buttons { flex-direction: column; align-items: stretch; }
+    .apply-doc-btn { justify-content: center; }
     .apply-methods { grid-template-columns: 1fr; }
+
+    /* schedule */
     .schedule-item { grid-template-columns: 1fr; gap: 8px; text-align: left; }
-    .cta-button { padding: 24px 28px; font-size: 17px; }
+
+    /* cta */
+    .cta-button { padding: 22px 24px; font-size: 16px; }
+
+    /* FAQ */
     .faq-head { flex-direction: column; gap: 16px; margin-bottom: 48px; text-align: center; }
     .faq-usagi { width: 100px; }
     .section-title-left { text-align: center !important; }
     .section-title-left .jp, .section-title-left .en { text-align: center !important; }
-    .faq-section { padding: 80px 0; }
-    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .faq-section { padding: 72px 0; }
+    .faq-item summary { font-size: 15px; padding: 20px 44px 20px 0; }
+    .faq-item p { font-size: 13px; padding-right: 0; padding-bottom: 24px; }
+
+    /* footer */
+    .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 32px; }
     .footer-brand, .footer-sns-block { text-align: center; }
-    .side-cta-group { display: none; }
+    .footer-sns-list { justify-content: center; gap: 8px; }
+    .footer-sns-list a { width: 46px; height: 46px; }
+    .footer-sns-list svg { width: 20px; height: 20px; }
+    .footer-usagi-row { padding-bottom: 28px; margin-bottom: 28px; gap: 14px; }
+    .footer-usagi { width: 70px; }
+    .footer-thanks { font-size: 13px; }
+    /* モバイルでは下部固定CTAのぶん余白確保 */
+    footer { padding-bottom: 90px; }
+  }
+
+  /* 極小画面 */
+  @media (max-width: 420px) {
+    .header-sns { gap: 0; }
+    .header-sns a { width: 28px; height: 28px; }
+    .mv-headline { font-size: clamp(48px, 15vw, 72px); }
+    .members-grid { grid-template-columns: 1fr; }
+    .side-cta { font-size: 12px; padding: 12px 6px; }
   }
 </style>
 </head>
