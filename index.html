@@ -1470,19 +1470,51 @@
 
   /* ===== Responsive ===== */
 
-  /* タブレット以下 */
-  @media (max-width: 1024px) {
-    .mv-figure { height: 82%; }
-    .mv-countdown { max-width: 440px; left: 38%; }
-    .mv-countdown-num { font-size: clamp(80px, 10vw, 140px); }
-    .mv-countdown-usagi { width: 150px; top: -90px; right: -64px; }
-    .mv-copy { max-width: 54%; }
-    .mv-headline { font-size: clamp(78px, 11vw, 150px); }
+  /* タブレット（横向き・小型PC: 901-1024） */
+  @media (max-width: 1024px) and (min-width: 901px) {
+    /* MV: 2カラム維持だが各要素を縮める */
+    section.mv { min-height: clamp(560px, 82vh, 780px); }
+    .mv-copy { max-width: 50%; left: clamp(24px, 4vw, 48px); }
+    .mv-headline { font-size: clamp(68px, 9.5vw, 120px); }
+    .mv-badge { font-size: clamp(15px, 1.8vw, 20px); padding: 10px 18px; }
+    .mv-sub { font-size: clamp(13px, 1.3vw, 16px); }
+    .mv-countdown { max-width: 340px; left: 42%; transform: translateY(-44%); }
+    .mv-countdown-num { font-size: clamp(60px, 8vw, 96px); }
+    .mv-countdown-usagi { width: 124px; top: -72px; right: -48px; }
+    .mv-countdown-main { padding: 20px 24px 22px; }
+    .mv-countdown-label { font-size: 13px; }
+    .mv-countdown-sub { font-size: 12px; }
+    .mv-figure { height: 76%; right: -2%; }
+
+    /* 右固定CTAを少しコンパクトに */
+    .side-cta { padding: 16px 10px; font-size: 13px; }
+
+    /* 5カラムを3カラムに（残り2個は2段目） */
+    .ladder-wrapper { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .members-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+    /* 応募方法 2カラム → 少しコンパクト */
+    .apply-method { padding: 24px 20px; }
+    .apply-method-title { font-size: 17px; }
+
+    /* FAQ */
+    .faq-section { padding: 96px 0; }
+    .faq-group { max-width: 720px; }
+
+    /* Message 写真もう少しコンパクト */
+    .message-block { grid-template-columns: 240px 1fr; gap: 36px; }
+    .message-photo, .message-photo-img { width: 240px; height: 280px; }
+
+    /* セクション共通 */
     section { padding: 96px 0; }
+    .section-title { margin-bottom: 64px; }
   }
 
-  /* スマートフォン */
-  @media (max-width: 768px) {
+  /* iPad 縦向き・中間サイズ: 769-900 */
+  /* モバイルと同じスタック型レイアウトを適用するため、以下のメディアクエリで768→900に拡張 */
+
+  /* スマートフォン + iPad 縦向き */
+  @media (max-width: 900px) {
     /* ===== Header ===== */
     .site-header {
       flex-wrap: wrap;
