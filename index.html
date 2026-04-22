@@ -9,16 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   /* ===== Design Tokens（国民民主党 公式ブランドカラー準拠） ===== */
-  /* 公式: DIC 184 ブルー / DIC 86 オレンジ の2色制 */
+  /* 公式クリエイティブガイドライン2022-10-25 指定値 */
+  /* オレンジ: #f5b500 (DIC 86) / ブルー: #043e80 (DIC 184) */
   :root {
     /* ── 公式2色 ── */
-    --dpfp-blue: #003F88;        /* 国民民主党ブルー（平和）DIC 184 */
-    --dpfp-orange: #FABE00;      /* 国民民主党オレンジ（元気）DIC 86 */
+    --dpfp-blue: #043e80;        /* 国民民主党ブルー（平和）DIC 184 */
+    --dpfp-orange: #f5b500;      /* 国民民主党オレンジ（元気）DIC 86 */
 
     /* ── 派生（Web運用上の階調） ── */
-    --dpfp-blue-deep: #002A5E;   /* ホバー/強調 */
-    --dpfp-blue-light: #1A5AA8;  /* リンク/アクセント */
-    --dpfp-orange-soft: #FFD54F; /* 淡いオレンジ背景 */
+    --dpfp-blue-deep: #022a5c;   /* ホバー/強調 */
+    --dpfp-blue-light: #1a5aa8;  /* リンク/アクセント */
+    --dpfp-orange-soft: #ffd84a; /* 淡いオレンジ背景 */
 
     /* ── 旧変数の互換エイリアス（段階的移行用） ── */
     --navy: var(--dpfp-blue);
@@ -412,6 +413,20 @@
     margin-bottom: 12px;
   }
   .ladder-item.current .ladder-step { color: var(--navy); opacity: 0.7; }
+  .ladder-usagi {
+    width: 140px;
+    height: 160px;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible;
+  }
+  .ladder-usagi img {
+    max-width: 100%;
+    max-height: 160px;
+    object-fit: contain;
+  }
   .ladder-icon {
     width: 56px;
     height: 56px;
@@ -454,6 +469,15 @@
     padding: 100px 0;
     position: relative;
     overflow: hidden;
+  }
+  .event-usagi {
+    position: absolute;
+    right: 6%;
+    top: 40px;
+    width: 140px;
+    height: auto;
+    z-index: 2;
+    transform: rotate(6deg);
   }
   .event-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--navy); }
   .event-section::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: var(--navy); }
@@ -530,6 +554,13 @@
     justify-content: center;
     color: var(--gray-500);
     font-size: 13px;
+  }
+  .message-photo-img {
+    width: 280px;
+    height: 320px;
+    object-fit: cover;
+    object-position: center top;
+    background: var(--dpfp-blue);
   }
   .message-headline {
     font-size: 32px;
@@ -765,6 +796,24 @@
   }
 
   /* ===== 応募方法 ===== */
+  .apply-box-head {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+  .apply-usagi {
+    width: 84px;
+    height: auto;
+    flex-shrink: 0;
+  }
+  .apply-box-lead {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+  .apply-methods-single { grid-template-columns: 1fr !important; max-width: 720px; margin: 0 auto; }
   .apply-box {
     max-width: 860px;
     margin: 64px auto 0;
@@ -919,6 +968,26 @@
   .cta-button-arrow { font-size: 28px; font-weight: 300; }
 
   /* ===== Footer ===== */
+  .footer-usagi-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .footer-usagi {
+    width: 90px;
+    height: auto;
+    flex-shrink: 0;
+  }
+  .footer-thanks {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dpfp-orange);
+    letter-spacing: 0.02em;
+  }
   footer {
     background: var(--navy);
     color: var(--white);
@@ -1006,7 +1075,7 @@
     .event-details { grid-template-columns: 1fr; padding: 28px 24px; gap: 0; }
     .event-row { grid-template-columns: 100px 1fr; padding: 14px 0; }
     .message-block { grid-template-columns: 1fr; gap: 24px; }
-    .message-photo { width: 100%; height: 280px; }
+    .message-photo, .message-photo-img { width: 100%; height: 280px; }
     .members-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .area-grid { grid-template-columns: 1fr; gap: 24px; }
     .area-block { padding: 28px 24px; }
@@ -1102,35 +1171,35 @@
     <div class="ladder-wrapper">
       <div class="ladder-item">
         <div class="ladder-step">STEP 01</div>
-        <div class="ladder-icon">見</div>
+        <div class="ladder-usagi"><img src="assets/images/usagi/usagi-basic.png" alt="こくみんうさぎ 基本形"></div>
         <div class="ladder-title">知る</div>
         <p class="ladder-desc">SNS・YouTubeで<br>活動を見る</p>
         <a href="#" class="ladder-link">SNSを見る →</a>
       </div>
       <div class="ladder-item current">
         <div class="ladder-step">STEP 02</div>
-        <div class="ladder-icon">聴</div>
+        <div class="ladder-usagi"><img src="assets/images/usagi/usagi-kiku.png" alt="こくみんうさぎ きく"></div>
         <div class="ladder-title">聞く</div>
         <p class="ladder-desc">街頭演説・<br>イベントに参加</p>
         <a href="#event" class="ladder-link">5/24イベント →</a>
       </div>
       <div class="ladder-item">
         <div class="ladder-step">STEP 03</div>
-        <div class="ladder-icon">話</div>
+        <div class="ladder-usagi"><img src="assets/images/usagi/usagi-kyoshu.png" alt="こくみんうさぎ 挙手"></div>
         <div class="ladder-title">話す</div>
         <p class="ladder-desc">政治塾・懇談会で<br>直接対話</p>
         <a href="#" class="ladder-link">政治塾 →</a>
       </div>
       <div class="ladder-item">
         <div class="ladder-step">STEP 04</div>
-        <div class="ladder-icon">支</div>
+        <div class="ladder-usagi"><img src="assets/images/usagi/usagi-furefure.png" alt="こくみんうさぎ フレッフレッ"></div>
         <div class="ladder-title">支える</div>
         <p class="ladder-desc">サポーター登録・<br>寄附</p>
         <a href="#" class="ladder-link">サポーター登録 →</a>
       </div>
       <div class="ladder-item">
         <div class="ladder-step">STEP 05</div>
-        <div class="ladder-icon">立</div>
+        <div class="ladder-usagi"><img src="assets/images/usagi/usagi-tachimukau.png" alt="こくみんうさぎ 立ち向かう"></div>
         <div class="ladder-title">立つ</div>
         <p class="ladder-desc">候補者として<br>挑戦する</p>
         <a href="#apply" class="ladder-link">応募する →</a>
@@ -1141,6 +1210,7 @@
 
 <!-- ====== 5/24 イベント告知(最優先) ====== -->
 <section class="event-section" id="event">
+  <img src="assets/images/usagi/usagi-kanban.png" alt="こくみんうさぎ 空看板" class="event-usagi">
   <div class="container">
     <span class="event-badge">URGENT / EVENT</span>
     <h2 class="event-headline">
@@ -1185,27 +1255,27 @@
   </div>
 </section>
 
-<!-- ====== 奈良県連からのメッセージ ====== -->
+<!-- ====== 代表からのメッセージ（党本部サイトより転載） ====== -->
 <section>
   <div class="container">
     <div class="section-title">
-      <span class="jp">奈良県連からのメッセージ</span>
+      <span class="jp">代表からのメッセージ</span>
       <span class="en">MESSAGE</span>
     </div>
     <div class="message-block">
-      <div class="message-photo">[ PHOTO ]</div>
+      <img src="assets/images/tamaki.jpeg" alt="玉木雄一郎 代表" class="message-photo-img">
       <div>
-        <h3 class="message-headline">次の世代に、<br>自信を持って引き継げる奈良へ。</h3>
+        <h3 class="message-headline">政治を共に前へ。</h3>
         <p class="message-name">
-          <span class="role">国民民主党 奈良県総支部連合会</span>
-          代表 〇〇 〇〇
+          <span class="role">国民民主党 代表</span>
+          玉木 雄一郎
         </p>
         <div class="message-body">
-          <p>国民民主党奈良県連では、地域の課題に真正面から向き合い、現実的な解決策を実行できる仲間を募集しています。</p>
-          <p>特別な資格や政治経験は必要ありません。必要なのは、「より良い地域をつくりたい」という思いと、課題に対して考え、行動する力です。</p>
-          <p>働く世代、若者、シニアまで、それぞれの立場から見える現場の声こそが、これからの奈良を変えていきます。</p>
-          <p>国民民主党は、対決より解決を重視し、現実的な政策で地域と暮らしを前に進めていく政党です。</p>
-          <p>次の世代に、自信を持って引き継げる奈良へ。あなたの経験と想いを、地域のために活かしてみませんか。</p>
+          <p>国民民主党の原動力は、最前線で旗を掲げ、一人ひとりの声に真正面から向き合う地方議員の皆さんです。</p>
+          <p>私たちが掲げる「対決より解決」の政治を本気で前に進めるため、全国で新たな仲間を必要としています。</p>
+          <p>地元を良くしたい、日本を変えたい。その思いこそが挑戦の出発点です。</p>
+          <p>生活者の安心、納税者の納得、現役世代の希望をつくる。そのための「地力」を、ともに築いていきましょう。</p>
+          <p>未来を動かす力は、皆さんの中にあります。あなたの挑戦を、心からお待ちしています。</p>
         </div>
       </div>
     </div>
@@ -1369,27 +1439,27 @@
       <strong>まずはSTEP 00から。</strong>いきなり応募書類を送る必要はありません。5/24のイベント参加や街頭演説での対話を通じて、県連の空気を知ってから判断していただけます。
     </p>
 
-    <!-- ====== 応募方法(2経路化) ====== -->
+    <!-- ====== 応募方法（メール送付） ====== -->
     <div id="apply" class="apply-box">
-      <h3 class="apply-box-title">ご応募方法</h3>
+      <div class="apply-box-head">
+        <img src="assets/images/usagi/usagi-onegai.png" alt="こくみんうさぎ お願い" class="apply-usagi">
+        <div>
+          <h3 class="apply-box-title">ご応募方法</h3>
+          <p class="apply-box-lead">必要書類を揃えて、奈良県連メールまでPDFでお送りください。</p>
+        </div>
+      </div>
       <ul class="apply-list">
         <li>応募用経歴書(所定フォーマット・半年以内の顔写真添付)</li>
         <li>小論文(3テーマの回答・2,000字以内・A4サイズ)<br>
           ①今の政治に対するあなたの考え ②志す政治家像とあなたの覚悟 ③なぜ国民民主党を選ぶのか</li>
-        <li>いずれもPDFファイルにて、下記いずれかの方法でお送りください</li>
+        <li>いずれもPDFファイルにて、下記メールアドレス宛にお送りください</li>
       </ul>
-      <div class="apply-methods">
-        <a href="#" class="apply-method primary">
-          <div class="apply-method-label">RECOMMENDED / 推奨</div>
-          <div class="apply-method-title">オンライン応募フォーム</div>
-          <p class="apply-method-desc">必要項目を入力し、書類をアップロードするだけ。最短3分で応募完了。</p>
-          <span class="apply-method-action">フォームで応募する →</span>
-        </a>
-        <a href="mailto:info@new-kokumin-nara.jp" class="apply-method">
-          <div class="apply-method-label">EMAIL / メール送付</div>
+      <div class="apply-methods apply-methods-single">
+        <a href="mailto:info@new-kokumin-nara.jp?subject=候補者公募応募" class="apply-method primary">
+          <div class="apply-method-label">EMAIL / 応募窓口</div>
           <div class="apply-method-title">info@new-kokumin-nara.jp</div>
           <p class="apply-method-desc">書類をPDF化してメール添付でご送付ください。件名に「候補者公募応募」とご記入ください。</p>
-          <span class="apply-method-action">メールで送る →</span>
+          <span class="apply-method-action">メールで応募する →</span>
         </a>
       </div>
     </div>
@@ -1463,9 +1533,13 @@
   </div>
 </section>
 
-<!-- ====== Footer (SNS強化) ====== -->
+<!-- ====== Footer (SNS強化 + お辞儀うさぎ) ====== -->
 <footer>
   <div class="container">
+    <div class="footer-usagi-row">
+      <img src="assets/images/usagi/usagi-pekori.png" alt="こくみんうさぎ ぺこり" class="footer-usagi">
+      <p class="footer-thanks">最後までお読みいただき、ありがとうございます。</p>
+    </div>
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo">
