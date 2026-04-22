@@ -841,6 +841,67 @@
     background: var(--red);
     border-radius: 50%;
   }
+  /* 応募書類ブロック */
+  .apply-doc {
+    margin-top: 32px;
+    padding: 28px 32px;
+    background: var(--white);
+    border-left: 4px solid var(--dpfp-blue);
+  }
+  .apply-doc-title {
+    font-weight: 900;
+    font-size: 17px;
+    color: var(--dpfp-blue);
+    margin-bottom: 10px;
+  }
+  .apply-doc-desc {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--gray-900);
+    margin-bottom: 18px;
+  }
+  .apply-doc-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .apply-doc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: var(--dpfp-blue);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .apply-doc-btn:hover { background: var(--dpfp-blue-deep); }
+  .apply-doc-btn-icon {
+    background: var(--dpfp-orange);
+    color: var(--dpfp-blue);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 10px;
+    padding: 3px 6px;
+    letter-spacing: 0.08em;
+  }
+  .apply-doc-themes {
+    padding-left: 22px;
+    font-size: 14px;
+    line-height: 2;
+    color: var(--gray-900);
+  }
+  .apply-doc-themes li { padding: 2px 0; }
+  .apply-note {
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--gray-500);
+    margin-top: 20px;
+    padding: 16px 0 0;
+    border-top: 1px solid var(--gray-200);
+  }
   .apply-methods {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1543,12 +1604,37 @@
           <p class="apply-box-lead">必要書類を揃えて、奈良県連メールまでPDFでお送りください。</p>
         </div>
       </div>
-      <ul class="apply-list">
-        <li>応募用経歴書(所定フォーマット・半年以内の顔写真添付)</li>
-        <li>小論文(3テーマの回答・2,000字以内・A4サイズ)<br>
-          ①今の政治に対するあなたの考え ②志す政治家像とあなたの覚悟 ③なぜ国民民主党を選ぶのか</li>
-        <li>いずれもPDFファイルにて、下記メールアドレス宛にお送りください</li>
-      </ul>
+      <div class="apply-doc">
+        <h4 class="apply-doc-title">① 応募用経歴書 1通</h4>
+        <p class="apply-doc-desc">
+          所定の書式を下記からダウンロードし、必要事項を漏れなく記入、半年以内に撮影した顔写真を添付してください。
+        </p>
+        <div class="apply-doc-buttons">
+          <a href="assets/docs/kokumin-oubo2026-local.pdf" class="apply-doc-btn" download>
+            <span class="apply-doc-btn-icon">PDF</span>
+            履歴書フォーマット（PDF）
+          </a>
+          <a href="assets/docs/kokumin-oubo2026-local.xlsx" class="apply-doc-btn" download>
+            <span class="apply-doc-btn-icon">XLS</span>
+            履歴書フォーマット（Excel）
+          </a>
+        </div>
+      </div>
+      <div class="apply-doc">
+        <h4 class="apply-doc-title">② 小論文 1編</h4>
+        <p class="apply-doc-desc">
+          下記3つのテーマに対する回答となる論文1編を、2,000字以内で作成・提出ください。A4サイズ。直筆・PC使用などは問いません。
+        </p>
+        <ol class="apply-doc-themes">
+          <li>今の政治に対するあなたの考え</li>
+          <li>志す政治家像とあなたの覚悟</li>
+          <li>なぜ国民民主党を選ぶのか</li>
+        </ol>
+      </div>
+      <p class="apply-note">
+        ※ いずれもPDFファイルにて、下記メールアドレス宛にお送りください。<br>
+        ※ 所定以外の送付物は審査の対象外です。提出された書類等は返却いたしません。
+      </p>
       <div class="apply-methods apply-methods-single">
         <a href="mailto:info@new-kokumin-nara.jp?subject=候補者公募応募" class="apply-method primary">
           <div class="apply-method-label">EMAIL / 応募窓口</div>
