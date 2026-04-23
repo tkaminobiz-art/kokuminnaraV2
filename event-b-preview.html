@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【案B プレビュー】5/24イベント（新聞号外型）| 奈良県総支部連合会</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;700;900&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4ede0;        /* 古紙色 */
+    --paper-edge: #e8deca;   /* 古紙エッジ */
+    --ink: #141414;          /* 墨 */
+    --ink-light: #555;
+    --ink-faded: #8a8a8a;
+    --red: #c41e1e;          /* 号外赤 */
+    --red-deep: #8a0e0e;
+    --rule: #2a2a2a;          /* 罫線 */
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Serif JP', serif;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 40px 20px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  /* 古紙テクスチャ */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(140,100,40,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 90%, rgba(140,100,40,0.06) 0%, transparent 60%),
+      repeating-linear-gradient(45deg, rgba(100,70,30,0.015) 0 2px, transparent 2px 5px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .preview-note {
+    max-width: 1080px;
+    margin: 0 auto 20px;
+    padding: 12px 20px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-align: center;
+  }
+  .preview-note a { color: var(--paper); text-decoration: underline; }
+
+  /* 号外新聞レイアウト */
+  .extra {
+    max-width: 1080px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 4px double var(--rule);
+    padding: clamp(28px, 4vw, 56px) clamp(28px, 5vw, 72px) clamp(40px, 5vw, 72px);
+    position: relative;
+    box-shadow:
+      0 40px 80px rgba(0,0,0,0.25),
+      inset 0 0 60px rgba(140,100,40,0.06);
+  }
+
+  /* ===== 紙面ヘッダー ===== */
+  .extra-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 3px double var(--rule);
+    margin-bottom: 18px;
+  }
+  .extra-vol {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+  }
+  .extra-vol span { color: var(--red); }
+  .extra-title-jp {
+    text-align: center;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: clamp(20px, 2.2vw, 30px);
+    letter-spacing: 0.3em;
+    color: var(--ink);
+  }
+  .extra-date {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 12px;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+    text-align: right;
+  }
+  .extra-date strong { color: var(--ink); font-weight: 700; }
+
+  /* 「号外」大見出し */
+  .extra-stamp {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    background: var(--red);
+    color: var(--paper);
+    padding: 18px 26px;
+    transform: rotate(-6deg);
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: clamp(22px, 2.2vw, 32px);
+    letter-spacing: 0.1em;
+    box-shadow: 0 8px 24px rgba(196,30,30,0.4);
+    z-index: 2;
+    border: 3px solid var(--paper);
+    outline: 2px solid var(--red);
+  }
+
+  /* ===== 大見出し ===== */
+  .extra-headline {
+    text-align: center;
+    padding: clamp(18px, 3vw, 32px) 0 clamp(14px, 2vw, 22px);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: clamp(22px, 3vw, 30px);
+  }
+  .extra-eyebrow {
+    display: inline-block;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: clamp(13px, 1.2vw, 16px);
+    letter-spacing: 0.24em;
+    color: var(--red);
+    padding: 4px 14px;
+    border-top: 2px solid var(--red);
+    border-bottom: 2px solid var(--red);
+    margin-bottom: 18px;
+  }
+  .extra-headline h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: clamp(36px, 5.8vw, 88px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .extra-headline h1 strong {
+    color: var(--red);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+  }
+  .extra-subheadline {
+    margin-top: 16px;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: clamp(16px, 1.6vw, 22px);
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== 本文グリッド（2カラム） ===== */
+  .extra-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1.6fr;
+    gap: clamp(22px, 3vw, 40px);
+  }
+
+  /* 左：玉木代表 写真 */
+  .extra-figure {
+    position: relative;
+  }
+  .extra-figure-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--ink);
+    overflow: hidden;
+    border: 2px solid var(--ink);
+    position: relative;
+  }
+  .extra-figure-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(100%) contrast(1.15);
+    mix-blend-mode: multiply;
+  }
+  /* 半トーン風オーバーレイ */
+  .extra-figure-img::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle, var(--ink) 0.5px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: 0.12;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .extra-caption {
+    margin-top: 10px;
+    padding: 12px 16px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+  .extra-caption strong { color: var(--paper); }
+  .extra-caption .tag {
+    display: inline-block;
+    background: var(--red);
+    color: var(--paper);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    padding: 3px 8px;
+    margin-right: 8px;
+  }
+
+  /* 右：記事本体 */
+  .extra-body article {
+    border-bottom: 1px dashed var(--rule);
+    padding-bottom: 18px;
+    margin-bottom: 22px;
+  }
+  .extra-body article:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
+  .extra-body h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: clamp(17px, 1.6vw, 22px);
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    padding-left: 14px;
+    border-left: 6px solid var(--red);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .extra-body p {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    line-height: 1.95;
+    color: var(--ink);
+    text-align: justify;
+    text-justify: inter-ideograph;
+  }
+  .extra-body p + p { margin-top: 10px; }
+  .extra-body strong {
+    background: linear-gradient(transparent 60%, #f5b500 60%);
+    padding: 0 2px;
+    font-weight: 900;
+  }
+
+  /* ===== 日時・場所 インフォ表 ===== */
+  .extra-info {
+    margin-top: clamp(26px, 3vw, 36px);
+    border: 3px double var(--rule);
+    padding: clamp(18px, 2.5vw, 28px) clamp(22px, 3vw, 32px);
+    background: rgba(20,20,20,0.02);
+  }
+  .extra-info-title {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 0.24em;
+    padding: 5px 14px;
+    margin-bottom: 16px;
+  }
+  .extra-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px 28px;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .extra-info-item dt {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--ink-light);
+    letter-spacing: 0.12em;
+    margin-bottom: 3px;
+  }
+  .extra-info-item dd {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: clamp(15px, 1.4vw, 18px);
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  /* タイムテーブル（新聞の時刻表風） */
+  .extra-timetable {
+    display: grid;
+    grid-template-columns: 80px 1fr 140px;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .extra-timetable > div {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(20,20,20,0.12);
+  }
+  .extra-timetable > div:nth-last-child(-n+3) { border-bottom: none; }
+  .extra-timetable .tt-time {
+    font-family: 'Montserrat', serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--red);
+    letter-spacing: -0.02em;
+  }
+  .extra-timetable .tt-program {
+    font-weight: 900;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .extra-timetable .tt-program small {
+    display: block;
+    font-weight: 400;
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+  .extra-timetable .tt-tag {
+    text-align: right;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    color: var(--red);
+    padding-top: 4px;
+  }
+
+  /* ===== フッター =====  */
+  .extra-foot {
+    margin-top: clamp(32px, 4vw, 48px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 3px double var(--rule);
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .extra-foot-copy {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 11px;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+  }
+  .extra-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--red);
+    color: var(--paper);
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-decoration: none;
+    border: 3px double var(--paper);
+    outline: 2px solid var(--red);
+    transition: background 0.2s;
+  }
+  .extra-cta:hover { background: var(--red-deep); }
+
+  /* ===== レスポンシブ ===== */
+  @media (max-width: 768px) {
+    body { padding: 20px 12px; }
+    .extra { padding: 24px 18px 28px; }
+    .extra-head { grid-template-columns: 1fr; text-align: center; gap: 6px; }
+    .extra-title-jp { font-size: 16px; letter-spacing: 0.2em; }
+    .extra-date { text-align: center; }
+    .extra-stamp { position: relative; top: auto; left: auto; display: inline-block; margin-bottom: 14px; transform: rotate(-3deg); }
+    .extra-grid { grid-template-columns: 1fr; }
+    .extra-info-grid { grid-template-columns: 1fr; gap: 14px; }
+    .extra-timetable { grid-template-columns: 60px 1fr 80px; }
+    .extra-foot { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<p class="preview-note">
+  プレビュー: 案B（新聞号外型） ／ 案Aは <a href="index.html#event">メインサイト</a> に適用中
+</p>
+
+<article class="extra">
+  <div class="extra-stamp">号 外</div>
+
+  <!-- 紙面ヘッダー -->
+  <header class="extra-head">
+    <div class="extra-vol"><span>Vol.1</span> / DPFP NARA NEWS</div>
+    <div class="extra-title-jp">国民民主党 奈良タイムス</div>
+    <div class="extra-date"><strong>2026.04.23</strong> / 第001号</div>
+  </header>
+
+  <!-- 大見出し -->
+  <section class="extra-headline">
+    <span class="extra-eyebrow">速報 / URGENT ANNOUNCEMENT</span>
+    <h1>
+      玉木雄一郎代表、<br>
+      <strong>5月24日 奈良入り</strong>
+    </h1>
+    <p class="extra-subheadline">
+      県内初の政治塾＆街頭演説を開催。挑戦者、募る。
+    </p>
+  </section>
+
+  <!-- 本文2カラム -->
+  <div class="extra-grid">
+    <!-- 左: 写真 -->
+    <aside class="extra-figure">
+      <div class="extra-figure-img">
+        <img src="assets/images/people/tamaki-official.png" alt="玉木雄一郎 代表">
+      </div>
+      <div class="extra-caption">
+        <span class="tag">写真</span>
+        <strong>玉木雄一郎</strong> 氏（国民民主党代表）。5/24、奈良・リガーレ春日野にて登壇予定。
+      </div>
+    </aside>
+
+    <!-- 右: 記事 -->
+    <div class="extra-body">
+      <article>
+        <h2>玉木代表、奈良で政治塾・街頭演説を開催</h2>
+        <p>
+          国民民主党の<strong>玉木雄一郎代表</strong>が、5月24日（日）午後、奈良県奈良市のリガーレ春日野で開催される奈良県総支部連合会の政治塾ならびに街頭演説に登壇することが分かった。玉木代表が奈良県で政治塾を直接担当するのは今回が初めて。
+        </p>
+        <p>
+          政治塾は<strong>立候補を志す方や政治に関心のある方</strong>を対象とし、玉木代表が自らの経験と党の理念を語る。その後15:30からは街頭演説を予定。党員・サポーター以外の一般参加も可能。
+        </p>
+      </article>
+
+      <article>
+        <h2>挑戦者を、奈良から</h2>
+        <p>
+          奈良県連は現在、2027年4月の統一地方選挙に向けて<strong>地方議員候補者を募集</strong>している。応募資格は選挙時に満25歳以上。政治経験は不問。
+        </p>
+        <p>
+          5月24日のイベントは、応募を検討している方にとって<strong>「話を聞く」ステップ</strong>として位置付けられており、実際の候補者応募の前に、党の空気や政策的方向性を確認できる貴重な機会となる。
+        </p>
+      </article>
+    </div>
+  </div>
+
+  <!-- インフォ表 -->
+  <section class="extra-info">
+    <span class="extra-info-title">開催概要</span>
+
+    <dl class="extra-info-grid">
+      <div class="extra-info-item">
+        <dt>日時</dt>
+        <dd>2026年5月24日（日）</dd>
+      </div>
+      <div class="extra-info-item">
+        <dt>会場</dt>
+        <dd>リガーレ春日野</dd>
+      </div>
+      <div class="extra-info-item">
+        <dt>定員</dt>
+        <dd>100〜150名</dd>
+      </div>
+    </dl>
+
+    <div class="extra-timetable">
+      <div class="tt-time">13:00</div>
+      <div class="tt-program">大会 <small>党員・サポーターのみ</small></div>
+      <div class="tt-tag">01</div>
+
+      <div class="tt-time">14:00</div>
+      <div class="tt-program">政治塾 <small>希望者 / 玉木代表 登壇</small></div>
+      <div class="tt-tag">02</div>
+
+      <div class="tt-time">15:30</div>
+      <div class="tt-program">街頭演説 <small>場所未定 / どなたでも</small></div>
+      <div class="tt-tag">03</div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="extra-foot">
+    <div class="extra-foot-copy">
+      発行: 国民民主党 奈良県総支部連合会 ／ info@new-kokumin-nara.jp
+    </div>
+    <a href="form.html" class="extra-cta">
+      参加する ／ JOIN
+      <span>➜</span>
+    </a>
+  </footer>
+</article>
+
+</body>
+</html>

@@ -704,79 +704,404 @@
     letter-spacing: 0.05em;
   }
 
-  /* ===== Event Section (最優先) ===== */
+  /* ===== Event Section 案A: 映画ポスター型（玉木代表降臨） ===== */
   .event-section {
-    background: var(--yellow);
-    padding: 100px 0;
     position: relative;
+    padding: clamp(96px, 12vh, 160px) 0 clamp(80px, 10vh, 140px);
     overflow: hidden;
-  }
-  .event-usagi {
-    position: absolute;
-    right: 6%;
-    top: 40px;
-    width: 140px;
-    height: auto;
-    z-index: 2;
-    transform: rotate(6deg);
-  }
-  .event-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--navy); }
-  .event-section::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: var(--navy); }
-  .event-badge {
-    display: inline-block;
-    background: var(--navy);
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 110%, rgba(245,181,0,0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 85% 30%, rgba(245,181,0,0.22) 0%, transparent 55%),
+      linear-gradient(180deg, #002a5c 0%, #061f48 50%, #021740 100%);
     color: var(--white);
+    isolation: isolate;
+  }
+  /* 上下のネイビー境界 + オレンジアクセント */
+  .event-section::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--dpfp-orange) 0%, var(--red) 50%, var(--dpfp-orange) 100%);
+    z-index: 10;
+  }
+  .event-section::after {
+    content: "";
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--dpfp-orange) 0%, var(--red) 50%, var(--dpfp-orange) 100%);
+    z-index: 10;
+  }
+  /* 斜めノイズストライプ */
+  .event-stripe {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      -15deg,
+      rgba(255,255,255,0.02) 0 2px,
+      transparent 2px 18px
+    );
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: screen;
+  }
+  /* 背景の巨大 "5.24" 数字（透かし） */
+  .event-bignum-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -42%);
+    font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    padding: 8px 24px;
-    font-size: 15px;
-    letter-spacing: 0.15em;
-    margin-bottom: 24px;
+    font-size: clamp(300px, 40vw, 680px);
+    line-height: 0.78;
+    color: var(--dpfp-orange);
+    opacity: 0.07;
+    letter-spacing: -0.08em;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
   }
-  .event-headline {
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 900;
-    color: var(--navy);
-    line-height: 1.2;
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
-  .event-headline .big { font-size: 1.3em; }
-  .event-lead {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 48px;
-    line-height: 1.8;
-  }
-  .event-details {
-    background: var(--white);
-    padding: 40px 48px;
+
+  .event-container {
+    position: relative;
+    z-index: 3;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 5vw, 64px);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 40px;
-  }
-  .event-row {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    padding: 18px 0;
-    border-bottom: 1px solid var(--gray-200);
+    grid-template-columns: 1.3fr 1fr;
+    gap: clamp(32px, 4vw, 64px);
     align-items: center;
   }
-  .event-row:last-child { border-bottom: none; }
-  .event-label {
+
+  /* URGENT / EVENT バッジ（脈動） */
+  .event-urgent {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(12px, 1vw, 14px);
+    letter-spacing: 0.28em;
+    padding: 8px 18px;
+    margin-bottom: clamp(16px, 2vw, 24px);
+    box-shadow: 0 12px 32px rgba(196,30,30,0.4);
+  }
+  .event-urgent::before {
+    content: "";
+    width: 10px; height: 10px;
+    background: var(--white);
+    border-radius: 50%;
+    animation: event-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes event-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.5; }
+  }
+
+  /* 日付ラベル上部 */
+  .event-datelabel {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(11px, 0.9vw, 13px);
+    letter-spacing: 0.32em;
+    color: var(--dpfp-orange);
+    margin-bottom: 8px;
+  }
+  .event-datelabel::before {
+    content: "";
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--dpfp-orange);
+    vertical-align: middle;
+    margin-right: 14px;
+    position: relative;
+    top: -3px;
+  }
+
+  /* 巨大「5.24」 */
+  .event-bignum {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    color: var(--navy);
-    font-size: 15px;
-    letter-spacing: 0.1em;
+    font-size: clamp(124px, 18vw, 280px);
+    line-height: 0.82;
+    letter-spacing: -0.055em;
+    color: var(--white);
+    margin: 0 0 clamp(8px, 1vw, 14px) 0;
+    text-shadow: 0 24px 60px rgba(0,0,0,0.4);
   }
-  .event-value { font-weight: 500; font-size: 17px; }
-  .event-note {
-    margin-top: 24px;
-    text-align: center;
-    font-size: 14px;
-    color: var(--navy);
+  .event-bignum .dot {
+    color: var(--dpfp-orange);
+  }
+  .event-daymonth {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(13px, 1.1vw, 16px);
+    letter-spacing: 0.28em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: clamp(18px, 2vw, 26px);
+  }
+  .event-daymonth strong {
+    color: var(--white);
+    font-weight: 900;
+    margin-right: 12px;
+  }
+
+  /* サブキャッチ「政治塾 & 街頭演説」 */
+  .event-subtitle {
+    font-size: clamp(24px, 2.8vw, 44px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: clamp(22px, 3vw, 34px);
+    letter-spacing: -0.01em;
+  }
+  .event-subtitle em {
+    font-style: normal;
+    color: var(--dpfp-orange);
+  }
+
+  /* 特別ゲストボックス */
+  .event-guest {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 22px 14px 20px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(245,181,0,0.5);
+    border-left: 3px solid var(--dpfp-orange);
+    margin-bottom: clamp(24px, 3vw, 36px);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .event-guest-star {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    color: var(--dpfp-orange);
+    line-height: 1;
+  }
+  .event-guest-label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: var(--dpfp-orange);
+    margin-bottom: 4px;
+  }
+  .event-guest-name {
+    display: block;
+    font-size: clamp(18px, 1.7vw, 24px);
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+  .event-guest-role {
+    display: block;
+    font-size: clamp(11px, 0.9vw, 13px);
+    color: rgba(255,255,255,0.6);
     font-weight: 500;
+    letter-spacing: 0.12em;
+    margin-top: 3px;
   }
+
+  /* タイムテーブル（階段状カード） */
+  .event-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: clamp(18px, 2vw, 28px);
+  }
+  .event-slot {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 22px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: 3px solid var(--dpfp-orange);
+    transition: transform 0.25s, background 0.25s;
+  }
+  .event-slot:nth-child(1) { margin-left: 0; }
+  .event-slot:nth-child(2) { margin-left: 16px; }
+  .event-slot:nth-child(3) { margin-left: 32px; }
+  .event-slot:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateX(-4px);
+  }
+  .event-slot-time {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(18px, 1.8vw, 24px);
+    color: var(--dpfp-orange);
+    letter-spacing: -0.01em;
+  }
+  .event-slot-title {
+    font-weight: 900;
+    font-size: clamp(15px, 1.3vw, 18px);
+    color: var(--white);
+  }
+  .event-slot-note {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+  .event-slot-num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.2em;
+  }
+
+  /* 会場・定員フッター */
+  .event-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: clamp(22px, 3vw, 32px);
+    padding-top: clamp(18px, 2vw, 26px);
+    border-top: 1px solid rgba(255,255,255,0.14);
+  }
+  .event-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .event-meta-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    color: var(--dpfp-orange);
+    font-weight: 700;
+  }
+  .event-meta-value {
+    font-size: clamp(14px, 1.2vw, 17px);
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  /* 右カラム：玉木代表ドラマチック配置 */
+  .event-figure {
+    position: relative;
+    height: 100%;
+    min-height: clamp(420px, 60vh, 680px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .event-figure-img {
+    position: absolute;
+    bottom: 0;
+    right: -8%;
+    height: 110%;
+    width: auto;
+    max-width: none;
+    filter:
+      drop-shadow(-14px 22px 50px rgba(0,0,0,0.6))
+      drop-shadow(0 0 80px rgba(245,181,0,0.2));
+    z-index: 2;
+  }
+  /* スポットライト円 */
+  .event-spotlight {
+    position: absolute;
+    bottom: -6%;
+    right: 8%;
+    width: 80%;
+    aspect-ratio: 1/1;
+    background: radial-gradient(circle, rgba(245,181,0,0.35) 0%, transparent 62%);
+    z-index: 1;
+    filter: blur(30px);
+    pointer-events: none;
+  }
+  /* 玉木代表 名前タグ（写真横） */
+  .event-figure-tag {
+    position: absolute;
+    bottom: 40px;
+    left: -4%;
+    z-index: 3;
+    background: var(--dpfp-orange);
+    color: var(--dpfp-blue);
+    padding: 12px 22px;
+    transform: rotate(-3deg);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  }
+  .event-figure-tag-label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    margin-bottom: 2px;
+  }
+  .event-figure-tag-name {
+    display: block;
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+  }
+
+  /* マーキー風下部バー */
+  .event-marquee {
+    position: relative;
+    margin-top: clamp(64px, 8vw, 96px);
+    padding: 14px 0;
+    background: var(--dpfp-orange);
+    color: var(--dpfp-blue);
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.32em;
+    z-index: 4;
+  }
+  .event-marquee-track {
+    display: flex;
+    gap: 40px;
+    white-space: nowrap;
+    animation: event-marquee 30s linear infinite;
+    width: max-content;
+  }
+  .event-marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .event-marquee-track span::before {
+    content: "●";
+    color: var(--red);
+    font-size: 10px;
+  }
+  @keyframes event-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* 参加CTA */
+  .event-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 32px;
+    background: var(--dpfp-orange);
+    color: var(--dpfp-blue);
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    margin-top: clamp(20px, 2.5vw, 30px);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 14px 36px rgba(245,181,0,0.3);
+  }
+  .event-cta:hover { background: #ffc82a; transform: translateY(-2px); }
+  .event-cta svg { transition: transform 0.2s; }
+  .event-cta:hover svg { transform: translateX(4px); }
 
   /* ===== Message Section ===== */
   .message-block {
@@ -1972,11 +2297,35 @@
 
     /* event */
     .event-section { padding: 72px 0; }
-    .event-headline { font-size: clamp(32px, 8vw, 48px); }
-    .event-headline .big { font-size: 1.4em; }
-    .event-details { grid-template-columns: 1fr; padding: 24px 20px; gap: 0; }
-    .event-row { grid-template-columns: 80px 1fr; padding: 12px 0; font-size: 13px; }
-    .event-usagi { width: 80px; top: 24px; right: 6%; }
+    /* 案A: 映画ポスター型 - モバイル */
+    .event-section { padding: 72px 0 0; }
+    .event-container {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 0 20px;
+    }
+    .event-bignum-bg { font-size: clamp(200px, 60vw, 400px); }
+    .event-urgent { font-size: 10px; padding: 6px 14px; letter-spacing: 0.2em; gap: 8px; }
+    .event-urgent::before { width: 8px; height: 8px; }
+    .event-datelabel { font-size: 10px; letter-spacing: 0.26em; }
+    .event-bignum { font-size: clamp(96px, 32vw, 180px); }
+    .event-daymonth { font-size: 11px; letter-spacing: 0.18em; }
+    .event-subtitle { font-size: clamp(20px, 5.6vw, 32px); }
+    .event-guest { padding: 12px 16px 12px 14px; gap: 12px; }
+    .event-guest-name { font-size: 16px; }
+    .event-guest-role { font-size: 11px; }
+    .event-slot { padding: 14px 16px; gap: 14px; }
+    .event-slot:nth-child(2), .event-slot:nth-child(3) { margin-left: 0; }
+    .event-slot-time { font-size: 17px; }
+    .event-slot-title { font-size: 14px; }
+    .event-meta { gap: 20px; margin-top: 20px; }
+    .event-meta-value { font-size: 14px; }
+    .event-cta { font-size: 13px; padding: 16px 22px; width: 100%; justify-content: center; }
+    .event-figure { min-height: 380px; order: -1; }
+    .event-figure-img { height: 100%; right: -10%; }
+    .event-figure-tag { bottom: 20px; left: 10%; padding: 10px 16px; }
+    .event-figure-tag-name { font-size: 14px; }
+    .event-marquee { margin-top: 48px; font-size: 11px; padding: 10px 0; }
 
     /* message */
     .message-block { grid-template-columns: 1fr; gap: 24px; }
@@ -2259,50 +2608,105 @@
   </div>
 </section>
 
-<!-- ====== 5/24 イベント告知(最優先) ====== -->
+<!-- ====== 5/24 イベント告知（案A: 映画ポスター型・玉木代表降臨） ====== -->
 <section class="event-section" id="event">
-  <img src="assets/images/usagi/usagi-kanban.png" alt="こくみんうさぎ 空看板" class="event-usagi">
-  <div class="container">
-    <span class="event-badge">URGENT / EVENT</span>
-    <h2 class="event-headline">
-      <span class="big">5/24</span>(日) 開催<br>
-      政治塾 & 街頭演説
-    </h2>
-    <p class="event-lead">
-      国民民主党 奈良県総支部連合会の大会・政治塾・街頭演説を同日開催。<br>
-      政治に関心のある方、候補者を志す方のご参加をお待ちしています。
-    </p>
-    <div class="event-details">
-      <div>
-        <div class="event-row">
-          <span class="event-label">日時</span>
-          <span class="event-value">2026年5月24日(日)13:00〜</span>
-        </div>
-        <div class="event-row">
-          <span class="event-label">会場</span>
-          <span class="event-value">リガーレ春日野</span>
-        </div>
-        <div class="event-row">
-          <span class="event-label">定員</span>
-          <span class="event-value">100〜150名</span>
+  <div class="event-stripe" aria-hidden="true"></div>
+  <span class="event-bignum-bg" aria-hidden="true">5.24</span>
+
+  <div class="event-container">
+    <!-- 左カラム：メインコピー -->
+    <div class="event-copy">
+      <span class="event-urgent">URGENT · 玉木代表 降臨</span>
+      <div class="event-datelabel">MAY 24 / 2026 / SUNDAY</div>
+      <h2 class="event-bignum">5<span class="dot">.</span>24</h2>
+      <div class="event-daymonth"><strong>日曜日</strong>14:00 開演 / 13:00 受付開始</div>
+      <div class="event-subtitle">
+        政治塾 <em>&</em> 街頭演説<br>
+        奈良、<em>動き出す日。</em>
+      </div>
+
+      <div class="event-guest">
+        <span class="event-guest-star">★</span>
+        <div>
+          <span class="event-guest-label">SPECIAL GUEST</span>
+          <span class="event-guest-name">玉木 雄一郎</span>
+          <span class="event-guest-role">国民民主党 代表</span>
         </div>
       </div>
-      <div>
-        <div class="event-row">
-          <span class="event-label">13:00〜</span>
-          <span class="event-value">大会(党員・サポーターのみ)</span>
+
+      <div class="event-schedule">
+        <div class="event-slot">
+          <span class="event-slot-time">13:00</span>
+          <div>
+            <span class="event-slot-title">大会</span>
+            <span class="event-slot-note">党員・サポーターのみ</span>
+          </div>
+          <span class="event-slot-num">01</span>
         </div>
-        <div class="event-row">
-          <span class="event-label">14:00〜</span>
-          <span class="event-value">政治塾(希望者)</span>
+        <div class="event-slot">
+          <span class="event-slot-time">14:00</span>
+          <div>
+            <span class="event-slot-title">政治塾</span>
+            <span class="event-slot-note">希望者</span>
+          </div>
+          <span class="event-slot-num">02</span>
         </div>
-        <div class="event-row">
-          <span class="event-label">15:30〜</span>
-          <span class="event-value">街頭演説(場所未定)</span>
+        <div class="event-slot">
+          <span class="event-slot-time">15:30</span>
+          <div>
+            <span class="event-slot-title">街頭演説</span>
+            <span class="event-slot-note">場所未定 / どなたでも</span>
+          </div>
+          <span class="event-slot-num">03</span>
         </div>
+      </div>
+
+      <div class="event-meta">
+        <div class="event-meta-item">
+          <span class="event-meta-label">VENUE</span>
+          <span class="event-meta-value">📍 リガーレ春日野</span>
+        </div>
+        <div class="event-meta-item">
+          <span class="event-meta-label">CAPACITY</span>
+          <span class="event-meta-value">100〜150名</span>
+        </div>
+        <div class="event-meta-item">
+          <span class="event-meta-label">ENTRY</span>
+          <span class="event-meta-value">参加無料</span>
+        </div>
+      </div>
+
+      <a href="form.html" class="event-cta">
+        このイベントに参加する
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <!-- 右カラム：玉木代表 ドラマチック配置 -->
+    <div class="event-figure">
+      <div class="event-spotlight" aria-hidden="true"></div>
+      <img src="assets/images/people/tamaki-official.png" alt="玉木雄一郎 代表" class="event-figure-img">
+      <div class="event-figure-tag">
+        <span class="event-figure-tag-label">SPECIAL GUEST</span>
+        <span class="event-figure-tag-name">玉木 雄一郎</span>
       </div>
     </div>
-    <p class="event-note">※来賓・お申し込みフォームの詳細は随時更新します</p>
+  </div>
+
+  <!-- 下部マーキー -->
+  <div class="event-marquee" aria-hidden="true">
+    <div class="event-marquee-track">
+      <span>2026.05.24 SUN</span>
+      <span>LIVE IN NARA</span>
+      <span>玉木雄一郎代表 登壇</span>
+      <span>政治塾 & 街頭演説</span>
+      <span>リガーレ春日野</span>
+      <span>2026.05.24 SUN</span>
+      <span>LIVE IN NARA</span>
+      <span>玉木雄一郎代表 登壇</span>
+      <span>政治塾 & 街頭演説</span>
+      <span>リガーレ春日野</span>
+    </div>
   </div>
 </section>
 
@@ -2810,8 +3214,10 @@
       // 段階的参画ファネル：stagger
       { sel: '.ladder-lead', cls: 'reveal' },
       { sel: '.ladder-wrapper', cls: 'stagger' },
-      // イベント
-      { sel: '.event-badge, .event-headline, .event-lead, .event-details, .event-note', cls: 'reveal' },
+      // イベント（案A）
+      { sel: '.event-urgent, .event-datelabel, .event-bignum, .event-daymonth, .event-subtitle, .event-guest, .event-meta, .event-cta', cls: 'reveal' },
+      { sel: '.event-schedule', cls: 'stagger' },
+      { sel: '.event-figure-img, .event-figure-tag', cls: 'reveal reveal-right' },
       // メッセージ
       { sel: '.message-block .message-photo-img, .message-block .message-photo', cls: 'reveal reveal-left' },
       { sel: '.message-block > div:last-child', cls: 'reveal reveal-right' },
