@@ -744,18 +744,17 @@
     z-index: 1;
     mix-blend-mode: screen;
   }
-  /* 背景の巨大 "5.24" 数字（透かし） */
+  /* 背景の巨大 "5.24" 数字（透かし、画面右寄り） */
   .event-bignum-bg {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -42%);
+    bottom: -10%;
+    right: -5%;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    font-size: clamp(300px, 40vw, 680px);
+    font-size: clamp(320px, 42vw, 760px);
     line-height: 0.78;
     color: var(--dpfp-orange);
-    opacity: 0.07;
+    opacity: 0.06;
     letter-spacing: -0.08em;
     z-index: 1;
     pointer-events: none;
@@ -765,12 +764,12 @@
   .event-container {
     position: relative;
     z-index: 3;
-    max-width: 1200px;
+    max-width: 1560px;
     margin: 0 auto;
-    padding: 0 clamp(24px, 5vw, 64px);
+    padding: 0 clamp(32px, 5vw, 96px);
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: clamp(32px, 4vw, 64px);
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(32px, 4vw, 72px);
     align-items: center;
   }
 
@@ -985,11 +984,11 @@
     color: var(--white);
   }
 
-  /* 右カラム：玉木代表ドラマチック配置 */
+  /* 右カラム：玉木代表ドラマチック配置（画面右端まで広げる） */
   .event-figure {
     position: relative;
     height: 100%;
-    min-height: clamp(420px, 60vh, 680px);
+    min-height: clamp(420px, 62vh, 700px);
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -997,8 +996,8 @@
   .event-figure-img {
     position: absolute;
     bottom: 0;
-    right: -8%;
-    height: 110%;
+    right: -18%;
+    height: 112%;
     width: auto;
     max-width: none;
     filter:
@@ -1010,8 +1009,8 @@
   .event-spotlight {
     position: absolute;
     bottom: -6%;
-    right: 8%;
-    width: 80%;
+    right: -2%;
+    width: 88%;
     aspect-ratio: 1/1;
     background: radial-gradient(circle, rgba(245,181,0,0.35) 0%, transparent 62%);
     z-index: 1;
@@ -1022,7 +1021,7 @@
   .event-figure-tag {
     position: absolute;
     bottom: 40px;
-    left: -4%;
+    left: -14%;
     z-index: 3;
     background: var(--dpfp-orange);
     color: var(--dpfp-blue);
