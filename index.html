@@ -174,7 +174,7 @@
     transform: translateY(-50%);
     left: clamp(28px, 5vw, 96px);
     z-index: 5;
-    max-width: 58vw;
+    max-width: 52vw;
   }
 
   /* 上部 eyebrow */
@@ -197,10 +197,10 @@
     background: var(--dpfp-orange);
   }
 
-  /* メインキャッチ（タイポがもっと画面を食う） */
+  /* メインキャッチ（13"ノートPCでも収まるスケール） */
   .mv-headline {
     font-weight: 900;
-    font-size: clamp(104px, 16vw, 260px);
+    font-size: clamp(80px, 12.5vw, 220px);
     line-height: 0.9;
     letter-spacing: -0.06em;
     color: var(--white);
@@ -2073,6 +2073,19 @@
       transform: none;
     }
     .scroll-progress { display: none; }
+  }
+
+  /* ノートPC・小型デスクトップ（13-15インチ: 1025-1440） */
+  @media (max-width: 1440px) and (min-width: 1025px) {
+    /* MV: タイポ・カウントダウン・玉木のバランス微調整 */
+    .mv-copy { max-width: 48vw; }
+    .mv-headline { font-size: clamp(78px, 11.5vw, 170px); }
+    .mv-countdown { max-width: 440px; left: 42%; }
+    .mv-countdown-num { font-size: clamp(72px, 8.5vw, 130px); }
+    .mv-countdown-usagi { width: 150px; top: -84px; right: -56px; }
+    .mv-figure { height: 100%; transform: translateX(-3%); }
+    .mv-badge { font-size: clamp(17px, 1.7vw, 22px); }
+    .mv-sub { font-size: clamp(15px, 1.3vw, 18px); }
   }
 
   /* タブレット（横向き・小型PC: 901-1024） */
