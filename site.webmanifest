@@ -1,0 +1,19 @@
+{
+  "name": "国民民主党 奈良県総支部連合会 候補者公募",
+  "short_name": "奈良県連 公募",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#043e80",
+  "background_color": "#f5b500",
+  "display": "standalone"
+}
