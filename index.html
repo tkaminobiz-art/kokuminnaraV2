@@ -293,16 +293,16 @@
     color: var(--dpfp-blue);
   }
 
-  /* 右側：玉木代表（カウントダウン拡大に伴いやや縮小・右寄せ） */
+  /* 右側：玉木代表（大きく・カウントダウン側に寄せる） */
   .mv-figure {
     position: absolute;
     right: 0;
     bottom: 0;
-    height: 94%;
+    height: 108%;
     width: auto;
     z-index: 3;
     pointer-events: none;
-    transform: translateX(0);
+    transform: translateX(-6%);
   }
   .mv-figure img {
     height: 100%;
@@ -327,18 +327,18 @@
     pointer-events: none;
   }
 
-  /* ===== 中央のカウントダウンブロック（2倍サイズ版） ===== */
+  /* ===== 中央のカウントダウンブロック（玉木側に少し寄せて隙間を詰める） ===== */
   .mv-countdown {
     position: absolute;
     top: 50%;
     transform: translateY(-40%);
-    left: 42%;
+    left: 40%;
     z-index: 4;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     pointer-events: none;
-    max-width: 620px;
+    max-width: 540px;
   }
   /* 英字タグ（APPLICATION DEADLINE） */
   .mv-countdown-tag {
