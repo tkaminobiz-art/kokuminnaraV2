@@ -638,41 +638,68 @@
 
   /* ===== 段階的参画ファネル (Engagement Ladder) ===== */
   .ladder-section { background: var(--gray-50); padding: 100px 0; }
-  .ladder-lead {
+  /* メイン訴求コピー（一番目立たせる） */
+  .ladder-lead-main {
     text-align: center;
-    font-size: 17px;
-    margin-bottom: 60px;
-    line-height: 2;
+    font-size: clamp(28px, 3.6vw, 48px);
+    font-weight: 900;
+    line-height: 1.4;
+    color: var(--dpfp-blue);
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+    text-wrap: balance;
   }
+  .ladder-lead-main strong {
+    color: var(--dpfp-orange);
+    background: linear-gradient(transparent 65%, rgba(245,181,0,0.28) 65%);
+    padding: 0 4px;
+  }
+  /* 補助メモ（小さく） */
+  .ladder-lead-sub {
+    text-align: center;
+    font-size: clamp(12px, 1.1vw, 14px);
+    color: var(--gray-500);
+    letter-spacing: 0.18em;
+    margin-bottom: 64px;
+    font-weight: 700;
+  }
+  .ladder-lead-sub::before, .ladder-lead-sub::after {
+    content: "—";
+    margin: 0 12px;
+    opacity: 0.5;
+  }
+
+  /* 3カラムに変更 */
   .ladder-wrapper {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    max-width: 1080px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    max-width: 920px;
     margin: 0 auto;
   }
   .ladder-item {
     background: var(--white);
-    padding: 32px 20px 28px;
+    padding: 28px 22px 28px;
     text-align: center;
     position: relative;
     transition: transform 0.2s;
   }
   .ladder-item:hover { transform: translateY(-4px); }
-  .ladder-item.current { background: var(--yellow); color: var(--navy); }
+  .ladder-item.current { background: var(--dpfp-orange); color: var(--dpfp-blue); }
   .ladder-step {
     font-family: 'Montserrat', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.2em;
     color: var(--gray-500);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
-  .ladder-item.current .ladder-step { color: var(--navy); opacity: 0.7; }
+  .ladder-item.current .ladder-step { color: var(--dpfp-blue); opacity: 0.6; }
+  /* うさぎは控えめサイズに */
   .ladder-usagi {
-    width: 140px;
-    height: 160px;
-    margin: 0 auto 8px;
+    width: 84px;
+    height: 96px;
+    margin: 0 auto 6px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -680,7 +707,7 @@
   }
   .ladder-usagi img {
     max-width: 100%;
-    max-height: 160px;
+    max-height: 96px;
     object-fit: contain;
   }
   .ladder-icon {
@@ -697,27 +724,34 @@
     font-weight: 900;
   }
   .ladder-item.current .ladder-icon { background: var(--navy); color: var(--yellow); }
+  /* タイトルは大きく主張 */
   .ladder-title {
-    font-size: 17px;
+    font-size: clamp(22px, 2vw, 28px);
     font-weight: 900;
-    color: var(--navy);
+    color: var(--dpfp-blue);
     margin-bottom: 8px;
-    line-height: 1.4;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
+  .ladder-item.current .ladder-title { color: var(--dpfp-blue); }
   .ladder-desc {
-    font-size: 12px;
-    line-height: 1.7;
+    font-size: clamp(13px, 1.05vw, 15px);
+    line-height: 1.75;
     color: var(--gray-500);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    font-weight: 500;
   }
-  .ladder-item.current .ladder-desc { color: var(--navy); opacity: 0.8; }
+  .ladder-item.current .ladder-desc { color: var(--dpfp-blue); opacity: 0.8; }
   .ladder-link {
-    font-size: 11px;
+    display: inline-block;
+    font-size: 13px;
     font-weight: 700;
-    color: var(--navy);
+    color: var(--dpfp-blue);
     text-decoration: underline;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
+    text-underline-offset: 4px;
   }
+  .ladder-link:hover { color: var(--dpfp-orange); }
 
   /* ===== Event Section 案A: 映画ポスター型（玉木代表降臨） ===== */
   .event-section {
@@ -1344,35 +1378,74 @@
     z-index: 2;
   }
 
-  /* ===== 重点公募地域 Section ===== */
+  /* ===== 募集地域 Section ===== */
   .area-section { background: var(--gray-50); }
   .area-lead {
     text-align: center;
     font-size: 17px;
     line-height: 2;
-    margin-bottom: 60px;
+    margin-bottom: 56px;
+  }
+
+  /* === 重点地域（強くプッシュ） === */
+  .area-priority {
+    margin-bottom: clamp(40px, 5vw, 64px);
+    position: relative;
+  }
+  .area-priority-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--dpfp-blue);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(11px, 1vw, 14px);
+    letter-spacing: 0.24em;
+    padding: 10px 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 14px 32px rgba(4,62,128,0.18);
+  }
+  .area-priority-tag .dot {
+    width: 10px; height: 10px;
+    background: var(--dpfp-orange);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(245,181,0,0.3);
   }
   .area-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 48px;
+    gap: 24px;
   }
-  .area-block { background: var(--white); padding: 40px; }
+  .area-block {
+    background: var(--white);
+    padding: 36px 32px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .area-block-priority {
+    border-top: 6px solid var(--dpfp-orange);
+    box-shadow: 0 18px 40px rgba(4,62,128,0.1);
+  }
+  .area-block-priority:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px rgba(4,62,128,0.15);
+  }
   .area-block-title {
-    font-size: 22px;
+    font-size: clamp(20px, 1.8vw, 24px);
     font-weight: 900;
-    color: var(--navy);
-    border-bottom: 3px solid var(--yellow);
-    padding-bottom: 16px;
-    margin-bottom: 24px;
-    letter-spacing: 0.05em;
+    color: var(--dpfp-blue);
+    border-bottom: 3px solid var(--dpfp-orange);
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
   }
   .area-list li {
-    padding: 12px 0 12px 24px;
+    padding: 14px 0 14px 24px;
     position: relative;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 700;
     border-bottom: 1px solid var(--gray-200);
+    color: var(--dpfp-blue);
   }
   .area-list li:last-child { border-bottom: none; }
   .area-list li::before {
@@ -1386,22 +1459,73 @@
   }
   .area-list li .area-status {
     float: right;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    padding: 3px 10px;
+    padding: 4px 10px;
     letter-spacing: 0.1em;
   }
-  .status-open { background: var(--navy); color: var(--white); }
-  .status-few { background: var(--orange); color: var(--white); }
+  .status-open { background: var(--dpfp-blue); color: var(--white); }
   .status-closed { background: var(--gray-200); color: var(--gray-500); }
+
+  /* === その他の地域（控えめに） === */
+  .area-other {
+    border-top: 1px solid rgba(4,62,128,0.18);
+    padding-top: 36px;
+    margin-top: 24px;
+  }
+  .area-other-tag {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    color: var(--gray-500);
+    margin-bottom: 22px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .area-other-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 56px;
+  }
+  .area-other-col {
+    border-left: 2px solid rgba(4,62,128,0.15);
+    padding-left: 18px;
+  }
+  .area-other-title {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--dpfp-blue);
+    margin-bottom: 12px;
+    letter-spacing: 0.06em;
+  }
+  .area-other-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    font-size: 13px;
+    color: var(--gray-500);
+  }
+  .area-other-list li {
+    padding: 4px 0;
+    position: relative;
+  }
+  .area-other-list li:not(:last-child)::after {
+    content: "／";
+    margin-left: 12px;
+    color: var(--gray-200);
+  }
+
   .area-note {
     margin-top: 40px;
-    padding: 20px 28px;
+    padding: 18px 24px;
     background: var(--white);
-    font-size: 14px;
+    font-size: 13px;
     color: var(--gray-500);
     text-align: center;
-    border-left: 4px solid var(--yellow);
+    border-left: 4px solid var(--dpfp-orange);
   }
 
   /* ===== 募集要項 Section ===== */
@@ -2761,48 +2885,32 @@
 <!-- ====== 新:段階的参画ファネル ====== -->
 <section class="ladder-section">
   <div class="container-wide">
-    <div class="section-title">
-      <span class="jp">どう関わるか、5つの入口</span>
-      <span class="en">HOW TO GET INVOLVED</span>
-    </div>
-    <p class="ladder-lead">
-      いきなり候補者でなくても大丈夫。<br>
-      まずは知ることから、少しずつ関わりを深めていけます。
+    <p class="ladder-lead-main">
+      いきなり<strong>候補者じゃなくても</strong>、大丈夫。
+    </p>
+    <p class="ladder-lead-sub">
+      HOW TO GET INVOLVED ／ 関わり方は、3つの入口
     </p>
     <div class="ladder-wrapper">
-      <div class="ladder-item">
-        <div class="ladder-step">STEP 01</div>
-        <div class="ladder-usagi"><img src="assets/images/usagi/usagi-basic.png" alt="こくみんうさぎ 基本形"></div>
-        <div class="ladder-title">知る</div>
-        <p class="ladder-desc">SNS・YouTubeで<br>活動を見る</p>
-        <a href="#" class="ladder-link">SNSを見る →</a>
-      </div>
       <div class="ladder-item current">
-        <div class="ladder-step">STEP 02</div>
+        <div class="ladder-step">STEP 01</div>
         <div class="ladder-usagi"><img src="assets/images/usagi/usagi-kiku.png" alt="こくみんうさぎ きく"></div>
         <div class="ladder-title">聞く</div>
-        <p class="ladder-desc">街頭演説・<br>イベントに参加</p>
+        <p class="ladder-desc">街頭演説・イベントに参加して、現場の空気を体感</p>
         <a href="#event" class="ladder-link">5/24イベント →</a>
       </div>
       <div class="ladder-item">
-        <div class="ladder-step">STEP 03</div>
+        <div class="ladder-step">STEP 02</div>
         <div class="ladder-usagi"><img src="assets/images/usagi/usagi-kyoshu.png" alt="こくみんうさぎ 挙手"></div>
         <div class="ladder-title">話す</div>
-        <p class="ladder-desc">政治塾・懇談会で<br>直接対話</p>
+        <p class="ladder-desc">政治塾や懇談会で、所属議員と直接対話する</p>
         <a href="#" class="ladder-link">政治塾 →</a>
       </div>
       <div class="ladder-item">
-        <div class="ladder-step">STEP 04</div>
-        <div class="ladder-usagi"><img src="assets/images/usagi/usagi-furefure.png" alt="こくみんうさぎ フレッフレッ"></div>
-        <div class="ladder-title">支える</div>
-        <p class="ladder-desc">サポーター登録・<br>寄附</p>
-        <a href="#" class="ladder-link">サポーター登録 →</a>
-      </div>
-      <div class="ladder-item">
-        <div class="ladder-step">STEP 05</div>
+        <div class="ladder-step">STEP 03</div>
         <div class="ladder-usagi"><img src="assets/images/usagi/usagi-tachimukau.png" alt="こくみんうさぎ 立ち向かう"></div>
         <div class="ladder-title">立つ</div>
-        <p class="ladder-desc">候補者として<br>挑戦する</p>
+        <p class="ladder-desc">候補者として、奈良の政治に挑戦する</p>
         <a href="form.html" class="ladder-link">応募する →</a>
       </div>
     </div>
@@ -2911,33 +3019,6 @@
   </div>
 </section>
 
-<!-- ====== 代表からのメッセージ（党本部サイトより転載） ====== -->
-<section>
-  <div class="container">
-    <div class="section-title">
-      <span class="jp">代表からのメッセージ</span>
-      <span class="en">MESSAGE</span>
-    </div>
-    <div class="message-block">
-      <img src="assets/images/tamaki.jpeg" alt="玉木雄一郎 代表" class="message-photo-img">
-      <div>
-        <h3 class="message-headline">政治を共に前へ。</h3>
-        <p class="message-name">
-          <span class="role">国民民主党 代表</span>
-          玉木 雄一郎
-        </p>
-        <div class="message-body">
-          <p>国民民主党の原動力は、最前線で旗を掲げ、一人ひとりの声に真正面から向き合う地方議員の皆さんです。</p>
-          <p>私たちが掲げる「対決より解決」の政治を本気で前に進めるため、全国で新たな仲間を必要としています。</p>
-          <p>地元を良くしたい、日本を変えたい。その思いこそが挑戦の出発点です。</p>
-          <p>生活者の安心、納税者の納得、現役世代の希望をつくる。そのための「地力」を、ともに築いていきましょう。</p>
-          <p>未来を動かす力は、皆さんの中にあります。あなたの挑戦を、心からお待ちしています。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ====== 挑戦者の声 Voice of Challengers ====== -->
 <section class="voice-section">
   <div class="container-wide">
@@ -2984,39 +3065,78 @@
   </div>
 </section>
 
-<!-- ====== 重点公募地域 & 応募状況 ====== -->
+<!-- ====== 募集地域 ====== -->
 <section class="area-section">
   <div class="container">
     <div class="section-title">
-      <span class="jp">重点公募地域・応募状況</span>
+      <span class="jp">募集地域・応募状況</span>
       <span class="en">RECRUITING AREA</span>
     </div>
     <p class="area-lead">
       2027年4月の統一地方選挙に向け、以下の地域で候補者を募集しています。<br>
       募集状況は随時更新いたします。
     </p>
-    <div class="area-grid">
-      <div class="area-block">
-        <h3 class="area-block-title">県議会議員</h3>
-        <ul class="area-list">
-          <li>奈良市 <span class="area-status status-open">募集中</span></li>
-          <li>山辺郡(奈良市・山添村) <span class="area-status status-open">募集中</span></li>
-          <li>生駒市 <span class="area-status status-few">残りわずか</span></li>
-          <li>橿原市 <span class="area-status status-open">募集中</span></li>
-        </ul>
+
+    <!-- 重点地域 -->
+    <div class="area-priority">
+      <div class="area-priority-tag">
+        <span class="dot"></span>PRIORITY · 重点公募地域
       </div>
-      <div class="area-block">
-        <h3 class="area-block-title">市議会議員</h3>
-        <ul class="area-list">
-          <li>奈良市 <span class="area-status status-open">募集中</span></li>
-          <li>生駒市 <span class="area-status status-open">募集中</span></li>
-          <li>橿原市 <span class="area-status status-few">残りわずか</span></li>
-          <li>天理市 <span class="area-status status-open">募集中</span></li>
-        </ul>
+      <div class="area-grid">
+        <div class="area-block area-block-priority">
+          <h3 class="area-block-title">県議会議員</h3>
+          <ul class="area-list">
+            <li>奈良市選挙区 <span class="area-status status-open">募集中</span></li>
+            <li>山辺郡選挙区(奈良市・山添村) <span class="area-status status-open">募集中</span></li>
+            <li>生駒市選挙区 <span class="area-status status-open">募集中</span></li>
+            <li>橿原市選挙区 <span class="area-status status-open">募集中</span></li>
+          </ul>
+        </div>
+        <div class="area-block area-block-priority">
+          <h3 class="area-block-title">市議会議員</h3>
+          <ul class="area-list">
+            <li>奈良市 <span class="area-status status-open">募集中</span></li>
+            <li>生駒市 <span class="area-status status-open">募集中</span></li>
+            <li>天理市 <span class="area-status status-open">募集中</span></li>
+          </ul>
+        </div>
       </div>
     </div>
+
+    <!-- その他募集地域 -->
+    <div class="area-other">
+      <div class="area-other-tag">その他の募集地域 ／ OTHER AREAS</div>
+      <div class="area-other-grid">
+        <div class="area-other-col">
+          <h4 class="area-other-title">県議会議員</h4>
+          <ul class="area-other-list">
+            <li>大和高田市選挙区</li>
+            <li>五條市選挙区</li>
+            <li>御所市選挙区</li>
+            <li>香芝市選挙区</li>
+            <li>葛城市選挙区</li>
+            <li>宇陀市選挙区</li>
+            <li>生駒郡選挙区</li>
+            <li>磯城郡選挙区</li>
+            <li>北葛城郡選挙区</li>
+            <li>高市郡選挙区</li>
+          </ul>
+        </div>
+        <div class="area-other-col">
+          <h4 class="area-other-title">市議会議員</h4>
+          <ul class="area-other-list">
+            <li>大和高田市</li>
+            <li>五條市</li>
+            <li>御所市</li>
+            <li>香芝市</li>
+            <li>葛城市</li>
+            <li>宇陀市</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <p class="area-note">
-      ※大和郡山市(県議会)・桜井市(市議会)は重点地域から除きます<br>
       ※応募状況は予告なく変更される場合があります
     </p>
   </div>
@@ -3054,7 +3174,7 @@
   </div>
 </section>
 
-<!-- ====== 応募の流れ (6ステップ化:STEP00「話を聞く」追加) ====== -->
+<!-- ====== 応募の流れ ====== -->
 <section class="flow-section">
   <div class="container-wide">
     <div class="section-title">
@@ -3062,12 +3182,6 @@
       <span class="en">APPLICATION FLOW</span>
     </div>
     <div class="flow-wrapper">
-      <div class="flow-box step-zero">
-        <div class="flow-step">STEP 00</div>
-        <div class="flow-title">話を聞く</div>
-        <div class="flow-sub">イベント・街宣</div>
-      </div>
-      <div class="flow-arrow">▶</div>
       <div class="flow-box">
         <div class="flow-step">STEP 01</div>
         <div class="flow-title">応募書類<br>提出</div>
@@ -3095,14 +3209,11 @@
         <div class="flow-title">公認内定</div>
       </div>
     </div>
-    <p class="flow-annotation">
-      <strong>まずはSTEP 00から。</strong>いきなり応募書類を送る必要はありません。5/24のイベント参加や街頭演説での対話を通じて、県連の空気を知ってから判断していただけます。
-    </p>
 
     <!-- ====== 応募方法（メール送付） ====== -->
     <div id="apply" class="apply-box">
       <div class="apply-box-head">
-        <img src="assets/images/usagi/usagi-onegai.png" alt="こくみんうさぎ お願い" class="apply-usagi">
+        <img src="assets/images/usagi/usagi-answer.png" alt="こくみんうさぎ ANSWER" class="apply-usagi">
         <div>
           <h3 class="apply-box-title">ご応募方法</h3>
           <p class="apply-box-lead">必要書類を揃えて、奈良県連メールまでPDFでお送りください。</p>
@@ -3322,6 +3433,33 @@
   </div>
 </section>
 
+<!-- ====== 代表からのメッセージ（締めの一言として最後に配置） ====== -->
+<section class="message-section">
+  <div class="container">
+    <div class="section-title">
+      <span class="jp">代表からのメッセージ</span>
+      <span class="en">MESSAGE FROM THE LEADER</span>
+    </div>
+    <div class="message-block">
+      <img src="assets/images/tamaki.jpeg" alt="玉木雄一郎 代表" class="message-photo-img">
+      <div>
+        <h3 class="message-headline">政治を共に前へ。</h3>
+        <p class="message-name">
+          <span class="role">国民民主党 代表</span>
+          玉木 雄一郎
+        </p>
+        <div class="message-body">
+          <p>国民民主党の原動力は、最前線で旗を掲げ、一人ひとりの声に真正面から向き合う地方議員の皆さんです。</p>
+          <p>私たちが掲げる「対決より解決」の政治を本気で前に進めるため、全国で新たな仲間を必要としています。</p>
+          <p>地元を良くしたい、日本を変えたい。その思いこそが挑戦の出発点です。</p>
+          <p>生活者の安心、納税者の納得、現役世代の希望をつくる。そのための「地力」を、ともに築いていきましょう。</p>
+          <p>未来を動かす力は、皆さんの中にあります。あなたの挑戦を、心からお待ちしています。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ====== CTA ====== -->
 <section class="cta-section">
   <div class="container">
@@ -3447,7 +3585,7 @@
       // セクションタイトル全般：reveal-up
       { sel: '.section-title', cls: 'reveal' },
       // 段階的参画ファネル：stagger
-      { sel: '.ladder-lead', cls: 'reveal' },
+      { sel: '.ladder-lead-main, .ladder-lead-sub', cls: 'reveal' },
       { sel: '.ladder-wrapper', cls: 'stagger' },
       // イベント（案A）
       { sel: '.event-urgent, .event-datelabel, .event-bignum, .event-daymonth, .event-subtitle, .event-guest, .event-meta, .event-cta', cls: 'reveal' },
