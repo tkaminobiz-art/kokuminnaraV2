@@ -143,431 +143,25 @@
     clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
   }
 
-  /* ===== Main Visual v7（余白の律理・2025 editorial poster） ===== */
+  /* ===== Main Visual: 画像のみのシンプル構成 ===== */
   section.mv {
     position: relative;
-    min-height: clamp(680px, 92vh, 920px);
-    overflow: hidden;
-    isolation: isolate;
+    width: 100%;
+    margin: 0;
     padding: 0;
-    /* オレンジの奥行き：上部やわらか黄、下部ディープオレンジ、左から光、右下に影 */
-    background:
-      radial-gradient(ellipse 75% 75% at 8% 20%, #ffd24a 0%, transparent 55%),
-      radial-gradient(ellipse 70% 90% at 100% 100%, #c88500 0%, transparent 55%),
-      linear-gradient(175deg, #f5b500 0%, #e8a500 100%);
-    color: var(--white);
-  }
-
-  /* 微細なノイズ・リブ */
-  .mv-grain {
-    position: absolute;
-    inset: 0;
-    background-image:
-      repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 4px);
-    pointer-events: none;
-    z-index: 2;
-    mix-blend-mode: overlay;
-  }
-
-  /* 対角斜めのアクセントブロック（写真背後に立つ色面） */
-  .mv-accent {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 42%;
-    background: linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(232,148,0,0.35) 100%);
-    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  /* 左列：タイポグラフィ／コピー */
-  .mv-copy {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: clamp(28px, 5vw, 96px);
-    z-index: 5;
-    max-width: 52vw;
-  }
-
-  /* 上部 eyebrow */
-  .mv-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
     background: var(--dpfp-blue);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: clamp(11px, 0.9vw, 13px);
-    letter-spacing: 0.28em;
-    padding: 8px 18px;
-    margin-bottom: clamp(22px, 3vw, 36px);
+    line-height: 0;
+    overflow: hidden;
   }
-  .mv-eyebrow::after {
-    content: "";
-    width: 22px; height: 2px;
-    background: var(--dpfp-orange);
-  }
-
-  /* メインキャッチ（13"ノートPCでも収まるスケール） */
-  .mv-headline {
-    font-weight: 900;
-    font-size: clamp(80px, 12.5vw, 220px);
-    line-height: 0.9;
-    letter-spacing: -0.06em;
-    color: var(--white);
-    margin: 0 0 clamp(22px, 2.8vw, 38px) 0;
-    text-shadow:
-      0 10px 0 rgba(0,0,0,0.04),
-      0 24px 56px rgba(80,40,0,0.22);
-  }
-  .mv-headline .line {
+  .mv-picture {
     display: block;
-    white-space: nowrap;
+    width: 100%;
   }
-  .mv-headline .line-2 {
-    /* 「求む。」はタイポリズムで左に戻す（規則的すぎない軽いズレ） */
-    margin-left: 0.14em;
-  }
-  .mv-headline .maru {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.22em;
-    height: 1.22em;
-    background: var(--red);
-    color: var(--white);
-    border-radius: 50%;
-    font-size: 1em;
-    margin-right: 0.04em;
-    vertical-align: -0.08em;
-    line-height: 1;
-    box-shadow:
-      0 18px 48px rgba(196,30,30,0.45),
-      inset 0 -10px 20px rgba(0,0,0,0.2),
-      inset 0 10px 20px rgba(255,255,255,0.14);
-  }
-  .mv-headline .period {
-    color: var(--white);
-  }
-
-  /* 赤ボックス：奈良県地方議員候補者募集 */
-  .mv-badge {
-    display: inline-block;
-    position: relative;
-    background: var(--red);
-    color: var(--white);
-    padding: 14px 24px;
-    font-weight: 900;
-    font-size: clamp(18px, 2.1vw, 28px);
-    letter-spacing: 0.06em;
-    margin-bottom: clamp(22px, 2.8vw, 32px);
-    box-shadow:
-      0 14px 32px rgba(196,30,30,0.32),
-      0 0 0 4px rgba(255,255,255,1) inset,
-      0 0 0 5px rgba(196,30,30,1) inset;
-  }
-
-  /* サブキャッチ */
-  .mv-sub {
-    font-weight: 700;
-    font-size: clamp(16px, 1.5vw, 22px);
-    line-height: 1.75;
-    color: var(--dpfp-blue);
-    margin-bottom: clamp(18px, 2.2vw, 28px);
-    max-width: 32ch;
-  }
-
-  /* ブランドタグ */
-  .mv-brand-tag {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .mv-brand-tag .mark {
-    width: 40px; height: 3px;
-    background: var(--dpfp-blue);
-  }
-  .mv-brand-tag .jp {
-    font-size: clamp(12px, 1vw, 14px);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--dpfp-blue);
-  }
-  .mv-brand-tag .en {
+  .mv-picture img {
     display: block;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    opacity: 0.55;
-    margin-top: 2px;
-    color: var(--dpfp-blue);
-  }
-
-  /* 右側：玉木代表（大きく・カウントダウン側に寄せる） */
-  .mv-figure {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 108%;
-    width: auto;
-    z-index: 3;
-    pointer-events: none;
-    transform: translateX(-6%);
-  }
-  .mv-figure img {
-    height: 100%;
-    width: auto;
-    display: block;
-    object-fit: contain;
-    object-position: right bottom;
-    filter:
-      drop-shadow(-22px 32px 70px rgba(80,40,0,0.38))
-      drop-shadow(0 0 100px rgba(0,0,0,0.1));
-  }
-  /* 玉木の足元にオレンジのスポット光（舞台感） */
-  section.mv::after {
-    content: "";
-    position: absolute;
-    right: 5%;
-    bottom: 0;
-    width: 55%;
-    height: 28%;
-    background: radial-gradient(ellipse 60% 100% at 50% 100%, rgba(255,220,120,0.35) 0%, transparent 70%);
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  /* ===== 中央のカウントダウンブロック（玉木側に少し寄せて隙間を詰める） ===== */
-  .mv-countdown {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-40%);
-    left: 40%;
-    z-index: 4;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    pointer-events: none;
-    max-width: 540px;
-  }
-  /* 英字タグ（APPLICATION DEADLINE） */
-  .mv-countdown-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: clamp(13px, 1.1vw, 17px);
-    letter-spacing: 0.28em;
-    color: var(--dpfp-blue);
-    padding: 12px 22px;
-    background: rgba(255,255,255,0.55);
-    border: 2px solid var(--dpfp-blue);
-    margin-bottom: 18px;
-  }
-  .mv-countdown-tag .dot {
-    width: 12px; height: 12px;
-    background: var(--red);
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow: 0 0 0 6px rgba(196,30,30,0.18);
-    animation: pulse 1.8s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 6px rgba(196,30,30,0.18); }
-    50% { box-shadow: 0 0 0 12px rgba(196,30,30,0.04); }
-  }
-  /* メイン数字ブロック */
-  .mv-countdown-main {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 32px 44px 36px;
-    background: var(--dpfp-blue);
-    color: var(--white);
-    position: relative;
-    box-shadow: 0 28px 60px rgba(4,62,128,0.38), 0 8px 16px rgba(0,0,0,0.1);
-  }
-  .mv-countdown-label {
-    font-size: clamp(16px, 1.4vw, 20px);
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--dpfp-orange);
-    margin-bottom: 6px;
-  }
-  .mv-countdown-num {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: clamp(110px, 13vw, 196px);
-    line-height: 0.88;
-    letter-spacing: -0.04em;
-    color: var(--white);
-    display: inline-flex;
-    align-items: baseline;
-  }
-  .mv-countdown-unit {
-    font-size: 0.38em;
-    margin-left: 0.14em;
-    font-weight: 700;
-    color: var(--dpfp-orange);
-  }
-  .mv-countdown-sub {
-    font-size: clamp(13px, 1.05vw, 16px);
-    letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.72);
-    margin-top: 10px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-  }
-  /* カウントダウンに寄り添う挙手うさぎ（サイズ2倍） */
-  .mv-countdown-usagi {
-    position: absolute;
-    top: -120px;
-    right: -96px;
-    width: 200px;
+    width: 100%;
     height: auto;
-    z-index: 5;
-    transform: rotate(8deg);
-    filter: drop-shadow(-10px 18px 30px rgba(80,40,0,0.32));
-    animation: usagi-wave 2.4s ease-in-out infinite;
-    transform-origin: bottom center;
-  }
-  @keyframes usagi-wave {
-    0%, 100% { transform: rotate(8deg) translateY(0); }
-    50% { transform: rotate(4deg) translateY(-6px); }
-  }
-
-  /* タイポと写真を連結するアクセント線（コンテンツに被らない左端位置） */
-  .mv-vline {
-    position: absolute;
-    left: clamp(12px, 2vw, 32px);
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: var(--dpfp-blue);
-    z-index: 4;
-    opacity: 0.9;
-  }
-
-  /* 下部ネイビーライン */
-  .mv-divider {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 8px;
-    background: var(--dpfp-blue);
-    z-index: 10;
-  }
-
-  /* 右下の日付マイクロコピー（ポスター風ディテール） */
-  .mv-datestamp {
-    position: absolute;
-    bottom: 24px;
-    right: 28px;
-    z-index: 10;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    color: var(--dpfp-blue);
-    opacity: 0.75;
-    writing-mode: vertical-rl;
-  }
-
-  /* 人物レイヤー（映画ポスター風配置） */
-  .mv-person {
-    position: absolute;
-    bottom: 0;
-    width: auto;
-    max-width: none;
-  }
-  /* 玉木代表: 左側やや後ろ、やや小さめ */
-  .mv-person.tamaki {
-    right: 42%;
-    bottom: 0;
-    height: 88vh;
-    z-index: 3;
-    filter:
-      drop-shadow(-4px 10px 40px rgba(0,0,0,0.6))
-      drop-shadow(0 0 100px rgba(4,62,128,0.5));
-  }
-  /* 榛葉幹事長: 右寄り、手前、大きめ */
-  .mv-person.shinba {
-    right: -6%;
-    bottom: 0;
-    height: 95vh;
-    z-index: 5;
-    filter:
-      drop-shadow(-10px 15px 50px rgba(0,0,0,0.7))
-      drop-shadow(0 0 120px rgba(245,181,0,0.15));
-  }
-  /* ライトスピル（人物を"舞台"に馴染ませる） */
-  .mv-stage::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 40% 50% at 78% 40%, rgba(245,181,0,0.12) 0%, transparent 70%),
-      linear-gradient(0deg, rgba(0,0,0,0.35) 0%, transparent 35%);
-    pointer-events: none;
-    z-index: 4;
-  }
-
-  /* 「NARA」の縦書き巨大タイポ: 右上から下へ、写真の背景として */
-  .mv-nara {
-    position: absolute;
-    top: -3%;
-    right: -1%;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: clamp(140px, 20vw, 300px);
-    line-height: 0.82;
-    letter-spacing: -0.06em;
-    color: var(--dpfp-orange);
-    opacity: 0.14;
-    z-index: 1;
-    pointer-events: none;
-    user-select: none;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-  }
-  /* 奈良の漢字: 左下、写真と重ねる薄い透かし */
-  .mv-kanji {
-    position: absolute;
-    bottom: -4%;
-    left: -2%;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 900;
-    font-size: clamp(200px, 28vw, 440px);
-    line-height: 0.85;
-    color: var(--dpfp-orange);
-    opacity: 0.18;
-    z-index: 1;
-    pointer-events: none;
-    user-select: none;
-    letter-spacing: -0.08em;
-  }
-  .mv-photo-frame { z-index: 2; }
-
-  /* 画面下部に薄い県名バー */
-  .mv-footbar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 14px 32px;
-    background: var(--dpfp-blue-deep);
-    color: var(--dpfp-orange);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.4em;
-    text-align: center;
-    z-index: 3;
+    object-fit: cover;
   }
 
   /* ===== 縦型CTA (右端固定・2つ) ===== */
@@ -2256,52 +1850,6 @@
   .stagger.is-visible > *:nth-child(7) { transition-delay: 0.48s; }
   .stagger.is-visible > *:nth-child(n+8) { transition-delay: 0.56s; }
 
-  /* MVの初期ロード時の演出（ページ表示直後に走る） */
-  .mv-eyebrow,
-  .mv-headline,
-  .mv-badge,
-  .mv-sub,
-  .mv-brand-tag,
-  .mv-countdown,
-  .mv-figure {
-    opacity: 0;
-    animation: mv-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-  .mv-eyebrow { animation-delay: 0.15s; }
-  .mv-headline { animation-delay: 0.30s; animation-duration: 1.1s; }
-  .mv-badge { animation-delay: 0.55s; }
-  .mv-sub { animation-delay: 0.70s; }
-  .mv-brand-tag { animation-delay: 0.85s; }
-  .mv-countdown { animation-delay: 0.45s; animation-duration: 1.0s; animation-name: mv-in-countdown; }
-  .mv-figure { animation-delay: 0.10s; animation-duration: 1.2s; animation-name: mv-in-figure; }
-
-  @keyframes mv-in {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes mv-in-countdown {
-    from { opacity: 0; transform: translateY(-38%) scale(0.92); }
-    to   { opacity: 1; transform: translateY(-40%) scale(1); }
-  }
-  @keyframes mv-in-figure {
-    from { opacity: 0; transform: translateX(60px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-
-  /* 「挑」赤丸のエントランス回転 */
-  @keyframes maru-pop {
-    0% { transform: scale(0) rotate(-180deg); }
-    70% { transform: scale(1.1) rotate(8deg); }
-    100% { transform: scale(1) rotate(0); }
-  }
-  .mv-headline .maru {
-    animation: maru-pop 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s backwards;
-    display: inline-flex;
-  }
-
-  /* カウントダウン数字のカウントアップ（JSで使用） */
-  .mv-countdown-num[data-counting] { transition: none; }
-
   /* ホバーで微動 */
   .ladder-item,
   .voice-card,
@@ -2356,14 +1904,6 @@
       filter: none !important;
       transition: none !important;
     }
-    .mv-eyebrow, .mv-headline, .mv-badge, .mv-sub,
-    .mv-brand-tag, .mv-countdown, .mv-figure,
-    .mv-headline .maru,
-    .mv-countdown-usagi {
-      animation: none !important;
-      opacity: 1 !important;
-      transform: none !important;
-    }
     .ladder-item:hover,
     .area-block:hover,
     .voice-card:hover {
@@ -2372,35 +1912,8 @@
     .scroll-progress { display: none; }
   }
 
-  /* ノートPC・小型デスクトップ（13-15インチ: 1025-1440） */
-  @media (max-width: 1440px) and (min-width: 1025px) {
-    /* MV: タイポ・カウントダウン・玉木のバランス微調整 */
-    .mv-copy { max-width: 48vw; }
-    .mv-headline { font-size: clamp(78px, 11.5vw, 170px); }
-    .mv-countdown { max-width: 440px; left: 42%; }
-    .mv-countdown-num { font-size: clamp(72px, 8.5vw, 130px); }
-    .mv-countdown-usagi { width: 150px; top: -84px; right: -56px; }
-    .mv-figure { height: 100%; transform: translateX(-3%); }
-    .mv-badge { font-size: clamp(17px, 1.7vw, 22px); }
-    .mv-sub { font-size: clamp(15px, 1.3vw, 18px); }
-  }
-
   /* タブレット（横向き・小型PC: 901-1024） */
   @media (max-width: 1024px) and (min-width: 901px) {
-    /* MV: 2カラム維持だが各要素を縮める */
-    section.mv { min-height: clamp(560px, 82vh, 780px); }
-    .mv-copy { max-width: 50%; left: clamp(24px, 4vw, 48px); }
-    .mv-headline { font-size: clamp(68px, 9.5vw, 120px); }
-    .mv-badge { font-size: clamp(15px, 1.8vw, 20px); padding: 10px 18px; }
-    .mv-sub { font-size: clamp(13px, 1.3vw, 16px); }
-    .mv-countdown { max-width: 340px; left: 42%; transform: translateY(-44%); }
-    .mv-countdown-num { font-size: clamp(60px, 8vw, 96px); }
-    .mv-countdown-usagi { width: 124px; top: -72px; right: -48px; }
-    .mv-countdown-main { padding: 20px 24px 22px; }
-    .mv-countdown-label { font-size: 13px; }
-    .mv-countdown-sub { font-size: 12px; }
-    .mv-figure { height: 76%; right: -2%; }
-
     /* 右固定CTAを少しコンパクトに */
     .side-cta { padding: 16px 10px; font-size: 13px; }
 
@@ -2446,118 +1959,6 @@
     }
     .header-sns a { width: 30px; height: 30px; }
     .header-sns svg { width: 15px; height: 15px; }
-
-    /* ===== MV ===== */
-    section.mv {
-      min-height: auto;
-      padding-bottom: 0;
-    }
-    /* 中央縦ライン非表示（モバイルで邪魔） */
-    .mv-vline { display: none; }
-    .mv-accent { display: none; }
-
-    /* コピー・タイポ（スマホはセンター揃え） */
-    .mv-copy {
-      position: static;
-      transform: none;
-      padding: 40px 22px 24px;
-      max-width: 100%;
-      text-align: center;
-    }
-    .mv-eyebrow {
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      padding: 6px 12px;
-      margin: 0 auto 18px;
-    }
-    .mv-eyebrow::after { width: 14px; }
-    .mv-headline {
-      font-size: clamp(56px, 16vw, 88px);
-      line-height: 0.94;
-      margin: 0 auto 18px;
-      text-align: center;
-    }
-    .mv-headline .line-2 { margin-left: 0; }
-    .mv-headline .maru { width: 1.18em; height: 1.18em; }
-    .mv-badge {
-      font-size: 15px;
-      padding: 10px 16px;
-      margin: 0 auto 16px;
-      letter-spacing: 0.04em;
-    }
-    .mv-sub {
-      font-size: 13px;
-      max-width: 100%;
-      margin: 0 auto 14px;
-    }
-    .mv-brand-tag {
-      margin: 14px auto 0;
-      justify-content: center;
-    }
-    .mv-brand-tag .jp { font-size: 11px; }
-    .mv-brand-tag .en { letter-spacing: 0.18em; }
-
-    /* カウントダウンをタイポの下に配置 */
-    .mv-countdown {
-      position: relative;
-      top: auto;
-      left: auto;
-      transform: none;
-      margin: 4px 22px 0;
-      max-width: none;
-    }
-    .mv-countdown-tag {
-      font-size: 10px;
-      padding: 6px 12px;
-      letter-spacing: 0.2em;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .mv-countdown-tag .dot { width: 8px; height: 8px; }
-    .mv-countdown-main {
-      padding: 18px 22px 20px;
-      width: 100%;
-    }
-    .mv-countdown-label {
-      font-size: 12px;
-      letter-spacing: 0.14em;
-    }
-    .mv-countdown-num {
-      font-size: clamp(72px, 20vw, 120px);
-    }
-    .mv-countdown-sub {
-      font-size: 11px;
-      margin-top: 6px;
-    }
-    .mv-countdown-usagi {
-      width: 88px;
-      top: -52px;
-      right: -8px;
-    }
-
-    /* 玉木代表 - 下部にフルブリード */
-    .mv-figure {
-      position: relative;
-      right: auto;
-      bottom: auto;
-      height: auto;
-      width: 100%;
-      margin-top: 24px;
-      display: flex;
-      justify-content: center;
-    }
-    .mv-figure img {
-      height: auto;
-      max-width: 82%;
-      max-height: 440px;
-      object-position: center bottom;
-    }
-    /* モバイルでは玉木の足元スポット光を無効化 */
-    section.mv::after { display: none; }
-
-    /* 右下マイクロコピー非表示（モバイルで邪魔） */
-    .mv-datestamp { display: none; }
-    .mv-divider { height: 4px; }
 
     /* ===== 汎用 ===== */
     section { padding: 64px 0; }
@@ -2723,7 +2124,6 @@
   @media (max-width: 420px) {
     .header-sns { gap: 0; }
     .header-sns a { width: 28px; height: 28px; }
-    .mv-headline { font-size: clamp(48px, 15vw, 72px); }
     .voice-card-body { padding: 24px 20px; }
     .voice-title { font-size: 20px; }
     .side-cta { font-size: 12px; padding: 12px 6px; }
@@ -2765,109 +2165,14 @@
 
 <!-- ====== Main Visual v7（2025 editorial poster／余白の律理） ====== -->
 <section class="mv">
-  <!-- 背景テクスチャ -->
-  <div class="mv-grain" aria-hidden="true"></div>
-  <!-- 右側を背後から引き締める斜めのダークオレンジ層 -->
-  <div class="mv-accent" aria-hidden="true"></div>
-  <!-- 左端タイポに沿う縦のネイビーライン -->
-  <div class="mv-vline" aria-hidden="true"></div>
-
-  <!-- コピー（左列） -->
-  <div class="mv-copy">
-    <span class="mv-eyebrow">2027.4 STATEWIDE LOCAL ELECTION</span>
-
-    <h2 class="mv-headline">
-      <span class="line line-1"><span class="maru">挑</span>戦者、</span>
-      <span class="line line-2">求む<span class="period">。</span></span>
-    </h2>
-
-    <div class="mv-badge">奈良県地方議員候補者募集</div>
-
-    <p class="mv-sub">
-      政治を変えるのは、<br>
-      現場の声と、あなたの一歩です。
-    </p>
-
-    <div class="mv-brand-tag">
-      <span class="mark"></span>
-      <span>
-        <span class="jp">国民民主党 奈良県総支部連合会</span>
-        <span class="en">DEMOCRATIC PARTY FOR THE PEOPLE / NARA</span>
-      </span>
-    </div>
-  </div>
-
-  <!-- 中央のカウントダウンブロック：締切までの残り日数（自動計算） -->
-  <div class="mv-countdown" data-deadline="2027-02-28T23:59:59+09:00" aria-label="応募締切までのカウントダウン">
-    <div class="mv-countdown-tag">
-      <span class="dot"></span>
-      APPLICATION DEADLINE
-    </div>
-    <div class="mv-countdown-main">
-      <span class="mv-countdown-label">応募締切まで</span>
-      <span class="mv-countdown-num">
-        <span id="mv-countdown-days">312</span><span class="mv-countdown-unit">日</span>
-      </span>
-      <span class="mv-countdown-sub">
-        <span id="mv-countdown-months">約10ヶ月</span> / 2027.2.28まで
-      </span>
-    </div>
-    <!-- 挙手うさぎ：「私も挑戦します！」と呼応 -->
-    <img src="assets/images/usagi/usagi-kyoshu.png" alt="" class="mv-countdown-usagi" aria-hidden="true">
-  </div>
-
-  <script>
-    (function() {
-      const el = document.querySelector('.mv-countdown');
-      if (!el) return;
-      const deadline = new Date(el.dataset.deadline);
-      const daysEl = document.getElementById('mv-countdown-days');
-      const monthsEl = document.getElementById('mv-countdown-months');
-
-      function update() {
-        const now = new Date();
-        const msLeft = deadline - now;
-
-        if (msLeft <= 0) {
-          daysEl.textContent = '0';
-          monthsEl.textContent = '応募受付終了';
-          return;
-        }
-
-        const daysLeft = Math.ceil(msLeft / (1000 * 60 * 60 * 24));
-        daysEl.textContent = daysLeft.toLocaleString('ja-JP');
-
-        // 残り月数のやわらか表現
-        let label;
-        if (daysLeft >= 365) {
-          label = `約${Math.floor(daysLeft / 30)}ヶ月`;
-        } else if (daysLeft >= 60) {
-          label = `約${Math.floor(daysLeft / 30)}ヶ月`;
-        } else if (daysLeft >= 14) {
-          label = `残り${Math.ceil(daysLeft / 7)}週間`;
-        } else if (daysLeft >= 2) {
-          label = `あと${daysLeft}日`;
-        } else {
-          label = `締切間近`;
-        }
-        monthsEl.textContent = label;
-      }
-
-      update();
-      // 1時間ごとに再計算（日付変更時のズレ防止）
-      setInterval(update, 60 * 60 * 1000);
-    })();
-  </script>
-
-  <!-- 玉木代表（主役級サイズ） -->
-  <figure class="mv-figure">
-    <img src="assets/images/people/tamaki-official.png" alt="玉木雄一郎 代表">
-  </figure>
-
-  <!-- 右下縦マイクロコピー -->
-  <span class="mv-datestamp">DPFP NARA · 2027</span>
-  <!-- 下部ネイビーライン -->
-  <div class="mv-divider" aria-hidden="true"></div>
+  <picture class="mv-picture">
+    <!-- スマホ縦長 -->
+    <source media="(max-width: 768px)" srcset="assets/images/fv/fv-mobile.jpg">
+    <!-- タブレット -->
+    <source media="(max-width: 1180px)" srcset="assets/images/fv/fv-tablet.jpg">
+    <!-- PC -->
+    <img src="assets/images/fv/fv-pc.jpg" alt="挑戦者、求む。 国民民主党 奈良県総支部連合会 候補者公募" fetchpriority="high">
+  </picture>
 </section>
 
 <!-- ====== 右端固定CTA(2つ)====== -->
@@ -3649,46 +2954,6 @@
         }
       }, { passive: true });
       updateProgress();
-    }
-
-    // ========== 「313日」のカウントアップ演出 ==========
-    const daysEl = document.getElementById('mv-countdown-days');
-    if (daysEl && !daysEl.dataset.animated) {
-      const target = parseInt(daysEl.textContent.replace(/,/g, ''), 10);
-      if (!isNaN(target) && target > 0) {
-        daysEl.dataset.animated = 'true';
-        const duration = 1800; // ms
-        const start = performance.now();
-        function tick(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          // easeOutExpo
-          const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-          const current = Math.floor(target * eased);
-          daysEl.textContent = current.toLocaleString('ja-JP');
-          if (progress < 1) requestAnimationFrame(tick);
-        }
-        // MVエントランス後に開始（animation-delayと合わせる）
-        setTimeout(function() { requestAnimationFrame(tick); }, 500);
-      }
-    }
-
-    // ========== MV背景：マウス視差（デスクトップのみ） ==========
-    const mq = window.matchMedia('(min-width: 1025px) and (hover: hover)');
-    if (mq.matches) {
-      const mvFigure = document.querySelector('.mv-figure');
-      const mv = document.querySelector('section.mv');
-      if (mvFigure && mv) {
-        mv.addEventListener('mousemove', function(e) {
-          const rect = mv.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5 to 0.5
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          mvFigure.style.transform = 'translate(' + (-x * 14) + 'px, ' + (-y * 8) + 'px)';
-        });
-        mv.addEventListener('mouseleave', function() {
-          mvFigure.style.transform = 'translate(0, 0)';
-        });
-      }
     }
 
   })();
