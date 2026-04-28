@@ -971,6 +971,11 @@
   .voice-more:hover { background: var(--dpfp-blue-deep); }
   .voice-more svg { flex-shrink: 0; }
 
+  /* 続きを読む（スマホアコーディオン） */
+  .voice-expand-btn { display: none; }
+  .voice-expand-btn-text::before { content: '続きを読む'; }
+  .voice-card.is-expanded .voice-expand-btn-text::before { content: '閉じる'; }
+
   .voice-note {
     text-align: center;
     font-size: 11px;
@@ -2069,6 +2074,57 @@
     .voice-qa dd { font-size: 13px; line-height: 1.9; }
     .voice-more { font-size: 12px; padding: 12px 18px; margin-top: 20px; }
 
+    /* スマホ：Q&Aを折り畳み、最初だけチラ見せ */
+    .voice-qa {
+      max-height: 240px;
+      overflow: hidden;
+      position: relative;
+      transition: max-height 0.45s ease;
+    }
+    .voice-qa::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 70%, #fff 100%);
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .voice-card.is-expanded .voice-qa {
+      max-height: 4000px;
+    }
+    .voice-card.is-expanded .voice-qa::after {
+      opacity: 0;
+    }
+    .voice-expand-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 22px 0 0;
+      padding: 14px 22px;
+      background: var(--dpfp-blue);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+      font-family: inherit;
+    }
+    .voice-expand-btn:hover { background: var(--dpfp-blue-deep); }
+    .voice-expand-btn svg {
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .voice-card.is-expanded .voice-expand-btn svg {
+      transform: rotate(180deg);
+    }
+
     /* area */
     .area-grid { grid-template-columns: 1fr; gap: 20px; }
     .area-block { padding: 24px 20px; }
@@ -2386,6 +2442,10 @@
           <dt>Q. 立候補を考えている方へ</dt>
           <dd>あなたがやろうと思っているのは、<strong>魔王討伐の旅</strong>です。信頼できる仲間をつくり、中ボスという地域課題を解決し続けていく。<br>国民民主党は、盾となり、マントとなり、あなたと一緒に歩みます。<strong>大丈夫、一緒に旅に出よう。</strong></dd>
         </dl>
+        <button class="voice-expand-btn" type="button" aria-expanded="false">
+          <span class="voice-expand-btn-text"></span>
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
     </article>
 
@@ -2411,6 +2471,10 @@
           <dt>Q. 立候補を考えている方へ</dt>
           <dd>心配しないでください。当選前に抱えていた不安や、周りから聞かされていた脅しのような言説のほとんどは、起きませんでした。<br>政治家は、堂々と公の場で信じることを主張できる数少ない職業です。想像するよりも大きく、現実を変えられる——そのことに驚くと思います。<br><strong>真っ直ぐな思いを、熱伝導させましょう。バックアップは任せてください。</strong></dd>
         </dl>
+        <button class="voice-expand-btn" type="button" aria-expanded="false">
+          <span class="voice-expand-btn-text"></span>
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
     </article>
 
@@ -2885,7 +2949,17 @@
 
 <script>
   (function() {
-    // prefers-reduced-motion の場合は何もしない
+    // ========== 挑戦者の声：スマホで「続きを読む」アコーディオン ==========
+    document.querySelectorAll('.voice-expand-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const card = btn.closest('.voice-card');
+        if (!card) return;
+        const expanded = card.classList.toggle('is-expanded');
+        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      });
+    });
+
+    // prefers-reduced-motion の場合は以降のアニメーション系処理を停止
     const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (mqReduce.matches) return;
 
