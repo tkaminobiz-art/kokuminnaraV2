@@ -242,11 +242,15 @@
     letter-spacing: -0.01em;
     margin-bottom: 14px;
     text-wrap: balance;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
   .ladder-lead-main strong {
     color: var(--dpfp-orange);
     background: linear-gradient(transparent 65%, rgba(245,181,0,0.28) 65%);
     padding: 0 4px;
+    display: inline-block;
+    white-space: nowrap;
   }
   /* 補助メモ（小さく） */
   .ladder-lead-sub {
@@ -256,12 +260,17 @@
     letter-spacing: 0.18em;
     margin-bottom: 64px;
     font-weight: 700;
+    text-wrap: balance;
+    word-break: keep-all;
   }
+  .ladder-lead-sub-jp { display: inline; }
   .ladder-lead-sub::before, .ladder-lead-sub::after {
     content: "—";
     margin: 0 12px;
     opacity: 0.5;
   }
+  /* 改行制御用ヘルパー（スマホのみ表示） */
+  .br-sp { display: none; }
 
   /* 3カラムに変更 */
   .ladder-wrapper {
@@ -1073,17 +1082,21 @@
     color: var(--ink-sub);
     border-left: 4px solid var(--dpfp-orange);
     box-shadow: 0 8px 20px rgba(4,62,128,0.06);
+    white-space: nowrap;
   }
   .area-legend-sample {
     background: linear-gradient(transparent 58%, rgba(245,181,0,0.55) 58%, rgba(245,181,0,0.55) 92%, transparent 92%);
     padding: 0 4px;
     font-weight: 900;
     color: var(--dpfp-blue);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .area-legend-row {
     display: flex;
     justify-content: center;
     margin-bottom: 36px;
+    padding: 0 16px;
   }
 
   .area-note {
@@ -1978,6 +1991,29 @@
     /* ladder */
     .ladder-wrapper { grid-template-columns: 1fr; gap: 10px; }
     .ladder-usagi { width: 104px; height: 120px; }
+    .ladder-section { padding: 72px 0; }
+    .ladder-lead-main {
+      font-size: clamp(22px, 7.2vw, 30px);
+      line-height: 1.45;
+      padding: 0 20px;
+      margin-bottom: 18px;
+    }
+    .ladder-lead-main strong {
+      padding: 0 6px;
+    }
+    .ladder-lead-sub {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+    .ladder-lead-sub::before, .ladder-lead-sub::after { display: none; }
+    .ladder-lead-sub-sep { display: none; }
+    .ladder-lead-sub-en { display: block; opacity: 0.7; margin-bottom: 4px; }
+    .ladder-lead-sub-jp { display: block; }
+    /* スマホでのみ改行ヘルパーを表示 */
+    .br-sp { display: inline; }
 
     /* event */
     .event-section { padding: 72px 0; }
@@ -2036,6 +2072,22 @@
     /* area */
     .area-grid { grid-template-columns: 1fr; gap: 20px; }
     .area-block { padding: 24px 20px; }
+    .area-legend {
+      font-size: 11px;
+      padding: 10px 14px;
+      gap: 8px;
+      letter-spacing: 0;
+    }
+    .area-legend-sample { font-size: 11px; }
+    .area-list li {
+      font-size: 14px;
+      padding: 12px 0 12px 18px;
+      gap: 6px;
+    }
+    .area-list li::before { width: 7px; height: 7px; }
+    .area-list li.is-priority::before { width: 8px; height: 8px; }
+    .area-priority-mark { font-size: 9px; padding: 2px 6px; }
+    .area-list li .area-status { font-size: 10px; padding: 3px 8px; }
 
     /* flow */
     .flow-wrapper { flex-direction: column; gap: 0; }
@@ -2165,10 +2217,12 @@
 <section class="ladder-section">
   <div class="container-wide">
     <p class="ladder-lead-main">
-      いきなり<strong>候補者じゃなくても</strong>、大丈夫。
+      いきなり<br class="br-sp"><strong>候補者じゃなくても</strong>、<br class="br-sp">大丈夫。
     </p>
     <p class="ladder-lead-sub">
-      HOW TO GET INVOLVED ／ 関わり方は、3つの入口
+      <span class="ladder-lead-sub-en">HOW TO GET INVOLVED</span><br class="br-sp">
+      <span class="ladder-lead-sub-sep">／</span>
+      <span class="ladder-lead-sub-jp">関わり方は、3つの入口</span>
     </p>
     <div class="ladder-wrapper">
       <div class="ladder-item current">
