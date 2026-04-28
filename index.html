@@ -981,31 +981,7 @@
     margin-bottom: 56px;
   }
 
-  /* === 重点地域（強くプッシュ） === */
-  .area-priority {
-    margin-bottom: clamp(40px, 5vw, 64px);
-    position: relative;
-  }
-  .area-priority-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--dpfp-blue);
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: clamp(11px, 1vw, 14px);
-    letter-spacing: 0.24em;
-    padding: 10px 20px;
-    margin-bottom: 24px;
-    box-shadow: 0 14px 32px rgba(4,62,128,0.18);
-  }
-  .area-priority-tag .dot {
-    width: 10px; height: 10px;
-    background: var(--dpfp-orange);
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(245,181,0,0.3);
-  }
+  /* === 対象地域（一覧表示・重点はマーカー強調） === */
   .area-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1015,12 +991,10 @@
     background: var(--white);
     padding: 36px 32px;
     transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .area-block-priority {
     border-top: 6px solid var(--dpfp-orange);
     box-shadow: 0 18px 40px rgba(4,62,128,0.1);
   }
-  .area-block-priority:hover {
+  .area-block:hover {
     transform: translateY(-4px);
     box-shadow: 0 24px 48px rgba(4,62,128,0.15);
   }
@@ -1034,12 +1008,16 @@
     letter-spacing: 0.04em;
   }
   .area-list li {
-    padding: 14px 0 14px 24px;
+    padding: 12px 0 12px 22px;
     position: relative;
     font-size: 15px;
     font-weight: 700;
     border-bottom: 1px solid var(--gray-200);
     color: var(--dpfp-blue);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
   }
   .area-list li:last-child { border-bottom: none; }
   .area-list li::before {
@@ -1047,12 +1025,34 @@
     position: absolute;
     left: 0; top: 50%;
     transform: translateY(-50%);
-    width: 10px; height: 10px;
-    background: var(--red);
+    width: 8px; height: 8px;
+    background: rgba(4,62,128,0.35);
     border-radius: 50%;
   }
+  /* 蛍光ペンマーカー（重点地域） */
+  .area-list li.is-priority::before {
+    background: var(--red);
+    width: 10px; height: 10px;
+  }
+  .area-list li.is-priority .area-name {
+    background: linear-gradient(transparent 58%, rgba(245,181,0,0.55) 58%, rgba(245,181,0,0.55) 92%, transparent 92%);
+    padding: 0 4px;
+    font-weight: 900;
+  }
+  .area-priority-mark {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--dpfp-orange);
+    color: var(--dpfp-blue);
+    padding: 3px 8px;
+    letter-spacing: 0.1em;
+    line-height: 1;
+  }
   .area-list li .area-status {
-    float: right;
+    margin-left: auto;
     font-size: 11px;
     font-weight: 700;
     padding: 4px 10px;
@@ -1061,55 +1061,29 @@
   .status-open { background: var(--dpfp-blue); color: var(--white); }
   .status-closed { background: var(--gray-200); color: var(--gray-500); }
 
-  /* === その他の地域（控えめに） === */
-  .area-other {
-    border-top: 1px solid rgba(4,62,128,0.18);
-    padding-top: 36px;
-    margin-top: 24px;
-  }
-  .area-other-tag {
-    display: inline-block;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.24em;
-    color: var(--gray-500);
-    margin-bottom: 22px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--gray-200);
-  }
-  .area-other-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px 56px;
-  }
-  .area-other-col {
-    border-left: 2px solid rgba(4,62,128,0.15);
-    padding-left: 18px;
-  }
-  .area-other-title {
+  /* 重点地域の凡例 */
+  .area-legend {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--white);
+    padding: 12px 20px;
+    margin: 0 auto 36px;
     font-size: 13px;
+    color: var(--ink-sub);
+    border-left: 4px solid var(--dpfp-orange);
+    box-shadow: 0 8px 20px rgba(4,62,128,0.06);
+  }
+  .area-legend-sample {
+    background: linear-gradient(transparent 58%, rgba(245,181,0,0.55) 58%, rgba(245,181,0,0.55) 92%, transparent 92%);
+    padding: 0 4px;
     font-weight: 900;
     color: var(--dpfp-blue);
-    margin-bottom: 12px;
-    letter-spacing: 0.06em;
   }
-  .area-other-list {
-    list-style: none;
+  .area-legend-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px 12px;
-    font-size: 13px;
-    color: var(--gray-500);
-  }
-  .area-other-list li {
-    padding: 4px 0;
-    position: relative;
-  }
-  .area-other-list li:not(:last-child)::after {
-    content: "／";
-    margin-left: 12px;
-    color: var(--gray-200);
+    justify-content: center;
+    margin-bottom: 36px;
   }
 
   .area-note {
@@ -2366,6 +2340,31 @@
       </div>
     </article>
 
+    <article class="voice-card">
+      <div class="voice-card-photo">
+        <img src="assets/images/interview/wakasa.jpg" alt="若さ健太 さん">
+        <span class="voice-vol">Vol.2 地方議員インタビュー</span>
+      </div>
+      <div class="voice-card-body">
+        <h3 class="voice-title">正直で切実な言葉が、<br>現実を変える。</h3>
+        <div class="voice-name">
+          <span class="voice-name-jp">若さ健太</span>
+          <span class="voice-name-role">滋賀県・甲賀市議会議員 ／ 1期</span>
+        </div>
+
+        <dl class="voice-qa">
+          <dt>Q. 候補者公募に応募したきっかけは？</dt>
+          <dd>2024年の衆院選ではじめて国民民主党の演説を見ました。日本の未来を真剣に考え、<strong>「対決より解決」</strong>の姿勢で正面から有権者に訴える姿に、新しさとやわらかさを感じました。<br>「日本には希望がある。なにをやっても変わらないと決め込んでいた自分が、まずは変わるべきだ」——そう思って公募に応募しました。</dd>
+
+          <dt>Q. 活動の中で大変だったことは？</dt>
+          <dd>無所属での出馬が多い地域で、国民民主党であることや党首への批判を受けることが多く、肩身の狭い思いをしました。それでも結党理念を信じ、粘り強く活動を続けました。<br>現場で傷ついても、SNSで全国の支援者から励ましをもらい、<strong>折れずに歩みを進めることができました</strong>。</dd>
+
+          <dt>Q. 立候補を考えている方へ</dt>
+          <dd>心配しないでください。当選前に抱えていた不安や、周りから聞かされていた脅しのような言説のほとんどは、起きませんでした。<br>政治家は、堂々と公の場で信じることを主張できる数少ない職業です。想像するよりも大きく、現実を変えられる——そのことに驚くと思います。<br><strong>真っ直ぐな思いを、熱伝導させましょう。バックアップは任せてください。</strong></dd>
+        </dl>
+      </div>
+    </article>
+
     <p class="voice-note">国民民主党 党本部「地方議員インタビュー」より転載</p>
   </div>
 </section>
@@ -2374,7 +2373,7 @@
 <section class="area-section">
   <div class="container">
     <div class="section-title">
-      <span class="jp">募集地域・応募状況</span>
+      <span class="jp">対象地域・応募状況</span>
       <span class="en">RECRUITING AREA</span>
     </div>
     <p class="area-lead">
@@ -2382,61 +2381,44 @@
       募集状況は随時更新いたします。
     </p>
 
-    <!-- 重点地域 -->
-    <div class="area-priority">
-      <div class="area-priority-tag">
-        <span class="dot"></span>PRIORITY · 重点公募地域
-      </div>
-      <div class="area-grid">
-        <div class="area-block area-block-priority">
-          <h3 class="area-block-title">県議会議員</h3>
-          <ul class="area-list">
-            <li>奈良市選挙区 <span class="area-status status-open">募集中</span></li>
-            <li>山辺郡選挙区(奈良市・山添村) <span class="area-status status-open">募集中</span></li>
-            <li>生駒市選挙区 <span class="area-status status-open">募集中</span></li>
-          </ul>
-        </div>
-        <div class="area-block area-block-priority">
-          <h3 class="area-block-title">市議会議員</h3>
-          <ul class="area-list">
-            <li>奈良市 <span class="area-status status-open">募集中</span></li>
-            <li>生駒市 <span class="area-status status-open">募集中</span></li>
-            <li>天理市 <span class="area-status status-open">募集中</span></li>
-          </ul>
-        </div>
+    <div class="area-legend-row">
+      <div class="area-legend">
+        <span class="area-legend-sample">マーカー</span> = 重点地域（特に強く募集している選挙区）
       </div>
     </div>
 
-    <!-- その他募集地域 -->
-    <div class="area-other">
-      <div class="area-other-tag">その他の募集地域 ／ OTHER AREAS</div>
-      <div class="area-other-grid">
-        <div class="area-other-col">
-          <h4 class="area-other-title">県議会議員</h4>
-          <ul class="area-other-list">
-            <li>大和高田市選挙区</li>
-            <li>五條市選挙区</li>
-            <li>御所市選挙区</li>
-            <li>香芝市選挙区</li>
-            <li>葛城市選挙区</li>
-            <li>宇陀市選挙区</li>
-            <li>生駒郡選挙区</li>
-            <li>磯城郡選挙区</li>
-            <li>北葛城郡選挙区</li>
-            <li>高市郡選挙区</li>
-          </ul>
-        </div>
-        <div class="area-other-col">
-          <h4 class="area-other-title">市議会議員</h4>
-          <ul class="area-other-list">
-            <li>大和高田市</li>
-            <li>五條市</li>
-            <li>御所市</li>
-            <li>香芝市</li>
-            <li>葛城市</li>
-            <li>宇陀市</li>
-          </ul>
-        </div>
+    <div class="area-grid">
+      <div class="area-block">
+        <h3 class="area-block-title">県議会議員</h3>
+        <ul class="area-list">
+          <li class="is-priority"><span class="area-name">奈良市選挙区</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li class="is-priority"><span class="area-name">山辺郡選挙区(奈良市・山添村)</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li class="is-priority"><span class="area-name">生駒市選挙区</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">大和高田市選挙区</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">五條市選挙区</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">御所市選挙区</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">香芝市選挙区</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">葛城市選挙区</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">宇陀市選挙区</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">生駒郡選挙区</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">磯城郡選挙区</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">北葛城郡選挙区</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">高市郡選挙区</span><span class="area-status status-open">募集中</span></li>
+        </ul>
+      </div>
+      <div class="area-block">
+        <h3 class="area-block-title">市議会議員</h3>
+        <ul class="area-list">
+          <li class="is-priority"><span class="area-name">奈良市</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li class="is-priority"><span class="area-name">生駒市</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li class="is-priority"><span class="area-name">天理市</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">大和高田市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">五條市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">御所市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">香芝市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">葛城市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">宇陀市</span><span class="area-status status-open">募集中</span></li>
+        </ul>
       </div>
     </div>
 
