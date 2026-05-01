@@ -232,7 +232,10 @@
 
   /* ===== 段階的参画ファネル (Engagement Ladder) — Editorial Cinematic ===== */
   .ladder-section {
-    background: linear-gradient(180deg, #043e80 0%, #022a5c 100%);
+    background:
+      linear-gradient(180deg, rgba(4,62,128,0.88) 0%, rgba(2,42,92,0.96) 50%, rgba(2,23,64,0.98) 100%),
+      url('assets/images/backgrounds/nara-dusk.jpg') center / cover no-repeat;
+    background-color: #043e80;
     padding: clamp(96px, 12vw, 140px) 0;
     position: relative;
     overflow: hidden;
@@ -244,7 +247,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: repeating-linear-gradient(-15deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 18px);
+    background-image: repeating-linear-gradient(-15deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 18px);
     pointer-events: none;
     z-index: 0;
   }
@@ -463,7 +466,11 @@
   /* ===== Message Section — Editorial Cinematic ===== */
   .message-section {
     position: relative;
-    background: linear-gradient(180deg, #022a5c 0%, #043e80 50%, #022a5c 100%);
+    background:
+      linear-gradient(180deg, rgba(2,23,64,0.96) 0%, rgba(4,62,128,0.92) 100%),
+      url('assets/images/backgrounds/nara-dusk.jpg') center / cover no-repeat;
+    background-attachment: fixed;
+    background-color: #022a5c;
     color: var(--white);
     padding: clamp(96px, 12vw, 140px) 0;
     overflow: hidden;
@@ -757,7 +764,12 @@
   }
 
   /* ===== 募集地域 Section ===== */
-  .area-section { background: var(--gray-50); }
+  .area-section {
+    background:
+      linear-gradient(rgba(250,248,242,0.86), rgba(250,248,242,0.94)),
+      url('assets/images/backgrounds/washi-paper.jpg') center / cover no-repeat;
+    background-color: var(--gray-50);
+  }
   .area-lead {
     text-align: center;
     font-size: 17px;
@@ -921,7 +933,12 @@
   }
 
   /* ===== 応募フロー (6ステップ化) ===== */
-  .flow-section { background: var(--white); }
+  .flow-section {
+    background:
+      linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.96)),
+      url('assets/images/backgrounds/washi-paper.jpg') center / cover no-repeat;
+    background-color: var(--white);
+  }
   .flow-wrapper {
     display: flex;
     align-items: stretch;
@@ -1146,7 +1163,10 @@
   /* ===== 活動スケジュール Section ===== */
   /* ===== FAQ セクション ===== */
   .faq-section {
-    background: var(--gray-50);
+    background:
+      linear-gradient(rgba(250,248,242,0.88), rgba(250,248,242,0.94)),
+      url('assets/images/backgrounds/washi-paper.jpg') center / cover no-repeat;
+    background-color: var(--gray-50);
     padding: 120px 0;
   }
   .faq-head {
@@ -1310,7 +1330,10 @@
   /* ===== Footer ===== */
   /* ===== 攻めたフッター（LAST CALL型） ===== */
   footer {
-    background: var(--dpfp-blue);
+    background:
+      linear-gradient(180deg, rgba(2,42,92,0.94) 0%, rgba(4,62,128,0.92) 60%, rgba(2,23,64,0.98) 100%),
+      url('assets/images/backgrounds/nara-dusk.jpg') center / cover no-repeat;
+    background-color: var(--dpfp-blue);
     color: var(--white);
     padding: 0;
     position: relative;
