@@ -92,17 +92,20 @@
     position: relative;
     z-index: 10;
   }
-  .logo-badge { display: flex; gap: 4px; }
-  .logo-badge span {
-    background: var(--white);
-    color: var(--navy);
-    font-weight: 900;
-    font-size: 10px;
-    padding: 4px 6px;
-    border-radius: 2px;
-    line-height: 1.2;
+  .logo-badge {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+    transition: opacity 0.2s;
   }
-  .logo-badge span:last-child { background: var(--yellow); color: var(--navy); }
+  .logo-badge:hover { opacity: 0.85; }
+  .logo-badge img {
+    display: block;
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
   .site-header h1 {
     font-size: 15px;
     font-weight: 700;
@@ -1718,18 +1721,16 @@
   }
   .footer-brand { text-align: left; }
   .footer-logo {
-    display: inline-flex;
-    gap: 6px;
-    margin-bottom: 16px;
+    display: inline-block;
+    margin-bottom: 18px;
   }
-  .footer-logo span {
-    background: var(--white);
-    color: var(--navy);
-    font-weight: 900;
-    font-size: 13px;
-    padding: 6px 10px;
+  .footer-logo img {
+    display: block;
+    height: 76px;
+    width: auto;
+    object-fit: contain;
+    /* 公式ロゴはネイビー背景込み → ダーク footer 上でも視認性◎ */
   }
-  .footer-logo span:last-child { background: var(--yellow); }
   .footer-title {
     font-size: 17px;
     font-weight: 700;
@@ -2087,6 +2088,7 @@
     }
     .site-header h1 { font-size: 12px; order: 2; flex: 1 1 100%; }
     .logo-badge { order: 1; }
+    .logo-badge img { height: 32px; }
     .header-sns {
       order: 1;
       margin-left: auto;
@@ -2327,10 +2329,9 @@
 
 <!-- ====== Header ====== -->
 <header class="site-header">
-  <div class="logo-badge">
-    <span>国民<br>民主党</span>
-    <span>こく<br>みん</span>
-  </div>
+  <a href="#" class="logo-badge" aria-label="国民民主党 奈良県総支部連合会 トップへ">
+    <img src="assets/images/logo/kokumin-logo.png" alt="国民民主党 こくみん 公式ロゴ" width="113" height="80">
+  </a>
   <h1>候補者公募特設サイト|奈良県総支部連合会</h1>
   <nav class="header-sns" aria-label="公式SNS">
     <a href="#" target="_blank" rel="noopener" aria-label="X（旧Twitter）で奈良県連をフォロー">
@@ -3033,8 +3034,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-logo">
-          <span>国民民主党</span>
-          <span>こくみん</span>
+          <img src="assets/images/logo/kokumin-logo.png" alt="国民民主党 こくみん 公式ロゴ" width="170" height="120">
         </div>
         <div class="footer-title">奈良県総支部連合会</div>
         <div class="footer-meta">
