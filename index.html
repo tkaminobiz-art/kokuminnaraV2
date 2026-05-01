@@ -588,14 +588,24 @@
     border-bottom-color: rgba(245,181,0,0.4);
   }
   .event-detail-title {
-    font-size: clamp(20px, 1.7vw, 24px);
+    font-size: clamp(17px, 1.5vw, 22px);
     font-weight: 900;
     color: var(--dpfp-blue);
     margin: 0 0 14px;
     line-height: 1.42;
-    letter-spacing: -0.005em;
+    letter-spacing: -0.01em;
+    /* 日本語の禁則処理: 行頭に長音符「ー」「、」「。」が来ないように */
+    line-break: strict;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
   }
   .event-detail-slot.is-priority .event-detail-title { color: var(--white); }
+  /* 部分的禁改行ユーティリティ (日本語の単語まとまりを保つ) */
+  .event-detail-title .nobr {
+    display: inline-block;
+    white-space: nowrap;
+  }
   .event-detail-desc {
     font-size: clamp(13px, 1vw, 14px);
     line-height: 1.85;
@@ -2476,7 +2486,7 @@
           <span class="event-detail-time-end">— 15:00</span>
         </div>
         <div class="event-detail-meta">SLOT 02 / 政治塾</div>
-        <h3 class="event-detail-title">第1回<br>こくみん奈良政策アカデミー</h3>
+        <h3 class="event-detail-title"><span class="nobr">第1回</span><br><span class="nobr">こくみん奈良</span><span class="nobr">政策アカデミー</span></h3>
         <p class="event-detail-desc">
           奈良の地方政治を学ぶ、新設の政治塾。所属議員と直接対話できる希望者向けセッション。
         </p>
