@@ -648,13 +648,28 @@
     background: var(--dpfp-blue);
     line-height: 0;
     overflow: hidden;
+    /* 画像未読込時にもセクション領域を確保する保険 */
+    min-height: 200px;
   }
-  .event-picture { display: block; width: 100%; }
+  .event-picture {
+    display: block;
+    width: 100%;
+    /* アスペクト比で領域確保 → Layout Shift防止 + Lazy loadトリガ確実化 */
+    aspect-ratio: 16 / 9;
+  }
   .event-picture img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
+  }
+  /* タブレット縦持ち以下は 4:3 */
+  @media (max-width: 1180px) {
+    .event-picture { aspect-ratio: 4 / 3; }
+  }
+  /* スマホは 9:16 */
+  @media (max-width: 768px) {
+    .event-picture { aspect-ratio: 9 / 16; }
   }
 
   /* ===== Message Section — Editorial Cinematic ===== */
@@ -2410,7 +2425,7 @@
   <picture class="event-picture">
     <source media="(max-width: 768px)" srcset="assets/images/event/event-mobile.jpg">
     <source media="(max-width: 1180px)" srcset="assets/images/event/event-tablet.jpg">
-    <img src="assets/images/event/event-pc.jpg" alt="2026年5月24日（日）玉木雄一郎代表 来県 / 県連大会・第1回こくみん奈良政策アカデミー・街頭演説 in 奈良" loading="lazy">
+    <img src="assets/images/event/event-pc.jpg" alt="2026年5月24日（日）玉木雄一郎代表 来県 / 県連大会・第1回こくみん奈良政策アカデミー・街頭演説 in 奈良" decoding="async">
   </picture>
 </section>
 
