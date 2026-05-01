@@ -3,6 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== Security Headers (meta tag形式・GitHub Pages対応) ===== -->
+<!-- XSS/データインジェクション防止: 信頼できるオリジンのみ許可 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<!-- クリックジャッキング防止 (iframeへの埋め込み拒否) -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<!-- リファラ漏洩防止: 同一オリジンへは送信、他はオリジンのみ -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- 機能API制限: 不要な権限を全て無効化 -->
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=()">
+
 <title>候補者公募特設サイト | 国民民主党 奈良県総支部連合会</title>
 <meta name="description" content="2027年4月 統一地方選挙に向けて、奈良県で共に挑戦する候補者を募集しています。国民民主党 奈良県総支部連合会。">
 <meta name="theme-color" content="#043e80">

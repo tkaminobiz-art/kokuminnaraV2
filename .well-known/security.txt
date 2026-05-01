@@ -1,0 +1,8 @@
+# RFC 9116 — security.txt
+# 国民民主党 奈良県総支部連合会 候補者公募サイト
+
+Contact: mailto:info@new-kokumin-nara.jp
+Expires: 2027-04-30T23:59:59+09:00
+Preferred-Languages: ja, en
+Canonical: https://tkaminobiz-art.github.io/kokuminnaraV2/.well-known/security.txt
+Policy: https://github.com/tkaminobiz-art/kokuminnaraV2/blob/main/SECURITY.md
