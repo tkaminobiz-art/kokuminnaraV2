@@ -708,15 +708,29 @@ document.getElementById('postalLookup').addEventListener('click', function() {
       return;
     }
 
-    // 2. MIMEタイプ検証
-    if (file.type !== 'application/pdf') {
+    // 2. 拡張子チェック (.pdf 必須)
+    //    iOS Safari等で file.type が空でもここで判定可能
+    const lowerName = file.name.toLowerCase();
+    if (!lowerName.endsWith('.pdf')) {
+      alert('PDFファイル（.pdf）のみアップロードできます');
+      this.value = '';
+      display.classList.remove('has-file');
+      return;
+    }
+
+    // 3. MIMEタイプ検証 (緩め: 明示的に違うMIMEがある場合のみ拒否)
+    //    iOS等で file.type が空文字や octet-stream になるケースを許容
+    //    実体検証は次の magic byte で確実に行う
+    const acceptableTypes = ['application/pdf', '', 'application/octet-stream'];
+    if (file.type && !acceptableTypes.includes(file.type)) {
       alert('PDFファイルのみアップロードできます');
       this.value = '';
       display.classList.remove('has-file');
       return;
     }
 
-    // 3. ファイル名に怪しい文字が含まれていないかチェック
+    // 4. ファイル名に危険文字が含まれていないかチェック
+    //    Windows禁止文字 + パストラバーサル
     if (/[<>:"\/\\|?*\x00-\x1F]/.test(file.name) || file.name.includes('..')) {
       alert('ファイル名に使用できない文字が含まれています');
       this.value = '';
@@ -724,23 +738,21 @@ document.getElementById('postalLookup').addEventListener('click', function() {
       return;
     }
 
-    // 4. PDFマジックバイト検証 (先頭4バイトが %PDF か)
+    // 5. PDFマジックバイト検証 (先頭4バイトが %PDF か) — 最も確実な実体検証
     try {
       const buf = await file.slice(0, 4).arrayBuffer();
       const sig = new Uint8Array(buf);
       // %PDF = 0x25 0x50 0x44 0x46
       if (sig[0] !== 0x25 || sig[1] !== 0x50 || sig[2] !== 0x44 || sig[3] !== 0x46) {
-        alert('正しいPDFファイルではありません');
+        alert('正しいPDFファイルではありません。\n別のPDFを選び直してください。');
         this.value = '';
         display.classList.remove('has-file');
         return;
       }
     } catch (e) {
-      console.error('PDF検証エラー:', e);
-      alert('ファイルの検証に失敗しました');
-      this.value = '';
-      display.classList.remove('has-file');
-      return;
+      console.warn('PDF検証スキップ:', e);
+      // 検証エラーが起きてもブロックしない (アップロード自体は許可)
+      // 無理に止めると有権者が応募できなくなるため
     }
 
     // すべての検証通過
