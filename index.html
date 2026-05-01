@@ -491,6 +491,15 @@
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(18px, 2vw, 28px);
   }
+  @media (max-width: 900px) {
+    .event-detail-grid { grid-template-columns: 1fr; gap: 18px; }
+    .event-detail-slot.is-priority::before {
+      top: 12px;
+      right: -28px;
+      padding: 3px 36px;
+      font-size: 9px;
+    }
+  }
   .event-detail-slot {
     background: var(--white);
     border: 1px solid var(--gray-200);
@@ -654,7 +663,7 @@
     background:
       linear-gradient(180deg, rgba(2,23,64,0.96) 0%, rgba(4,62,128,0.92) 100%),
       url('assets/images/backgrounds/nara-dusk.jpg') center / cover no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed; /* iOSではscrollにフォールバック */
     background-color: #022a5c;
     color: var(--white);
     padding: clamp(96px, 12vw, 140px) 0;
@@ -1881,6 +1890,107 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* ==================================================
+   * 微細アニメーション (Micro-interactions)
+   * ================================================== */
+
+  /* 1. サイドCTAボタンの脈動ヒント (応募はこちらの方を強く誘う) */
+  @keyframes side-cta-breath {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245,181,0,0.6); }
+    50%      { box-shadow: 0 0 0 14px rgba(245,181,0,0); }
+  }
+  /* "応募はこちら" ボタン (secondary を持たないsideCta) のみ脈動 */
+  .side-cta:not(.secondary) {
+    animation: side-cta-breath 2.6s ease-out infinite;
+    animation-delay: 1.2s;
+  }
+  .side-cta:hover {
+    animation-play-state: paused;
+  }
+
+  /* 2. OPEN リボン（街頭演説 SLOT 03）の脈動 */
+  @keyframes open-ribbon-pulse {
+    0%, 60%, 100% { transform: rotate(45deg) scale(1); }
+    70%           { transform: rotate(45deg) scale(1.06); }
+    80%           { transform: rotate(45deg) scale(0.98); }
+    90%           { transform: rotate(45deg) scale(1.03); }
+  }
+  .event-detail-slot.is-priority::before {
+    animation: open-ribbon-pulse 3.4s ease-in-out infinite;
+    transform-origin: center center;
+  }
+
+  /* 3. フッターうさぎの浮遊 (subtle bobbing) */
+  @keyframes usagi-float {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50%      { transform: translateY(-10px) rotate(1deg); }
+  }
+  .footer-lastcall-usagi {
+    animation: usagi-float 4.2s ease-in-out infinite;
+  }
+
+  /* 4. ladder の現在ステップ (聞く) のオレンジカードに subtle glow */
+  @keyframes ladder-current-glow {
+    0%, 100% { box-shadow: 0 18px 40px rgba(245,181,0,0.2), 0 0 0 0 rgba(245,181,0,0.5); }
+    50%      { box-shadow: 0 18px 40px rgba(245,181,0,0.3), 0 0 0 8px rgba(245,181,0,0.06); }
+  }
+  .ladder-item.current {
+    animation: ladder-current-glow 3.2s ease-in-out infinite;
+  }
+
+  /* 5. 写真ホバーで控えめにズーム (voice-card の写真) */
+  .voice-card-photo {
+    overflow: hidden;
+  }
+  .voice-card-photo img {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .voice-card:hover .voice-card-photo img {
+    transform: scale(1.04);
+  }
+
+  /* 6. 挑 赤丸の登場アニメ (FAQセクション以降のページ感を演出) */
+  @keyframes hero-tip {
+    0%   { transform: translateY(8px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  /* 7. cta-button (フッター応募フォームへ) — gentle gradient sheen */
+  .footer-lastcall-cta {
+    position: relative;
+    overflow: hidden;
+  }
+  .footer-lastcall-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+  .footer-lastcall-cta:hover::after {
+    transform: translateX(100%);
+  }
+
+  /* 8. cta-section ボタンの hover で矢印が前進 */
+  .cta-button {
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+    transform: translateX(-110%);
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+  .cta-button:hover::before {
+    transform: translateX(110%);
+  }
+
   /* スクロール進行度インジケータ（細い線） */
   .scroll-progress {
     position: fixed;
@@ -1908,6 +2018,13 @@
       transform: none;
     }
     .scroll-progress { display: none; }
+    /* 微細アニメをすべて停止 */
+    .side-cta,
+    .event-detail-slot.is-priority::before,
+    .footer-lastcall-usagi,
+    .ladder-item.current {
+      animation: none !important;
+    }
   }
 
   /* タブレット（横向き・小型PC: 901-1024） */
@@ -1942,6 +2059,11 @@
 
   /* スマートフォン + iPad 縦向き */
   @media (max-width: 900px) {
+    /* iOS は background-attachment: fixed が不安定 → スクロール時のチラつき回避 */
+    .message-section {
+      background-attachment: scroll;
+    }
+
     /* ===== Header ===== */
     .site-header {
       flex-wrap: wrap;
