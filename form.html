@@ -417,7 +417,7 @@
   <h2>応募フォーム</h2>
   <p>下記フォームに必要事項をご記入のうえ、履歴書と小論文のPDFを添付してご送信ください。</p>
   <dl class="election-box">
-    <dt>応募対象</dt><dd>奈良県 奈良県議会議員選挙</dd>
+    <dt>応募対象</dt><dd>2027年4月 統一地方選挙（奈良県議会議員 ／ 市議会議員）</dd>
     <dt>任期満了日</dt><dd>2027年4月29日（木）</dd>
     <dt>応募締切</dt><dd>2027年2月28日（日）</dd>
   </dl>
@@ -446,9 +446,37 @@
 
     <!-- 応募対象選挙 -->
     <div class="field">
-      <label class="field-label" for="election">応募対象選挙</label>
+      <label class="field-label" for="election">応募対象選挙 <span class="required">必須</span></label>
       <div class="field-input">
-        <input type="text" id="election" name="応募対象選挙" value="奈良県 奈良県議会議員選挙" readonly>
+        <select id="election" name="応募対象選挙" required>
+          <option value="">選挙区を選択してください</option>
+          <optgroup label="奈良県議会議員選挙">
+            <option value="奈良県議会議員選挙 / 奈良市・山辺郡（重点）">奈良市・山辺郡 ★重点</option>
+            <option value="奈良県議会議員選挙 / 生駒市（重点）">生駒市 ★重点</option>
+            <option value="奈良県議会議員選挙 / 北葛城郡（重点）">北葛城郡 ★重点</option>
+            <option value="奈良県議会議員選挙 / 大和郡山市">大和郡山市</option>
+            <option value="奈良県議会議員選挙 / 天理市">天理市</option>
+            <option value="奈良県議会議員選挙 / 桜井市">桜井市</option>
+            <option value="奈良県議会議員選挙 / 香芝市">香芝市</option>
+            <option value="奈良県議会議員選挙 / 大和高田市">大和高田市</option>
+            <option value="奈良県議会議員選挙 / 葛城市">葛城市</option>
+            <option value="奈良県議会議員選挙 / 御所市">御所市</option>
+            <option value="奈良県議会議員選挙 / 五條市">五條市</option>
+            <option value="奈良県議会議員選挙 / 橿原市・高市郡">橿原市・高市郡</option>
+            <option value="奈良県議会議員選挙 / 宇陀市・宇陀郡">宇陀市・宇陀郡</option>
+            <option value="奈良県議会議員選挙 / 生駒郡">生駒郡</option>
+            <option value="奈良県議会議員選挙 / 磯城郡">磯城郡</option>
+            <option value="奈良県議会議員選挙 / 吉野郡">吉野郡</option>
+          </optgroup>
+          <optgroup label="市議会議員選挙">
+            <option value="市議会議員選挙 / 生駒市（重点）">生駒市 ★重点</option>
+            <option value="市議会議員選挙 / 大和郡山市（重点）">大和郡山市 ★重点</option>
+            <option value="市議会議員選挙 / 天理市（重点）">天理市 ★重点</option>
+            <option value="市議会議員選挙 / 桜井市">桜井市</option>
+            <option value="市議会議員選挙 / 大和高田市">大和高田市</option>
+          </optgroup>
+          <option value="その他・相談したい">その他・まずは相談したい</option>
+        </select>
       </div>
     </div>
 

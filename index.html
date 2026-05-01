@@ -640,6 +640,18 @@
     padding-bottom: 14px;
     margin-bottom: 20px;
     letter-spacing: 0.04em;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .area-block-count {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-sub);
+    letter-spacing: 0.12em;
+    font-family: 'Montserrat', sans-serif;
   }
   .area-list li {
     padding: 12px 0 12px 22px;
@@ -1874,7 +1886,7 @@
         <div class="ladder-usagi"><img src="assets/images/usagi/usagi-kiku.png" alt="こくみんうさぎ きく"></div>
         <div class="ladder-title">聞く</div>
         <p class="ladder-desc">街頭演説・イベントに参加して、現場の空気を体感</p>
-        <a href="#event" class="ladder-link">5/27 玉木代表来県 →</a>
+        <a href="#event" class="ladder-link">5/24 玉木代表来県 →</a>
       </div>
       <div class="ladder-item">
         <div class="ladder-step">STEP 02</div>
@@ -1894,12 +1906,12 @@
   </div>
 </section>
 
-<!-- ====== 5/27 イベント告知（玉木代表降臨・確定スケジュール） ====== -->
+<!-- ====== 5/24 イベント告知（玉木代表来県・確定スケジュール） ====== -->
 <section class="event-section" id="event">
   <picture class="event-picture">
     <source media="(max-width: 768px)" srcset="assets/images/event/event-mobile.jpg">
     <source media="(max-width: 1180px)" srcset="assets/images/event/event-tablet.jpg">
-    <img src="assets/images/event/event-pc.jpg" alt="2026年5月27日 玉木雄一郎代表 来県 / 県連大会・政治塾・街頭演説 in 奈良" loading="lazy">
+    <img src="assets/images/event/event-pc.jpg" alt="2026年5月24日（日）玉木雄一郎代表 来県 / 県連大会・第1回こくみん奈良政策アカデミー・街頭演説 in 奈良" loading="lazy">
   </picture>
 </section>
 
@@ -1917,25 +1929,25 @@
 
     <article class="voice-card">
       <div class="voice-card-photo">
-        <img src="assets/images/interview/chikamoto.png" alt="近本 杏菜 さん">
+        <img src="assets/images/interview/egawa.jpg" alt="江川 ゆり さん">
         <span class="voice-vol">Vol.1 地方議員インタビュー</span>
       </div>
       <div class="voice-card-body">
-        <h3 class="voice-title">大丈夫、<br>一緒に旅に出よう。</h3>
+        <h3 class="voice-title">「ありがとう」が、<br>議会に通う理由になる。</h3>
         <div class="voice-name">
-          <span class="voice-name-jp">近本 杏菜</span>
-          <span class="voice-name-role">埼玉県・桶川市議会議員 ／ 1期</span>
+          <span class="voice-name-jp">江川 ゆり</span>
+          <span class="voice-name-role">奈良県・奈良市議会議員 ／ 1期</span>
         </div>
 
         <dl class="voice-qa">
-          <dt>Q. 候補者公募に応募したきっかけは？</dt>
-          <dd>わが子が暮らす桶川市を良くしたい。だから議員になりたい…でも選挙ってどうすればいいの？やる気はあるけど、不安もある。そんな時に出会ったのが、国民民主党の公募でした。<br>子ども手当の所得制限の撤廃を訴える姿を見て、<strong>「やっと味方が現れた」</strong>という気持ちでした。</dd>
+          <dt>Q. 立候補のきっかけは？</dt>
+          <dd>動物が好きで、保護猫の預かりボランティアを続けてきました。現場では担い手が限られ、一部の人に大きな負担がかかっている。<strong>これまでの経験を活かして、この問題の解決に力を尽くしたい</strong>——そう思って公募に踏み出しました。<br>お声がけをいただいたのは選挙の約2か月半前。準備期間は短くても、地元の駅でチラシを配り、市政について学ぶ機会を県連からいただきました。</dd>
 
           <dt>Q. 活動の中で大変だったことは？</dt>
-          <dd>とにかく孤独を感じていました。党から選挙の「いろは」を教えてもらった。でも「頼り方」が分からなかった。頼ることは申し訳ない事だと、本気で思っていました。<br><strong>「教えてください。助けてください」</strong>、所属議員が、必ず、助けます。</dd>
+          <dd>真夏の選挙だったので、何より<strong>暑さ対策</strong>に苦労しました。活動場所を工夫したり、こまめに休憩を取ったり。1週間続けて街頭に立つには、体調管理がすべてだと痛感しました。<br>当選後は、これまで接点のなかった分野の方々と日々出会います。<strong>音楽家や保護猫ボランティアの方々から「声をあげてくれてありがとう」と言っていただいたこと</strong>が、議員を続ける一番の励みです。</dd>
 
           <dt>Q. 立候補を考えている方へ</dt>
-          <dd>あなたがやろうと思っているのは、<strong>魔王討伐の旅</strong>です。信頼できる仲間をつくり、中ボスという地域課題を解決し続けていく。<br>国民民主党は、盾となり、マントとなり、あなたと一緒に歩みます。<strong>大丈夫、一緒に旅に出よう。</strong></dd>
+          <dd>初めは分からないことばかりで不安もあります。当選後も大変なことは多い。それでも、党のサポートのおかげで活動を続けられている実感があります。<br>何よりも<strong>「これを解決したい」という思い</strong>が大切です。思いのある方、国民民主党の理念や政策に共感してくださる方は、<strong>ぜひ、ともに活動しましょう。</strong></dd>
         </dl>
         <button class="voice-expand-btn" type="button" aria-expanded="false">
           <span class="voice-expand-btn-text"></span>
@@ -1975,37 +1987,8 @@
 
     <article class="voice-card">
       <div class="voice-card-photo">
-        <img src="assets/images/interview/egawa.jpg" alt="江川 ゆり さん">
-        <span class="voice-vol">Vol.3 地方議員インタビュー</span>
-      </div>
-      <div class="voice-card-body">
-        <h3 class="voice-title">「ありがとう」が、<br>議会に通う理由になる。</h3>
-        <div class="voice-name">
-          <span class="voice-name-jp">江川 ゆり</span>
-          <span class="voice-name-role">奈良県・奈良市議会議員 ／ 1期</span>
-        </div>
-
-        <dl class="voice-qa">
-          <dt>Q. 立候補のきっかけは？</dt>
-          <dd>動物が好きで、保護猫の預かりボランティアを続けてきました。現場では担い手が限られ、一部の人に大きな負担がかかっている。<strong>これまでの経験を活かして、この問題の解決に力を尽くしたい</strong>——そう思って公募に踏み出しました。<br>お声がけをいただいたのは選挙の約2か月半前。準備期間は短くても、地元の駅でチラシを配り、市政について学ぶ機会を県連からいただきました。</dd>
-
-          <dt>Q. 活動の中で大変だったことは？</dt>
-          <dd>真夏の選挙だったので、何より<strong>暑さ対策</strong>に苦労しました。活動場所を工夫したり、こまめに休憩を取ったり。1週間続けて街頭に立つには、体調管理がすべてだと痛感しました。<br>当選後は、これまで接点のなかった分野の方々と日々出会います。<strong>音楽家や保護猫ボランティアの方々から「声をあげてくれてありがとう」と言っていただいたこと</strong>が、議員を続ける一番の励みです。</dd>
-
-          <dt>Q. 立候補を考えている方へ</dt>
-          <dd>初めは分からないことばかりで不安もあります。当選後も大変なことは多い。それでも、党のサポートのおかげで活動を続けられている実感があります。<br>何よりも<strong>「これを解決したい」という思い</strong>が大切です。思いのある方、国民民主党の理念や政策に共感してくださる方は、<strong>ぜひ、ともに活動しましょう。</strong></dd>
-        </dl>
-        <button class="voice-expand-btn" type="button" aria-expanded="false">
-          <span class="voice-expand-btn-text"></span>
-          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-    </article>
-
-    <article class="voice-card">
-      <div class="voice-card-photo">
         <img src="assets/images/interview/ikenaga.jpg" alt="池永 ゆうき さん">
-        <span class="voice-vol">Vol.4 地方議員インタビュー</span>
+        <span class="voice-vol">Vol.3 地方議員インタビュー</span>
       </div>
       <div class="voice-card-body">
         <h3 class="voice-title">「対決より解決」が、<br>政治を選ぶ理由になった。</h3>
@@ -2031,7 +2014,7 @@
       </div>
     </article>
 
-    <p class="voice-note">国民民主党 党本部「地方議員インタビュー」より転載</p>
+    <p class="voice-note">Vol.2 は国民民主党 党本部「地方議員インタビュー」より転載</p>
   </div>
 </section>
 
@@ -2055,35 +2038,34 @@
 
     <div class="area-grid">
       <div class="area-block">
-        <h3 class="area-block-title">県議会議員</h3>
+        <h3 class="area-block-title">奈良県議会議員<span class="area-block-count">全16選挙区</span></h3>
         <ul class="area-list">
-          <li class="is-priority"><span class="area-name">奈良市選挙区</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
-          <li class="is-priority"><span class="area-name">山辺郡選挙区(奈良市・山添村)</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
-          <li class="is-priority"><span class="area-name">生駒市選挙区</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">大和高田市選挙区</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">五條市選挙区</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">御所市選挙区</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">香芝市選挙区</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">葛城市選挙区</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">宇陀市選挙区</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">生駒郡選挙区</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">磯城郡選挙区</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">北葛城郡選挙区</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">高市郡選挙区</span><span class="area-status status-open">募集中</span></li>
+          <li class="is-priority"><span class="area-name">奈良市・山辺郡</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li class="is-priority"><span class="area-name">生駒市</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li class="is-priority"><span class="area-name">北葛城郡</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">大和郡山市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">天理市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">桜井市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">香芝市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">大和高田市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">葛城市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">御所市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">五條市</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">橿原市・高市郡</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">宇陀市・宇陀郡</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">生駒郡</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">磯城郡</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">吉野郡</span><span class="area-status status-open">募集中</span></li>
         </ul>
       </div>
       <div class="area-block">
-        <h3 class="area-block-title">市議会議員</h3>
+        <h3 class="area-block-title">市議会議員<span class="area-block-count">全5市</span></h3>
         <ul class="area-list">
-          <li class="is-priority"><span class="area-name">奈良市</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
           <li class="is-priority"><span class="area-name">生駒市</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li class="is-priority"><span class="area-name">大和郡山市</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
           <li class="is-priority"><span class="area-name">天理市</span><span class="area-priority-mark">重点</span><span class="area-status status-open">募集中</span></li>
+          <li><span class="area-name">桜井市</span><span class="area-status status-open">募集中</span></li>
           <li><span class="area-name">大和高田市</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">五條市</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">御所市</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">香芝市</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">葛城市</span><span class="area-status status-open">募集中</span></li>
-          <li><span class="area-name">宇陀市</span><span class="area-status status-open">募集中</span></li>
         </ul>
       </div>
     </div>
@@ -2339,10 +2321,10 @@
       <div class="schedule-item">
         <div class="schedule-date">
           MAY
-          <span class="day">27</span>
+          <span class="day">24</span>
         </div>
         <div class="schedule-content">
-          <div class="schedule-title">県連大会・政治塾・街頭演説</div>
+          <div class="schedule-title">県連大会・第1回こくみん奈良政策アカデミー・街頭演説</div>
           <div class="schedule-place">ホテルリガーレ春日野 13:20〜／JR奈良駅 15:30〜</div>
         </div>
         <span class="schedule-tag seminar">イベント</span>
@@ -2436,13 +2418,13 @@
       <span>挑戦者、求む</span>
       <span>2027.4 STATEWIDE LOCAL ELECTION</span>
       <span>応募締切 2027.2.28</span>
-      <span>玉木雄一郎代表 登壇 5.24</span>
+      <span>玉木雄一郎代表 登壇 5.24(日)</span>
       <span>NARA PREFECTURE</span>
       <span>DPFP</span>
       <span>挑戦者、求む</span>
       <span>2027.4 STATEWIDE LOCAL ELECTION</span>
       <span>応募締切 2027.2.28</span>
-      <span>玉木雄一郎代表 登壇 5.24</span>
+      <span>玉木雄一郎代表 登壇 5.24(日)</span>
       <span>NARA PREFECTURE</span>
       <span>DPFP</span>
     </div>
