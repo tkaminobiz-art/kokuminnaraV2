@@ -459,23 +459,223 @@
   .ladder-item.current .ladder-link { color: var(--dpfp-blue); }
   .ladder-item.current .ladder-link:hover { color: #001838; }
 
-  /* ===== Event Detail Section (5/24 当日のスケジュール — チラシ画像表示) ===== */
+  /* ===== Event Detail Section (5/24 当日の3つのスケジュール) ===== */
   .event-detail-section {
-    /* 高級感のある紺 (奈良夕景の暗部 + 和紙テクスチャ重ね) */
     background:
-      radial-gradient(ellipse at top, rgba(26,90,168,0.45) 0%, transparent 55%),
+      linear-gradient(rgba(250,248,242,0.92), rgba(250,248,242,0.96)),
+      url('assets/images/backgrounds/washi-paper.jpg') center / cover no-repeat;
+    background-color: var(--gray-50);
+    padding: clamp(96px, 12vw, 140px) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .event-detail-section::before {
+    content: '5.24';
+    position: absolute;
+    top: -8%;
+    right: -3%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(280px, 38vw, 580px);
+    color: rgba(4,62,128,0.04);
+    letter-spacing: -0.06em;
+    line-height: 0.78;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .event-detail-section .container-wide {
+    position: relative;
+    z-index: 2;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px);
+  }
+  .event-detail-lead {
+    text-align: center;
+    font-size: clamp(15px, 1.25vw, 18px);
+    line-height: 2;
+    max-width: 56ch;
+    margin: 0 auto clamp(48px, 5vw, 72px);
+    color: var(--ink-sub);
+    font-weight: 500;
+  }
+  .event-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(18px, 2vw, 28px);
+  }
+  @media (max-width: 900px) {
+    .event-detail-grid { grid-template-columns: 1fr; gap: 18px; }
+    .event-detail-slot.is-priority::before {
+      top: 12px;
+      right: -28px;
+      padding: 3px 36px;
+      font-size: 9px;
+    }
+  }
+  .event-detail-slot {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-top: 4px solid var(--dpfp-orange);
+    padding: clamp(28px, 2.6vw, 40px) clamp(22px, 2vw, 32px);
+    position: relative;
+    transition: transform 0.32s cubic-bezier(0.22,1,0.36,1), box-shadow 0.32s;
+    overflow: hidden;
+  }
+  .event-detail-slot:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 56px rgba(4,62,128,0.13);
+  }
+  .event-detail-slot.is-priority {
+    background: linear-gradient(180deg, var(--dpfp-blue) 0%, var(--dpfp-blue-deep) 100%);
+    color: var(--white);
+    border: 1px solid var(--dpfp-orange);
+    border-top-width: 4px;
+    box-shadow: 0 22px 50px rgba(4,62,128,0.25);
+  }
+  .event-detail-slot.is-priority::before {
+    content: 'OPEN';
+    position: absolute;
+    top: 16px;
+    right: -32px;
+    transform: rotate(45deg);
+    background: var(--dpfp-orange);
+    color: var(--dpfp-blue);
+    padding: 4px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+  }
+  .event-detail-time {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  .event-detail-time-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(38px, 4.2vw, 60px);
+    font-weight: 900;
+    color: var(--dpfp-orange);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .event-detail-time-end {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(13px, 1vw, 15px);
+    font-weight: 700;
+    color: var(--ink-sub);
+    letter-spacing: 0.02em;
+  }
+  .event-detail-slot.is-priority .event-detail-time-end {
+    color: rgba(255,255,255,0.65);
+  }
+  .event-detail-meta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: var(--dpfp-blue);
+    font-weight: 700;
+    margin-bottom: clamp(18px, 2vw, 24px);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .event-detail-slot.is-priority .event-detail-meta {
+    color: var(--dpfp-orange);
+    border-bottom-color: rgba(245,181,0,0.4);
+  }
+  .event-detail-title {
+    font-size: clamp(17px, 1.5vw, 22px);
+    font-weight: 900;
+    color: var(--dpfp-blue);
+    margin: 0 0 14px;
+    line-height: 1.42;
+    letter-spacing: -0.01em;
+    line-break: strict;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+  }
+  .event-detail-slot.is-priority .event-detail-title { color: var(--white); }
+  .event-detail-title .nobr {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .event-detail-desc {
+    font-size: clamp(13px, 1vw, 14px);
+    line-height: 1.85;
+    color: var(--ink-sub);
+    margin-bottom: clamp(20px, 2.4vw, 28px);
+    font-weight: 500;
+  }
+  .event-detail-slot.is-priority .event-detail-desc { color: rgba(255,255,255,0.85); }
+  .event-detail-info {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 12px 14px;
+    font-size: 12.5px;
+    border-top: 1px solid var(--gray-200);
+    padding-top: 18px;
+    margin: 0;
+  }
+  .event-detail-slot.is-priority .event-detail-info { border-top-color: rgba(255,255,255,0.2); }
+  .event-detail-info dt {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    color: var(--dpfp-blue);
+    font-weight: 700;
+    padding-top: 2px;
+  }
+  .event-detail-slot.is-priority .event-detail-info dt { color: var(--dpfp-orange); }
+  .event-detail-info dd {
+    margin: 0;
+    color: var(--ink);
+    font-weight: 700;
+    line-height: 1.55;
+  }
+  .event-detail-slot.is-priority .event-detail-info dd { color: var(--white); }
+  .event-detail-info dd small {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-sub);
+    margin-top: 4px;
+  }
+  .event-detail-slot.is-priority .event-detail-info dd small { color: rgba(255,255,255,0.6); }
+  .event-detail-note {
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--ink-sub);
+    margin-top: clamp(40px, 4vw, 56px);
+    line-height: 1.85;
+  }
+  .event-detail-note a {
+    color: var(--dpfp-blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 700;
+  }
+  .event-detail-note a:hover { color: var(--dpfp-orange); }
+
+  /* ===== Event Flyer (チラシ画像セクション・3カードの下に追加表示) ===== */
+  .event-flyer-section {
+    background:
+      radial-gradient(ellipse at top, rgba(26,90,168,0.4) 0%, transparent 55%),
       linear-gradient(180deg, #022a5c 0%, #043e80 50%, #022a5c 100%),
       url('assets/images/backgrounds/washi-paper.jpg') center / cover no-repeat;
     background-blend-mode: normal, multiply, soft-light;
     background-color: #022a5c;
     color: var(--white);
-    padding: clamp(96px, 12vw, 140px) 0;
+    padding: clamp(80px, 10vw, 120px) 0;
     position: relative;
     overflow: hidden;
     isolation: isolate;
   }
-  /* 斜めノイズストライプ (ladder セクションと同質感) */
-  .event-detail-section::before {
+  .event-flyer-section::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -483,46 +683,44 @@
     pointer-events: none;
     z-index: 0;
   }
-  /* 巨大背景タイポ "5.24" 透かし */
-  .event-detail-section::after {
-    content: '5.24';
-    position: absolute;
-    top: -10%;
-    right: -3%;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: clamp(280px, 38vw, 580px);
-    color: rgba(245,181,0,0.05);
-    letter-spacing: -0.06em;
-    line-height: 0.78;
-    pointer-events: none;
-    user-select: none;
-    z-index: 0;
-  }
-  .event-detail-section .container {
+  .event-flyer-section .container {
     position: relative;
     z-index: 2;
-    max-width: 1100px;
+    max-width: 920px;
     margin: 0 auto;
     padding: 0 clamp(20px, 4vw, 48px);
-  }
-  .event-detail-section .section-title .jp { color: var(--white); }
-  .event-detail-section .section-title .en { color: rgba(245,181,0,0.65); }
-
-  .event-detail-lead {
     text-align: center;
-    font-size: clamp(15px, 1.2vw, 17px);
-    line-height: 2;
-    max-width: 60ch;
-    margin: 0 auto clamp(40px, 5vw, 64px);
-    color: rgba(255,255,255,0.78);
-    font-weight: 500;
   }
-
-  /* チラシ画像 */
+  .event-flyer-eyebrow {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    color: var(--dpfp-orange);
+    margin-bottom: 14px;
+  }
+  .event-flyer-eyebrow::before,
+  .event-flyer-eyebrow::after {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--dpfp-orange);
+    vertical-align: middle;
+    margin: 0 14px;
+    opacity: 0.7;
+  }
+  .event-flyer-headline {
+    font-size: clamp(20px, 2.4vw, 30px);
+    font-weight: 900;
+    color: var(--white);
+    margin: 0 0 clamp(28px, 3vw, 44px);
+    letter-spacing: 0.01em;
+  }
   .event-flyer {
     margin: 0 auto;
-    max-width: 720px;
+    max-width: 680px;
     padding: clamp(14px, 2vw, 24px);
     background: linear-gradient(135deg, rgba(245,181,0,0.18) 0%, rgba(245,181,0,0.06) 100%);
     border: 1px solid rgba(245,181,0,0.35);
@@ -565,22 +763,6 @@
   .event-flyer:hover img {
     transform: scale(1.015);
   }
-
-  .event-detail-note {
-    text-align: center;
-    font-size: 13px;
-    color: rgba(255,255,255,0.6);
-    margin-top: clamp(36px, 4vw, 52px);
-    line-height: 1.95;
-  }
-  .event-detail-note a {
-    color: var(--dpfp-orange);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    font-weight: 700;
-  }
-  .event-detail-note a:hover { color: var(--white); }
-
   @media (max-width: 768px) {
     .event-flyer { padding: 10px; }
     .event-flyer::before,
@@ -2375,29 +2557,86 @@
   </picture>
 </section>
 
-<!-- ====== 5/24 イベント詳細（チラシ画像） ====== -->
+<!-- ====== 5/24 イベント詳細（当日のスケジュール） ====== -->
 <section class="event-detail-section" id="event-detail">
-  <div class="container">
-    <div class="section-title section-title-light">
+  <div class="container-wide">
+    <div class="section-title">
       <span class="jp">当日のスケジュール</span>
       <span class="en">EVENT DETAILS — 2026.05.24 SUN</span>
     </div>
     <p class="event-detail-lead">
-      玉木代表が奈良に来県する一日。<br>
-      14:10からの政策アカデミー、15:30からの街頭演説会、当日の流れをチラシでご覧ください。
+      玉木代表が奈良に来県する一日。3つの場面で、奈良の政治の現場をご覧いただけます。<br>
+      街頭演説会はどなたでもご参加いただけます。
     </p>
 
+    <div class="event-detail-grid">
+      <div class="event-detail-slot">
+        <div class="event-detail-time">
+          <span class="event-detail-time-num">13:20</span>
+          <span class="event-detail-time-end">— 13:30</span>
+        </div>
+        <div class="event-detail-meta">SLOT 01 / 大会</div>
+        <h3 class="event-detail-title">奈良県連大会・代表挨拶</h3>
+        <p class="event-detail-desc">
+          玉木代表による挨拶。県連の方針と、2027年統一地方選挙に向けた決意を表明します。
+        </p>
+        <dl class="event-detail-info">
+          <dt>会場</dt><dd>ホテルリガーレ春日野<br><small>奈良市法蓮町757-2</small></dd>
+          <dt>対象</dt><dd>党員・サポーター</dd>
+        </dl>
+      </div>
+
+      <div class="event-detail-slot">
+        <div class="event-detail-time">
+          <span class="event-detail-time-num">14:10</span>
+          <span class="event-detail-time-end">— 15:00</span>
+        </div>
+        <div class="event-detail-meta">SLOT 02 / 政治塾</div>
+        <h3 class="event-detail-title"><span class="nobr">第1回</span><br><span class="nobr">こくみん奈良</span><span class="nobr">政策アカデミー</span></h3>
+        <p class="event-detail-desc">
+          奈良の地方政治を学ぶ、新設の政治塾。所属議員と直接対話できる希望者向けセッション。
+        </p>
+        <dl class="event-detail-info">
+          <dt>会場</dt><dd>ホテルリガーレ春日野<br><small>奈良市法蓮町757-2</small></dd>
+          <dt>対象</dt><dd>希望者・候補者公募応募者<br><small>※Googleフォームで申込予定</small></dd>
+        </dl>
+      </div>
+
+      <div class="event-detail-slot is-priority">
+        <div class="event-detail-time">
+          <span class="event-detail-time-num">15:30</span>
+          <span class="event-detail-time-end">— 16:00</span>
+        </div>
+        <div class="event-detail-meta">SLOT 03 / 街頭演説</div>
+        <h3 class="event-detail-title">街頭演説会</h3>
+        <p class="event-detail-desc">
+          玉木代表自らがマイクを握り、奈良の有権者に直接語りかける30分。どなたでもご参加いただけます。
+        </p>
+        <dl class="event-detail-info">
+          <dt>会場</dt><dd>JR奈良駅<br><small>観光案内所前 広場</small></dd>
+          <dt>対象</dt><dd>どなたでも<br><small>参加無料・予約不要</small></dd>
+        </dl>
+      </div>
+    </div>
+
+    <p class="event-detail-note">
+      ※当日のお申込み・お問い合わせは、奈良県連事務局（<a href="mailto:info@new-kokumin-nara.jp">info@new-kokumin-nara.jp</a>）まで<br>
+      <small>政治塾の申込フォーム URL は確定次第、こちらに掲載いたします。</small>
+    </p>
+  </div>
+</section>
+
+<!-- ====== 5/24 公式チラシ ====== -->
+<section class="event-flyer-section" id="event-flyer">
+  <div class="container">
+    <span class="event-flyer-eyebrow">OFFICIAL FLYER</span>
+    <h2 class="event-flyer-headline">公式チラシ</h2>
     <figure class="event-flyer">
       <picture>
         <source media="(max-width: 768px)" srcset="assets/images/event/event-flyer-mobile.jpg">
         <img src="assets/images/event/event-flyer.jpg" alt="2026年5月24日(日) 玉木雄一郎代表 来る!! 14:10 リガーレ春日野 こくみん政策アカデミー / 15:30 JR奈良駅前 街頭演説会 / 2027年統一地方選挙 候補者募集中" decoding="async">
       </picture>
     </figure>
-
-    <p class="event-detail-note">
-      ※当日のお申込み・お問い合わせは、奈良県連事務局（<a href="mailto:info@new-kokumin-nara.jp">info@new-kokumin-nara.jp</a>）まで<br>
-      <small>政治塾の申込フォーム URL は確定次第、こちらに掲載いたします。</small>
-    </p>
   </div>
 </section>
 
