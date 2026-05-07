@@ -662,31 +662,33 @@
   .event-detail-note a:hover { color: var(--dpfp-orange); }
 
   /* ===== Event Flyer (チラシ画像セクション・3カードの下に追加表示) ===== */
+  /* 上部スケジュールカード(cream washi)から連続させ、視線誘導はチラシ自体に */
   .event-flyer-section {
     background:
-      radial-gradient(ellipse at top, rgba(26,90,168,0.4) 0%, transparent 55%),
-      linear-gradient(180deg, #022a5c 0%, #043e80 50%, #022a5c 100%),
+      linear-gradient(rgba(250,248,242,0.92), rgba(250,248,242,0.96)),
       url('assets/images/backgrounds/washi-paper.jpg') center / cover no-repeat;
-    background-blend-mode: normal, multiply, soft-light;
-    background-color: #022a5c;
-    color: var(--white);
-    padding: clamp(80px, 10vw, 120px) 0;
+    background-color: var(--gray-50);
+    color: var(--ink);
+    padding: clamp(40px, 6vw, 80px) 0 clamp(80px, 10vw, 120px);
     position: relative;
     overflow: hidden;
-    isolation: isolate;
   }
+  /* 上部にスケジュールセクションとの境界に細いオレンジライン */
   .event-flyer-section::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background-image: repeating-linear-gradient(-15deg, rgba(255,255,255,0.022) 0 2px, transparent 2px 18px);
-    pointer-events: none;
-    z-index: 0;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--dpfp-orange);
+    z-index: 1;
   }
   .event-flyer-section .container {
     position: relative;
     z-index: 2;
-    max-width: 920px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 0 clamp(20px, 4vw, 48px);
     text-align: center;
@@ -712,41 +714,43 @@
     opacity: 0.7;
   }
   .event-flyer-headline {
-    font-size: clamp(20px, 2.4vw, 30px);
+    font-size: clamp(22px, 2.4vw, 32px);
     font-weight: 900;
-    color: var(--white);
-    margin: 0 0 clamp(28px, 3vw, 44px);
-    letter-spacing: 0.01em;
+    color: var(--dpfp-blue);
+    margin: 0 0 clamp(28px, 3vw, 40px);
+    letter-spacing: 0.02em;
   }
+  /* チラシ本体: 白い余白(マット)+影でギャラリー額縁風に */
   .event-flyer {
     margin: 0 auto;
-    max-width: 680px;
-    padding: clamp(14px, 2vw, 24px);
-    background: linear-gradient(135deg, rgba(245,181,0,0.18) 0%, rgba(245,181,0,0.06) 100%);
-    border: 1px solid rgba(245,181,0,0.35);
+    max-width: 640px;
+    padding: clamp(18px, 2.4vw, 32px);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
     box-shadow:
-      0 30px 80px rgba(0,0,0,0.45),
-      0 0 0 1px rgba(255,255,255,0.05) inset;
+      0 36px 80px rgba(4,62,128,0.18),
+      0 8px 24px rgba(4,62,128,0.08);
     position: relative;
   }
+  /* 4隅のオレンジL字を維持 (写真フレーム風) */
   .event-flyer::before,
   .event-flyer::after {
     content: '';
     position: absolute;
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     border: 2px solid var(--dpfp-orange);
     pointer-events: none;
   }
   .event-flyer::before {
-    top: -1px;
-    left: -1px;
+    top: 8px;
+    left: 8px;
     border-right: none;
     border-bottom: none;
   }
   .event-flyer::after {
-    bottom: -1px;
-    right: -1px;
+    bottom: 8px;
+    right: 8px;
     border-left: none;
     border-top: none;
   }
@@ -757,16 +761,16 @@
     height: auto;
   }
   .event-flyer img {
-    box-shadow: 0 14px 40px rgba(0,0,0,0.4);
     transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
   }
   .event-flyer:hover img {
-    transform: scale(1.015);
+    transform: scale(1.012);
   }
   @media (max-width: 768px) {
-    .event-flyer { padding: 10px; }
+    .event-flyer { padding: 12px; }
     .event-flyer::before,
-    .event-flyer::after { width: 18px; height: 18px; }
+    .event-flyer::after { width: 14px; height: 14px; top: 6px; left: 6px; }
+    .event-flyer::after { top: auto; left: auto; bottom: 6px; right: 6px; }
   }
 
   /* ===== Event Section: 画像のみのシンプル構成 ===== */
