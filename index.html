@@ -661,6 +661,98 @@
   }
   .event-detail-note a:hover { color: var(--dpfp-orange); }
 
+  /* ===== 政治塾 申込CTA (Googleフォーム) ===== */
+  /* 「候補者応募(紺ボタン)」と明確に差別化するためオレンジを基調 */
+  .academy-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: clamp(20px, 2.4vw, 28px);
+    padding: 14px 22px;
+    background: var(--dpfp-orange);
+    color: var(--dpfp-blue);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    box-shadow: 0 14px 32px rgba(245,181,0,0.22);
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    width: 100%;
+    line-height: 1.4;
+    border: 2px solid transparent;
+  }
+  .academy-cta:hover {
+    background: #ffc82a;
+    transform: translateY(-2px);
+    box-shadow: 0 22px 44px rgba(245,181,0,0.32);
+  }
+  .academy-cta:focus-visible {
+    outline: 3px solid var(--dpfp-blue);
+    outline-offset: 3px;
+  }
+  .academy-cta-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    text-align: left;
+    flex: 1;
+  }
+  .academy-cta-lead {
+    font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--dpfp-blue);
+    opacity: 0.75;
+    text-transform: uppercase;
+  }
+  .academy-cta-main {
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--dpfp-blue);
+  }
+  .academy-cta-icon {
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .academy-cta:hover .academy-cta-icon { transform: translate(2px, -2px); }
+
+  /* チラシ下の大型CTA */
+  .academy-cta-large {
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: clamp(28px, 3vw, 40px);
+    padding: 18px 26px;
+    width: auto;
+  }
+  .academy-cta-large .academy-cta-lead { font-size: 10.5px; }
+  .academy-cta-large .academy-cta-main { font-size: clamp(15px, 1.4vw, 18px); }
+  .event-flyer-cta-row {
+    margin-top: clamp(28px, 3vw, 40px);
+    text-align: center;
+  }
+  .academy-cta-note {
+    font-size: 11.5px;
+    color: var(--ink-sub);
+    margin: 16px auto 0;
+    max-width: 44ch;
+    line-height: 1.85;
+  }
+
+  /* SLOT 02のCTAは "is-priority" の OPENリボンと干渉しないように調整 */
+  .event-detail-slot.has-academy-cta {
+    /* リガーレ春日野・希望者など、テキストブロックの後にボタン余白 */
+    display: flex;
+    flex-direction: column;
+  }
+  .event-detail-slot.has-academy-cta .event-detail-info {
+    margin-bottom: 0;
+  }
+
   /* ===== Event Flyer (チラシ画像セクション・3カードの下に追加表示) ===== */
   /* 上部スケジュールカード(cream washi)から連続させ、視線誘導はチラシ自体に */
   .event-flyer-section {
@@ -2538,7 +2630,7 @@
         <span class="ladder-step-label">STEP / 話す</span>
         <h3 class="ladder-title">話す</h3>
         <p class="ladder-desc">政治塾や懇談会で、所属議員と直接、言葉を交わす。</p>
-        <a href="#" class="ladder-link">政治塾について</a>
+        <a href="https://forms.gle/2V3b4CDJhxCK5u3" target="_blank" rel="noopener noreferrer" class="ladder-link">政治塾に申し込む</a>
       </div>
       <div class="ladder-item">
         <div class="ladder-usagi"><img src="assets/images/usagi/usagi-tachimukau.png" alt="こくみんうさぎ 立ち向かう"></div>
@@ -2590,7 +2682,7 @@
         </dl>
       </div>
 
-      <div class="event-detail-slot">
+      <div class="event-detail-slot has-academy-cta">
         <div class="event-detail-time">
           <span class="event-detail-time-num">14:10</span>
           <span class="event-detail-time-end">— 15:00</span>
@@ -2602,8 +2694,20 @@
         </p>
         <dl class="event-detail-info">
           <dt>会場</dt><dd>ホテルリガーレ春日野<br><small>奈良市法蓮町757-2</small></dd>
-          <dt>対象</dt><dd>希望者・候補者公募応募者<br><small>※Googleフォームで申込予定</small></dd>
+          <dt>対象</dt><dd>希望者・候補者公募応募者<br><small>事前申込が必要です</small></dd>
         </dl>
+        <a href="https://forms.gle/2V3b4CDJhxCK5u3"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="academy-cta">
+          <span class="academy-cta-label">
+            <span class="academy-cta-lead">参加申込（Googleフォーム）</span>
+            <span class="academy-cta-main">政治塾に申し込む</span>
+          </span>
+          <svg class="academy-cta-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path d="M14 5h5v5M19 5l-9 9M11 5H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </a>
       </div>
 
       <div class="event-detail-slot is-priority">
@@ -2624,8 +2728,8 @@
     </div>
 
     <p class="event-detail-note">
-      ※当日のお申込み・お問い合わせは、奈良県連事務局（<a href="mailto:info@new-kokumin-nara.jp">info@new-kokumin-nara.jp</a>）まで<br>
-      <small>政治塾の申込フォーム URL は確定次第、こちらに掲載いたします。</small>
+      ※政治塾(14:10〜)は事前申込が必要です。上の「政治塾に申し込む」ボタンからGoogleフォームにアクセスしてください。<br>
+      <small>当日のお問い合わせは、奈良県連事務局（<a href="mailto:info@new-kokumin-nara.jp">info@new-kokumin-nara.jp</a>）まで</small>
     </p>
   </div>
 </section>
@@ -2641,6 +2745,24 @@
         <img src="assets/images/event/event-flyer.jpg" alt="2026年5月24日(日) 玉木雄一郎代表 来る!! 14:10 リガーレ春日野 こくみん政策アカデミー / 15:30 JR奈良駅前 街頭演説会 / 2027年統一地方選挙 候補者募集中" decoding="async">
       </picture>
     </figure>
+    <div class="event-flyer-cta-row">
+      <a href="https://forms.gle/2V3b4CDJhxCK5u3"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="academy-cta academy-cta-large">
+        <span class="academy-cta-label">
+          <span class="academy-cta-lead">14:10〜 リガーレ春日野</span>
+          <span class="academy-cta-main">第1回こくみん奈良政策アカデミーに申し込む</span>
+        </span>
+        <svg class="academy-cta-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M14 5h5v5M19 5l-9 9M11 5H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </a>
+      <p class="academy-cta-note">
+        ※ Google フォームが新しいタブで開きます。<br>
+        街頭演説会 (15:30〜) の申込は不要・どなたでもご参加いただけます。
+      </p>
+    </div>
   </div>
 </section>
 
