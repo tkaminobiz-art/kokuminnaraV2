@@ -178,6 +178,154 @@
     object-fit: cover;
   }
 
+  /* ===== イベント終了オーバーレイ (5/24 終了告知) ===== */
+  /* (A) 横断バナー: FV や 大きな画像にかぶせる斜めの帯 */
+  .event-ended-banner {
+    position: absolute;
+    z-index: 5;
+    top: 18%;
+    left: -10%;
+    right: -10%;
+    transform: rotate(-6deg);
+    background: linear-gradient(90deg, var(--dpfp-orange) 0%, #ffd54a 50%, var(--dpfp-orange) 100%);
+    color: var(--dpfp-blue);
+    padding: clamp(10px, 1.6vw, 18px) clamp(20px, 3vw, 40px);
+    text-align: center;
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.35),
+      0 0 0 4px rgba(255,255,255,0.95),
+      0 0 0 5px var(--dpfp-orange);
+    font-family: 'Noto Sans JP', sans-serif;
+    pointer-events: none;
+    line-height: 1.3;
+    backdrop-filter: blur(2px);
+  }
+  .event-ended-banner-eyebrow {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(10px, 0.9vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    margin-bottom: 4px;
+    color: var(--dpfp-blue-deep);
+  }
+  .event-ended-banner-main {
+    display: block;
+    font-size: clamp(15px, 1.8vw, 22px);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+  }
+  /* スマホで控えめに */
+  @media (max-width: 768px) {
+    .event-ended-banner { top: 14%; transform: rotate(-5deg); }
+  }
+
+  /* (B) スタンプ: 角に押される「終了」ハンコ風 */
+  .event-ended-stamp {
+    position: absolute;
+    z-index: 5;
+    top: 14px;
+    right: 14px;
+    width: clamp(72px, 8vw, 110px);
+    height: clamp(72px, 8vw, 110px);
+    border-radius: 50%;
+    background: rgba(196,30,30,0.92);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+    transform: rotate(-12deg);
+    box-shadow:
+      0 0 0 3px rgba(196,30,30,0.92),
+      0 0 0 5px rgba(255,255,255,0.92),
+      0 12px 30px rgba(0,0,0,0.35);
+    pointer-events: none;
+    border: 2px solid rgba(255,255,255,0.4);
+  }
+  .event-ended-stamp-main {
+    font-size: clamp(18px, 2.2vw, 28px);
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+  .event-ended-stamp-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(8px, 0.7vw, 10px);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    margin-top: 4px;
+    opacity: 0.95;
+  }
+  @media (max-width: 768px) {
+    .event-ended-stamp { top: 10px; right: 10px; }
+  }
+
+  /* (C) スロットカード内の「✓ 開催済」バッジ */
+  .event-ended-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: rgba(196,30,30,0.1);
+    color: var(--red);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    border: 1px solid var(--red);
+    margin-bottom: 14px;
+  }
+  .event-ended-badge::before {
+    content: '✓';
+    font-size: 14px;
+    line-height: 1;
+  }
+  .event-detail-slot.is-priority .event-ended-badge {
+    background: rgba(245,181,0,0.18);
+    color: var(--dpfp-orange);
+    border-color: var(--dpfp-orange);
+  }
+  /* 終了したスロットの過去形表現: 全体を少しトーンダウン */
+  .event-detail-slot.is-ended .event-detail-time-num {
+    opacity: 0.55;
+  }
+
+  /* (D) 「次回開催決定次第お知らせします」プレースホルダー */
+  .next-event-placeholder {
+    display: block;
+    margin-top: clamp(20px, 2.4vw, 28px);
+    padding: 18px 22px;
+    background: rgba(4,62,128,0.05);
+    border: 1px dashed rgba(4,62,128,0.3);
+    color: var(--ink-sub);
+    font-size: 13px;
+    line-height: 1.7;
+    text-align: center;
+  }
+  .next-event-placeholder strong {
+    color: var(--dpfp-blue);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13.5px;
+  }
+  /* schedule item の終了表示 */
+  .schedule-finished-tag {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px 8px;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    vertical-align: middle;
+  }
+  .schedule-item.is-ended { opacity: 0.78; }
+  .schedule-item.is-ended .schedule-date { color: var(--ink-sub); }
+
   /* ===== 縦型CTA (右端固定・2つ) ===== */
   .side-cta-group {
     position: fixed;
@@ -857,6 +1005,18 @@
   }
   .event-flyer:hover img {
     transform: scale(1.012);
+  }
+  /* 終了スタンプは flyer の右上角を基準に */
+  .event-flyer.is-ended { position: relative; }
+  .event-flyer.is-ended .event-ended-stamp {
+    top: -20px;
+    right: -20px;
+  }
+  @media (max-width: 768px) {
+    .event-flyer.is-ended .event-ended-stamp {
+      top: -10px;
+      right: -10px;
+    }
   }
   @media (max-width: 768px) {
     .event-flyer { padding: 12px; }
@@ -2590,6 +2750,10 @@
     <!-- PC -->
     <img src="assets/images/fv/fv-pc.jpg" alt="挑戦者、求む。 国民民主党 奈良県総支部連合会 候補者公募" fetchpriority="high">
   </picture>
+  <div class="event-ended-banner" aria-label="2026年5月24日のイベントは無事終了しました">
+    <span class="event-ended-banner-eyebrow">2026.05.24 SUN  ·  EVENT FINISHED</span>
+    <span class="event-ended-banner-main">5/24 イベントは無事終了しました — ご来場ありがとうございました</span>
+  </div>
 </section>
 
 <!-- ====== 右端固定CTA(2つ)====== -->
@@ -2622,7 +2786,7 @@
         <span class="ladder-step-label">STEP / 聞く</span>
         <h3 class="ladder-title">聞く</h3>
         <p class="ladder-desc">街頭演説・イベントに参加して、現場の空気を体感する。</p>
-        <a href="#event" class="ladder-link">5/24 玉木代表来県</a>
+        <a href="#event" class="ladder-link">5/24 開催レポート</a>
       </div>
       <div class="ladder-item">
         <div class="ladder-usagi"><img src="assets/images/usagi/usagi-kyoshu.png" alt="こくみんうさぎ 挙手"></div>
@@ -2630,7 +2794,7 @@
         <span class="ladder-step-label">STEP / 話す</span>
         <h3 class="ladder-title">話す</h3>
         <p class="ladder-desc">政治塾や懇談会で、所属議員と直接、言葉を交わす。</p>
-        <a href="https://forms.gle/2V3b4CDJhxCK5u3" target="_blank" rel="noopener noreferrer" class="ladder-link">政治塾に申し込む</a>
+        <span class="ladder-link" style="cursor: default; opacity: 0.65;">政治塾(次回開催未定)</span>
       </div>
       <div class="ladder-item">
         <div class="ladder-usagi"><img src="assets/images/usagi/usagi-tachimukau.png" alt="こくみんうさぎ 立ち向かう"></div>
@@ -2644,13 +2808,17 @@
   </div>
 </section>
 
-<!-- ====== 5/24 イベント告知（玉木代表来県・確定スケジュール） ====== -->
+<!-- ====== 5/24 イベント告知（玉木代表来県・終了） ====== -->
 <section class="event-section" id="event">
   <picture class="event-picture">
     <source media="(max-width: 768px)" srcset="assets/images/event/event-mobile.jpg">
     <source media="(max-width: 1180px)" srcset="assets/images/event/event-tablet.jpg">
-    <img src="assets/images/event/event-pc.jpg" alt="2026年5月24日（日）玉木雄一郎代表 来県 / 県連大会・第1回こくみん奈良政策アカデミー・街頭演説 in 奈良" decoding="async">
+    <img src="assets/images/event/event-pc.jpg" alt="（終了）2026年5月24日（日）玉木雄一郎代表 来県 / 県連大会・第1回こくみん奈良政策アカデミー・街頭演説 in 奈良" decoding="async">
   </picture>
+  <div class="event-ended-stamp" aria-hidden="true">
+    <span class="event-ended-stamp-main">終了</span>
+    <span class="event-ended-stamp-sub">5.24 FINISHED</span>
+  </div>
 </section>
 
 <!-- ====== 5/24 イベント詳細（当日のスケジュール） ====== -->
@@ -2661,12 +2829,13 @@
       <span class="en">EVENT DETAILS — 2026.05.24 SUN</span>
     </div>
     <p class="event-detail-lead">
-      玉木代表が奈良に来県する一日。3つの場面で、奈良の政治の現場をご覧いただけます。<br>
-      街頭演説会はどなたでもご参加いただけます。
+      2026年5月24日(日)に開催した玉木代表来県イベントは、無事終了いたしました。<br>
+      ご来場・ご参加いただいた皆さま、誠にありがとうございました。
     </p>
 
     <div class="event-detail-grid">
-      <div class="event-detail-slot">
+      <div class="event-detail-slot is-ended">
+        <span class="event-ended-badge">FINISHED</span>
         <div class="event-detail-time">
           <span class="event-detail-time-num">13:20</span>
           <span class="event-detail-time-end">— 13:30</span>
@@ -2674,7 +2843,7 @@
         <div class="event-detail-meta">SLOT 01 / 大会</div>
         <h3 class="event-detail-title">奈良県連大会・代表挨拶</h3>
         <p class="event-detail-desc">
-          玉木代表による挨拶。県連の方針と、2027年統一地方選挙に向けた決意を表明します。
+          玉木代表による挨拶。県連の方針と、2027年統一地方選挙に向けた決意を表明しました。
         </p>
         <dl class="event-detail-info">
           <dt>会場</dt><dd>ホテルリガーレ春日野<br><small>奈良市法蓮町757-2</small></dd>
@@ -2682,7 +2851,8 @@
         </dl>
       </div>
 
-      <div class="event-detail-slot has-academy-cta">
+      <div class="event-detail-slot is-ended">
+        <span class="event-ended-badge">FINISHED</span>
         <div class="event-detail-time">
           <span class="event-detail-time-num">14:10</span>
           <span class="event-detail-time-end">— 15:00</span>
@@ -2690,27 +2860,16 @@
         <div class="event-detail-meta">SLOT 02 / 政治塾</div>
         <h3 class="event-detail-title"><span class="nobr">第1回</span><br><span class="nobr">こくみん奈良</span><span class="nobr">政策アカデミー</span></h3>
         <p class="event-detail-desc">
-          奈良の地方政治を学ぶ、新設の政治塾。所属議員と直接対話できる希望者向けセッション。
+          奈良の地方政治を学ぶ新設の政治塾。所属議員と直接対話する希望者向けセッションとして開催しました。
         </p>
         <dl class="event-detail-info">
           <dt>会場</dt><dd>ホテルリガーレ春日野<br><small>奈良市法蓮町757-2</small></dd>
-          <dt>対象</dt><dd>希望者・候補者公募応募者<br><small>事前申込が必要です</small></dd>
+          <dt>対象</dt><dd>希望者・候補者公募応募者</dd>
         </dl>
-        <a href="https://forms.gle/2V3b4CDJhxCK5u3"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="academy-cta">
-          <span class="academy-cta-label">
-            <span class="academy-cta-lead">参加申込（Googleフォーム）</span>
-            <span class="academy-cta-main">政治塾に申し込む</span>
-          </span>
-          <svg class="academy-cta-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-            <path d="M14 5h5v5M19 5l-9 9M11 5H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-        </a>
       </div>
 
-      <div class="event-detail-slot is-priority">
+      <div class="event-detail-slot is-ended is-priority">
+        <span class="event-ended-badge">FINISHED</span>
         <div class="event-detail-time">
           <span class="event-detail-time-num">15:30</span>
           <span class="event-detail-time-end">— 16:00</span>
@@ -2718,19 +2877,20 @@
         <div class="event-detail-meta">SLOT 03 / 街頭演説</div>
         <h3 class="event-detail-title">街頭演説会</h3>
         <p class="event-detail-desc">
-          玉木代表自らがマイクを握り、奈良の有権者に直接語りかける30分。どなたでもご参加いただけます。
+          玉木代表自らがマイクを握り、奈良の有権者に直接語りかける30分の街頭演説を行いました。
         </p>
         <dl class="event-detail-info">
           <dt>会場</dt><dd>JR奈良駅<br><small>観光案内所前 広場</small></dd>
-          <dt>対象</dt><dd>どなたでも<br><small>参加無料・予約不要</small></dd>
+          <dt>対象</dt><dd>どなたでも</dd>
         </dl>
       </div>
     </div>
 
-    <p class="event-detail-note">
-      ※政治塾(14:10〜)は事前申込が必要です。上の「政治塾に申し込む」ボタンからGoogleフォームにアクセスしてください。<br>
-      <small>当日のお問い合わせは、奈良県連事務局（<a href="mailto:info@new-kokumin-nara.jp">info@new-kokumin-nara.jp</a>）まで</small>
-    </p>
+    <div class="next-event-placeholder">
+      <strong>次回イベントについて</strong>
+      開催が決定次第、本サイトおよび公式SNSにてお知らせいたします。<br>
+      <small>お問い合わせ: 奈良県連事務局 <a href="mailto:info@new-kokumin-nara.jp">info@new-kokumin-nara.jp</a></small>
+    </div>
   </div>
 </section>
 
@@ -2739,30 +2899,20 @@
   <div class="container">
     <span class="event-flyer-eyebrow">OFFICIAL FLYER</span>
     <h2 class="event-flyer-headline">公式チラシ</h2>
-    <figure class="event-flyer">
+    <figure class="event-flyer is-ended">
       <picture>
         <source media="(max-width: 768px)" srcset="assets/images/event/event-flyer-mobile.jpg">
-        <img src="assets/images/event/event-flyer.jpg" alt="2026年5月24日(日) 玉木雄一郎代表 来る!! 14:10 リガーレ春日野 こくみん政策アカデミー / 15:30 JR奈良駅前 街頭演説会 / 2027年統一地方選挙 候補者募集中" decoding="async">
+        <img src="assets/images/event/event-flyer.jpg" alt="（終了）2026年5月24日(日) 玉木雄一郎代表 来る!! 14:10 リガーレ春日野 こくみん政策アカデミー / 15:30 JR奈良駅前 街頭演説会" decoding="async">
       </picture>
+      <div class="event-ended-stamp" aria-hidden="true">
+        <span class="event-ended-stamp-main">終了</span>
+        <span class="event-ended-stamp-sub">5.24 FINISHED</span>
+      </div>
     </figure>
-    <div class="event-flyer-cta-row">
-      <a href="https://forms.gle/2V3b4CDJhxCK5u3"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="academy-cta academy-cta-large">
-        <span class="academy-cta-label">
-          <span class="academy-cta-lead">14:10〜 リガーレ春日野</span>
-          <span class="academy-cta-main">第1回こくみん奈良政策アカデミーに申し込む</span>
-        </span>
-        <svg class="academy-cta-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <path d="M14 5h5v5M19 5l-9 9M11 5H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-      </a>
-      <p class="academy-cta-note">
-        ※ Google フォームが新しいタブで開きます。<br>
-        街頭演説会 (15:30〜) の申込は不要・どなたでもご参加いただけます。
-      </p>
-    </div>
+    <p class="academy-cta-note" style="margin-top: clamp(24px,3vw,32px);">
+      ※ご来場・ご参加ありがとうございました。<br>
+      次回イベント情報は決定次第お知らせいたします。
+    </p>
   </div>
 </section>
 
@@ -3184,14 +3334,14 @@
       <span class="en">SCHEDULE</span>
     </div>
     <div class="schedule-wrapper">
-      <div class="schedule-item">
+      <div class="schedule-item is-ended">
         <div class="schedule-date">
           MAY
           <span class="day">24</span>
         </div>
         <div class="schedule-content">
-          <div class="schedule-title">県連大会・第1回こくみん奈良政策アカデミー・街頭演説</div>
-          <div class="schedule-place">ホテルリガーレ春日野 13:20〜／JR奈良駅 15:30〜</div>
+          <div class="schedule-title">県連大会・第1回こくみん奈良政策アカデミー・街頭演説<span class="schedule-finished-tag">✓ 終了</span></div>
+          <div class="schedule-place">ホテルリガーレ春日野 13:20〜／JR奈良駅 15:30〜 （ご来場ありがとうございました）</div>
         </div>
         <span class="schedule-tag seminar">イベント</span>
       </div>
@@ -3284,13 +3434,13 @@
       <span>挑戦者、求む</span>
       <span>2027.4 STATEWIDE LOCAL ELECTION</span>
       <span>応募締切 2027.2.28</span>
-      <span>玉木雄一郎代表 登壇 5.24(日)</span>
+      <span>5.24 開催ありがとうございました</span>
       <span>NARA PREFECTURE</span>
       <span>DPFP</span>
       <span>挑戦者、求む</span>
       <span>2027.4 STATEWIDE LOCAL ELECTION</span>
       <span>応募締切 2027.2.28</span>
-      <span>玉木雄一郎代表 登壇 5.24(日)</span>
+      <span>5.24 開催ありがとうございました</span>
       <span>NARA PREFECTURE</span>
       <span>DPFP</span>
     </div>
