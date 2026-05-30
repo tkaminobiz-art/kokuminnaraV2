@@ -233,53 +233,67 @@
   }
 
   /* ===== イベント終了オーバーレイ (5/24 終了告知) ===== */
-  /* (A) 横断バナー: FV や 大きな画像にかぶせる帯 (中央目立たせ) */
-  .event-ended-banner {
-    position: absolute;
-    z-index: 5;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    background: rgba(196,30,30,0.95);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+  /* (A) FV直下の終了告知バー: 写真・人物に被せず、全幅で大きく告知する帯 */
+  .event-ended-bar {
+    position: relative;
+    z-index: 6;
+    background: linear-gradient(90deg, #C41E1E 0%, #b01818 50%, #C41E1E 100%);
+    background-size: 200% 100%;
+    animation: globalNoticeShimmer 6s ease-in-out infinite;
     color: var(--white);
-    padding: clamp(20px, 3vw, 36px) clamp(20px, 3vw, 40px);
     text-align: center;
-    box-shadow:
-      0 16px 48px rgba(0,0,0,0.5),
-      0 0 0 1px rgba(255,255,255,0.2) inset;
+    padding: clamp(22px, 3.4vw, 40px) clamp(18px, 4vw, 48px);
+    border-top: 5px solid var(--dpfp-orange);
+    border-bottom: 5px solid var(--dpfp-orange);
+    box-shadow: 0 14px 38px rgba(196,30,30,0.32);
     font-family: 'Noto Sans JP', sans-serif;
-    pointer-events: none;
-    line-height: 1.4;
-    border-top: 4px solid var(--dpfp-orange);
-    border-bottom: 4px solid var(--dpfp-orange);
   }
-  .event-ended-banner-eyebrow {
-    display: block;
+  .event-ended-bar-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    line-height: 1.3;
+  }
+  .event-ended-bar-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(11px, 1vw, 14px);
+    font-size: clamp(11px, 1.05vw, 14px);
     font-weight: 700;
-    letter-spacing: 0.28em;
-    margin-bottom: 8px;
+    letter-spacing: 0.24em;
     color: #ffd54a;
   }
-  .event-ended-banner-main {
-    display: block;
-    font-size: clamp(18px, 2.6vw, 32px);
+  .event-ended-bar-eyebrow::before,
+  .event-ended-bar-eyebrow::after {
+    content: '';
+    width: clamp(20px, 4vw, 46px);
+    height: 2px;
+    background: rgba(255,213,74,0.7);
+  }
+  .event-ended-bar-main {
+    font-size: clamp(23px, 3.6vw, 42px);
     font-weight: 900;
     letter-spacing: 0.02em;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.28);
+  }
+  .event-ended-bar-sub {
+    font-size: clamp(13px, 1.4vw, 17px);
+    font-weight: 700;
+    opacity: 0.96;
   }
   @media (max-width: 768px) {
-    .event-ended-banner {
-      padding: 16px 16px;
+    .event-ended-bar {
+      padding: 20px 16px;
+      border-top-width: 4px;
+      border-bottom-width: 4px;
     }
-    .event-ended-banner-main {
-      font-size: 17px;
-      line-height: 1.5;
-    }
+    .event-ended-bar-main { font-size: 22px; line-height: 1.4; }
+    .event-ended-bar-sub { font-size: 13px; }
+    .event-ended-bar-eyebrow { letter-spacing: 0.16em; }
   }
 
   /* (B) スタンプ: 角に押される「終了」ハンコ風 */
@@ -2821,11 +2835,16 @@
     <!-- PC -->
     <img src="assets/images/fv/fv-pc.jpg" alt="挑戦者、求む。 国民民主党 奈良県総支部連合会 候補者公募" fetchpriority="high">
   </picture>
-  <div class="event-ended-banner" aria-label="2026年5月24日のイベントは無事終了しました">
-    <span class="event-ended-banner-eyebrow">2026年5月24日(日) ・ 開催終了</span>
-    <span class="event-ended-banner-main">5/24 イベントは無事終了しました — ご来場ありがとうございました</span>
-  </div>
 </section>
+
+<!-- ====== イベント終了告知バー（FV直下・人物に被せない位置へ移設） ====== -->
+<div class="event-ended-bar">
+  <div class="event-ended-bar-inner">
+    <span class="event-ended-bar-eyebrow">2026年5月24日(日) ・ 開催終了</span>
+    <span class="event-ended-bar-main">5/24 イベントは無事終了しました</span>
+    <span class="event-ended-bar-sub">ご来場・ご参加、誠にありがとうございました</span>
+  </div>
+</div>
 
 <!-- ====== 右端固定CTA(2つ)====== -->
 <div class="side-cta-group">
