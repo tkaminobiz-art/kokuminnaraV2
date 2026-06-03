@@ -1880,37 +1880,9 @@
     }
   }
 
-  /* タブレット（横向き・小型PC: 901-1024） */
-  @media (max-width: 1024px) and (min-width: 901px) {
-    /* 右固定CTAを少しコンパクトに */
-    .side-cta { padding: 16px 10px; font-size: 13px; }
+  /* (削除済) 旧901-1024タブレットルール → 下の (min-width:769)and(max-width:1024) に統合 */
 
-    /* 5カラムを3カラムに（残り2個は2段目） */
-    .ladder-wrapper { grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .voice-card { grid-template-columns: 320px 1fr; }
-    .voice-card-body { padding: 36px 36px 34px; }
-
-    /* 応募方法 2カラム → 少しコンパクト */
-    .apply-method { padding: 24px 20px; }
-    .apply-method-title { font-size: 17px; }
-
-    /* FAQ */
-    .faq-section { padding: 96px 0; }
-    .faq-group { max-width: 720px; }
-
-    /* Message 写真もう少しコンパクト */
-    .message-block { grid-template-columns: 240px 1fr; gap: 36px; }
-    .message-photo, .message-photo-img { width: 240px; height: 280px; }
-
-    /* セクション共通 */
-    section { padding: 96px 0; }
-    .section-title { margin-bottom: 64px; }
-  }
-
-  /* iPad 縦向き・中間サイズ: 769-900 */
-  /* モバイルと同じスタック型レイアウトを適用するため、以下のメディアクエリで768→900に拡張 */
-
-  /* スマートフォン + iPad 縦向き */
+  /* スマートフォン + iPad 縦向き (元: ≤900px) ※iPad はその後の769-1024ルールで上書き */
   @media (max-width: 900px) {
     /* iOS は background-attachment: fixed が不安定 → スクロール時のチラつき回避 */
     .message-section {
@@ -2150,6 +2122,102 @@
     .footer-thanks { font-size: 13px; }
     /* モバイルでは下部固定CTAのぶん余白確保 */
     footer { padding-bottom: 90px; }
+  }
+
+  /* ===== iPad縦向き最適化 (769-1024px) =====
+     mobile rules (≤900) より後に書いて優先・iPad portrait の空き空間を活用 */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    /* ladder (3つの入口): 1カラム → 3カラム */
+    .ladder-wrapper {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 100%;
+    }
+    .ladder-item {
+      padding: 24px 18px 24px;
+    }
+    .ladder-step { font-size: clamp(48px, 5.5vw, 72px); }
+    .ladder-title { font-size: 22px; }
+    .ladder-desc { font-size: 13px; line-height: 1.7; }
+    .ladder-usagi { width: 40px; height: 48px; top: 14px; right: 14px; }
+
+    /* 対象地域: 1カラム → 2カラム (3つ目は下段全幅) */
+    .area-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .area-grid > .area-block:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+    .area-grid > .area-block:nth-child(3) .area-list {
+      columns: 2;
+      column-gap: 24px;
+    }
+    .area-grid > .area-block:nth-child(3) .area-list li {
+      break-inside: avoid;
+    }
+
+    /* 代表メッセージ: 1カラム → 2カラム (写真+本文) */
+    .message-block {
+      grid-template-columns: 240px 1fr;
+      gap: 36px;
+      align-items: flex-start;
+    }
+    .message-photo, .message-photo-img {
+      width: 240px !important;
+      max-width: 240px !important;
+      height: 300px !important;
+      aspect-ratio: 4/5;
+      margin: 0 !important;
+    }
+    .message-headline { font-size: 28px; }
+
+    /* フッター: 1カラム → 2カラム */
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      text-align: left;
+    }
+    .footer-brand, .footer-sns-block {
+      text-align: left;
+    }
+    .footer-sns-list {
+      justify-content: flex-start;
+    }
+    .footer-usagi-row {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    /* 応募方法: 2カラム化 (フォーム+メール) */
+    .apply-methods {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* セクション縦余白の調整 */
+    section { padding: 84px 0; }
+    .section-title { margin-bottom: 56px; }
+
+    /* イベント告知バナーをよりコンパクトに */
+    .news-banner-inner { gap: 16px; }
+
+    /* 挑戦者の声: 写真+本文を横並びに */
+    .voice-card {
+      grid-template-columns: 260px 1fr;
+      max-width: 100%;
+    }
+    .voice-card-photo {
+      aspect-ratio: 3 / 4;
+    }
+    .voice-card-body {
+      padding: 28px 24px 28px;
+    }
+    /* スマホ専用の続きを読むボタンはタブレットでは非表示 */
+    .voice-expand-btn { display: none; }
+    .voice-qa { max-height: none; overflow: visible; }
+    .voice-qa::after { display: none; }
   }
 
   /* 極小画面 */
