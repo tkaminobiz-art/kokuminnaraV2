@@ -1327,14 +1327,20 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     color: var(--navy);
-    font-size: 14px;
-    letter-spacing: 0.05em;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
   }
-  .schedule-date .day {
-    display: block;
-    font-size: 28px;
+  .schedule-date-md {
+    font-size: 30px;
+    font-weight: 900;
     line-height: 1;
-    margin-top: 4px;
+    letter-spacing: -0.02em;
+  }
+  .schedule-date-dow {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-500);
   }
   .schedule-content { font-size: 16px; font-weight: 500; }
   .schedule-content .schedule-title {
@@ -1358,6 +1364,11 @@
   }
   .schedule-tag.street { background: var(--orange); color: var(--white); }
   .schedule-tag.seminar { background: var(--navy); color: var(--white); }
+  .schedule-tag.past { background: var(--gray-200); color: var(--gray-500); }
+  /* 過去の予定（実績）はトーンダウン */
+  .schedule-item.is-past { opacity: 0.7; }
+  .schedule-item.is-past .schedule-date { color: var(--gray-500); }
+  .schedule-item.is-past .schedule-title { color: var(--gray-500); }
   .schedule-note {
     text-align: center;
     margin-top: 32px;
@@ -2126,7 +2137,7 @@
 
   /* ===== iPad縦向き最適化 (769-1024px) =====
      mobile rules (≤900) より後に書いて優先・iPad portrait の空き空間を活用 */
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
     /* ladder (3つの入口): 1カラム → 3カラム */
     .ladder-wrapper {
       grid-template-columns: repeat(3, 1fr);
@@ -2257,11 +2268,11 @@
 <!-- ====== Main Visual v7（2025 editorial poster／余白の律理） ====== -->
 <section class="mv">
   <picture class="mv-picture">
-    <!-- スマホ縦長 -->
-    <source media="(max-width: 768px)" srcset="assets/images/fv/fv-mobile.jpg">
-    <!-- タブレット -->
+    <!-- スマホ縦長 (〜767px) -->
+    <source media="(max-width: 767px)" srcset="assets/images/fv/fv-mobile.jpg">
+    <!-- タブレット (768〜1180px) -->
     <source media="(max-width: 1180px)" srcset="assets/images/fv/fv-tablet.jpg">
-    <!-- PC -->
+    <!-- PC (1181px〜) -->
     <img src="assets/images/fv/fv-pc.jpg" alt="挑戦者、求む。 国民民主党 奈良県総支部連合会 候補者公募" fetchpriority="high">
   </picture>
 </section>
@@ -2284,8 +2295,8 @@
   <div class="news-banner-inner">
     <span class="news-banner-tag">お知らせ</span>
     <p class="news-banner-text">
-      <strong>2026年5月24日（日）のイベントは無事終了しました。</strong>
-      <span>ご来場・ご参加、誠にありがとうございました。次回イベント情報は決定次第お知らせいたします。</span>
+      <strong>6/7（日）立候補相談会を開催します（10:00〜12:00・予約不要）</strong>
+      <span>候補者公募にご関心のある方は、お気軽にお越しください。詳しくは下記「活動予定」をご覧ください。</span>
     </p>
   </div>
 </section>
@@ -2320,7 +2331,7 @@
         <span class="ladder-step-label">STEP / 聞く</span>
         <h3 class="ladder-title">聞く</h3>
         <p class="ladder-desc">街頭演説・イベントに参加して、現場の空気を体感する。</p>
-        <a href="#schedule-section-anchor" class="ladder-link">今月の活動予定</a>
+        <a href="#schedule-section-anchor" class="ladder-link">活動予定を見る</a>
       </div>
       <div class="ladder-item">
         <div class="ladder-usagi"><img src="assets/images/usagi/usagi-kyoshu.png" alt="こくみんうさぎ 挙手"></div>
@@ -2756,20 +2767,34 @@
 <section class="schedule-section" id="schedule-section-anchor">
   <div class="container">
     <div class="section-title">
-      <span class="jp">今月の活動予定</span>
+      <span class="jp">活動予定</span>
       <span class="en">SCHEDULE</span>
     </div>
     <div class="schedule-wrapper">
+      <!-- 今後の予定 -->
       <div class="schedule-item">
         <div class="schedule-date">
-          JUN
-          <span class="day">07</span>
+          <span class="schedule-date-md">6/7</span>
+          <span class="schedule-date-dow">(日)</span>
         </div>
         <div class="schedule-content">
           <div class="schedule-title">立候補相談会</div>
           <div class="schedule-place">10:00〜12:00 ／ 予約不要</div>
         </div>
         <span class="schedule-tag">相談会</span>
+      </div>
+
+      <!-- 過去の予定（実績） -->
+      <div class="schedule-item is-past">
+        <div class="schedule-date">
+          <span class="schedule-date-md">5/24</span>
+          <span class="schedule-date-dow">(日)</span>
+        </div>
+        <div class="schedule-content">
+          <div class="schedule-title">玉木雄一郎代表 来県イベント</div>
+          <div class="schedule-place">県連大会・第1回こくみん奈良政策アカデミー・街頭演説会</div>
+        </div>
+        <span class="schedule-tag past">終了</span>
       </div>
     </div>
     <p class="schedule-note">※最新スケジュールは公式SNSにて随時更新</p>
@@ -2838,13 +2863,13 @@
       <span>挑戦者、求む</span>
       <span>2027.4 STATEWIDE LOCAL ELECTION</span>
       <span>応募締切 2027.2.28</span>
-      <span>5.24 開催ありがとうございました</span>
+      <span>候補者 募集中</span>
       <span>NARA PREFECTURE</span>
       <span>DPFP</span>
       <span>挑戦者、求む</span>
       <span>2027.4 STATEWIDE LOCAL ELECTION</span>
       <span>応募締切 2027.2.28</span>
-      <span>5.24 開催ありがとうございました</span>
+      <span>候補者 募集中</span>
       <span>NARA PREFECTURE</span>
       <span>DPFP</span>
     </div>
