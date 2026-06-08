@@ -229,6 +229,13 @@
     color: var(--ink-sub);
     font-size: clamp(12.5px, 1vw, 14px);
   }
+  .news-banner-text a {
+    color: var(--dpfp-blue);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .news-banner-text a:hover { color: var(--dpfp-blue-deep); }
   @media (max-width: 768px) {
     .news-banner { padding: 14px 16px; }
     .news-banner-inner { gap: 10px; }
@@ -1342,6 +1349,11 @@
     font-weight: 700;
     color: var(--gray-500);
   }
+  /* 「随時」など日付以外の語は少し小さめに */
+  .schedule-date-anytime {
+    font-size: 24px;
+    color: var(--dpfp-orange);
+  }
   .schedule-content { font-size: 16px; font-weight: 500; }
   .schedule-content .schedule-title {
     font-weight: 900;
@@ -2295,8 +2307,8 @@
   <div class="news-banner-inner">
     <span class="news-banner-tag">お知らせ</span>
     <p class="news-banner-text">
-      <strong>6/7（日）立候補相談会を開催します（10:00〜12:00・予約不要）</strong>
-      <span>候補者公募にご関心のある方は、お気軽にお越しください。詳しくは下記「活動予定」をご覧ください。</span>
+      <strong>【立候補者 個別相談会】随時受付中</strong>
+      <span>ご希望日程を記入の上、<a href="mailto:info@new-kokumin-nara.jp?subject=立候補者%20個別相談会の希望">info@new-kokumin-nara.jp</a> までご連絡ください。オンラインでの実施も可能です！お気軽にご相談ください。</span>
     </p>
   </div>
 </section>
@@ -2771,8 +2783,21 @@
       <span class="en">SCHEDULE</span>
     </div>
     <div class="schedule-wrapper">
-      <!-- 今後の予定 -->
+      <!-- 常設: 個別相談会（随時受付） -->
       <div class="schedule-item">
+        <div class="schedule-date">
+          <span class="schedule-date-md schedule-date-anytime">随時</span>
+          <span class="schedule-date-dow">受付</span>
+        </div>
+        <div class="schedule-content">
+          <div class="schedule-title">立候補者 個別相談会</div>
+          <div class="schedule-place">ご希望日程をメールでご連絡ください ／ オンライン実施も可能</div>
+        </div>
+        <span class="schedule-tag">相談会</span>
+      </div>
+
+      <!-- 過去の予定（実績） -->
+      <div class="schedule-item is-past">
         <div class="schedule-date">
           <span class="schedule-date-md">6/7</span>
           <span class="schedule-date-dow">(日)</span>
@@ -2781,7 +2806,7 @@
           <div class="schedule-title">立候補相談会</div>
           <div class="schedule-place">10:00〜12:00 ／ 予約不要</div>
         </div>
-        <span class="schedule-tag">相談会</span>
+        <span class="schedule-tag past">終了</span>
       </div>
 
       <!-- 過去の予定（実績） -->
