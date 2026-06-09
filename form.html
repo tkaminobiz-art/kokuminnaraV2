@@ -247,6 +247,30 @@
   }
   .file-selected.has-file { display: block; }
 
+  /* アップロード上限の案内ボックス */
+  .upload-notice {
+    background: var(--gray-50);
+    border-left: 4px solid var(--dpfp-orange);
+    padding: 18px 22px;
+    margin: 8px 0 4px;
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--gray-900);
+  }
+  .upload-notice strong {
+    display: block;
+    color: var(--dpfp-blue);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .upload-notice ul {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+  .upload-notice li { margin-bottom: 4px; }
+  .upload-notice b { color: var(--dpfp-blue); }
+  .upload-notice a { color: var(--dpfp-blue); font-weight: 700; text-decoration: underline; }
+
   /* Submit */
   .form-submit {
     margin-top: 48px;
@@ -593,6 +617,16 @@
       </div>
     </div>
 
+    <!-- アップロード上限の案内 -->
+    <div class="upload-notice">
+      <strong>📎 ファイルアップロードについて</strong>
+      <ul>
+        <li><b>履歴書・小論文を合わせて10MB以内</b>のPDFをアップロードしてください。</li>
+        <li>一般的なPDF（A4・顔写真付き）であれば、合計でも数MB程度で十分収まります。</li>
+        <li>スマホで撮影した書類などで容量が大きい場合は、PDFを圧縮するか、<a href="mailto:info@new-kokumin-nara.jp?subject=候補者公募%20書類のメール送付">info@new-kokumin-nara.jp</a> へメールでお送りいただいても構いません。</li>
+      </ul>
+    </div>
+
     <!-- 履歴書 -->
     <div class="field">
       <label class="field-label" for="cv">履歴書アップロード <span class="required">必須</span></label>
@@ -602,7 +636,7 @@
           <div class="file-drop-text">
             <strong>クリックしてPDFファイルを選択</strong>
             またはこのエリアにドラッグ&ドロップ<br>
-            ※PDFのみ・履歴書＋小論文の合計で9MBまで
+            ※PDF形式のみ（履歴書＋小論文の合計10MB以内）
           </div>
         </label>
         <div class="file-selected" id="cvSelected"></div>
@@ -619,7 +653,7 @@
           <div class="file-drop-text">
             <strong>クリックしてPDFファイルを選択</strong>
             またはこのエリアにドラッグ&ドロップ<br>
-            ※PDFのみ・履歴書＋小論文の合計で9MBまで
+            ※PDF形式のみ（履歴書＋小論文の合計10MB以内）
           </div>
         </label>
         <div class="file-selected" id="essaySelected"></div>
@@ -700,9 +734,9 @@ document.getElementById('postalLookup').addEventListener('click', function() {
     }
     const file = this.files[0];
 
-    // 1. ファイルサイズ検証 (単体は8MB以下。合計9MBの上限は送信時に最終チェック)
-    if (file.size > 8 * 1024 * 1024) {
-      alert('1ファイルのサイズは8MB以下にしてください。\n（履歴書＋小論文の合計で9MBが上限です）');
+    // 1. ファイルサイズ検証 (単体10MB以下。合計10MBの上限は送信時に最終チェック)
+    if (file.size > 10 * 1024 * 1024) {
+      alert('ファイルサイズが大きすぎます。\n履歴書・小論文を合わせて10MB以内にしてください。');
       this.value = '';
       display.classList.remove('has-file');
       return;
@@ -774,18 +808,17 @@ document.getElementById('applyForm').addEventListener('submit', function(e) {
 
   // 2. 添付ファイル合計サイズチェック
   //    FormSubmitの仕様: 全ファイルの「合計」が10MBを超えると添付が届かない
-  //    安全マージンを取り、合計9MB以内に制限
   const cv = document.getElementById('cv').files[0];
   const essay = document.getElementById('essay').files[0];
   const totalBytes = (cv ? cv.size : 0) + (essay ? essay.size : 0);
-  const LIMIT = 9 * 1024 * 1024; // 9MB
+  const LIMIT = 10 * 1024 * 1024; // 10MB（履歴書＋小論文の合計）
   if (totalBytes > LIMIT) {
     e.preventDefault();
     const mb = (totalBytes / 1024 / 1024).toFixed(1);
     alert(
-      '履歴書と小論文の合計サイズが ' + mb + 'MB あり、上限(9MB)を超えています。\n\n' +
-      'メール送信の仕様上、2ファイルの合計を9MB以内にする必要があります。\n' +
-      'PDFを軽量化（圧縮）するか、画像の解像度を下げて再度お試しください。\n\n' +
+      '履歴書と小論文の合計サイズが ' + mb + 'MB あり、上限(10MB)を超えています。\n\n' +
+      'システムの仕様上、2ファイルの合計を10MB以内にする必要があります。\n' +
+      'PDFを軽量化（圧縮）するか、スキャン画像の解像度を下げて再度お試しください。\n\n' +
       'どうしても難しい場合は info@new-kokumin-nara.jp までメールでご送付ください。'
     );
     return false;
